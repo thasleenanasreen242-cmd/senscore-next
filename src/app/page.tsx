@@ -7,6 +7,7 @@ import Reveal from "@/components/Reveal";
 import SectionEyebrow from "@/components/SectionEyebrow";
 import GlowButton from "@/components/GlowButton";
 import StatReadout from "@/components/StatReadout";
+import TiltCard from "@/components/TiltCard";
 import {
   PRODUCT_CATEGORIES, INDUSTRIES, PARTNERS, CLIENTS,
 } from "@/lib/data";
@@ -125,29 +126,31 @@ export default function HomePage() {
               const Icon = ICONS[cat.id] ?? Gauge;
               return (
                 <Reveal key={cat.id} delay={i * 0.05}>
-                  <Link
-                    href="/products"
-                    className="group relative flex h-full flex-col rounded-2xl border border-line bg-surface p-7 transition-all duration-300 hover:border-teal/40 hover:bg-surface2"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-teal/30 bg-teal/5 text-teal">
-                        <Icon size={20} strokeWidth={1.75} />
-                      </span>
-                      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-faint">
-                        {cat.tag}
-                      </span>
-                    </div>
-                    <h3 className="mt-6 font-display text-xl font-medium text-ink">
-                      {cat.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-mute">
-                      {cat.description}
-                    </p>
-                    <div className="mt-6 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-teal opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                      View items
-                      <ArrowUpRight size={13} />
-                    </div>
-                  </Link>
+                  <TiltCard className="group h-full">
+                    <Link
+                      href="/products"
+                      className="flex h-full flex-col rounded-2xl border border-line bg-surface p-7 transition-colors duration-300 hover:border-teal/40 hover:bg-surface2"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-teal/30 bg-teal/5 text-teal">
+                          <Icon size={20} strokeWidth={1.75} />
+                        </span>
+                        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-faint">
+                          {cat.tag}
+                        </span>
+                      </div>
+                      <h3 className="mt-6 font-display text-xl font-medium text-ink">
+                        {cat.title}
+                      </h3>
+                      <p className="mt-3 text-sm leading-relaxed text-mute">
+                        {cat.description}
+                      </p>
+                      <div className="mt-6 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-teal opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                        View items
+                        <ArrowUpRight size={13} />
+                      </div>
+                    </Link>
+                  </TiltCard>
                 </Reveal>
               );
             })}
