@@ -5,15 +5,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        void: "#03192E",
-        surface: "#052C54",
-        surface2: "#073A6B",
-        line: "rgba(232, 237, 242, 0.10)",
+        void: "#050914",
+        surface: "#0A1226",
+        surface2: "#101B36",
+        line: "rgba(232, 237, 242, 0.08)",
         teal: {
-          DEFAULT: "#2E8FD6",
-          light: "#6DC2FF",
-          dim: "#084888",
-          glow: "rgba(46, 143, 214, 0.45)",
+          DEFAULT: "#22B8FF",
+          dim: "#0E6FAF",
+          glow: "rgba(34, 184, 255, 0.35)",
         },
         indigo: {
           DEFAULT: "#3D5AFE",
@@ -24,8 +23,8 @@ const config: Config = {
           dim: "#B0501F",
         },
         ink: "#E8EDF2",
-        mute: "#9FB2C8",
-        faint: "#5B7392",
+        mute: "#8B98A8",
+        faint: "#4E5A6B",
       },
       fontFamily: {
         display: ["var(--font-display)", "sans-serif"],
@@ -34,8 +33,7 @@ const config: Config = {
       },
       backgroundImage: {
         "grid-fade":
-          "linear-gradient(180deg, rgba(3,25,46,0) 0%, #03192E 85%)",
-        "blue-gradient": "linear-gradient(90deg, #084888 0%, #2E8FD6 100%)",
+          "linear-gradient(180deg, rgba(5,9,20,0) 0%, #050914 85%)",
       },
       keyframes: {
         scan: {
