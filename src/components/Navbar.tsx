@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X, Radio } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { NAV_LINKS } from "@/lib/data";
 
 export default function Navbar() {
@@ -29,15 +30,16 @@ export default function Navbar() {
         scrolled ? "bg-void/80 backdrop-blur-lg border-b border-line" : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
-        <Link href="/" className="group flex items-center gap-2.5">
-          <span className="relative flex h-8 w-8 items-center justify-center rounded-md border border-teal/40 bg-teal/5">
-            <Radio size={16} className="text-teal" strokeWidth={2} />
-            <span className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-teal animate-pulseGlow" />
-          </span>
-          <span className="font-display text-lg font-semibold tracking-wide text-ink">
-            SENS<span className="text-teal">CORE</span>
-          </span>
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-10">
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/logo.png.webp"
+            alt="SensCore"
+            width={160}
+            height={48}
+            className="h-11 w-auto object-contain"
+            priority
+          />
         </Link>
 
         <div className="hidden items-center gap-9 lg:flex">
