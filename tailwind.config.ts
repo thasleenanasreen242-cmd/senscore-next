@@ -5,9 +5,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        void: "#05070A",
-        surface: "#0B0F16",
-        surface2: "#121826",
+        void: "#050914",
+        surface: "#0A1226",
+        surface2: "#101B36",
         line: "rgba(232, 237, 242, 0.08)",
         teal: {
           DEFAULT: "#22B8FF",
@@ -33,7 +33,7 @@ const config: Config = {
       },
       backgroundImage: {
         "grid-fade":
-          "linear-gradient(180deg, rgba(5,7,10,0) 0%, #05070A 85%)",
+          "linear-gradient(180deg, rgba(5,9,20,0) 0%, #050914 85%)",
       },
       keyframes: {
         scan: {
