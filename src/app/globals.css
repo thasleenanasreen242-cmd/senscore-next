@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #05070a;
+  color: #e8edf2;
+}
+
+::selection {
+  background: rgba(0, 229, 199, 0.25);
+  color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #05070a;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a2231;
+  border-radius: 999px;
+  border: 2px solid #05070a;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #263047;
+}
+
+:focus-visible {
+  outline: 2px solid #00e5c7;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Schematic grid backdrop used behind hero/section content */
+.hud-grid {
+  background-image:
+    linear-gradient(rgba(232, 237, 242, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 237, 242, 0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.hud-grid-fine {
+  background-image:
+    linear-gradient(rgba(232, 237, 242, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 237, 242, 0.035) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.text-glow-teal {
+  text-shadow: 0 0 24px rgba(0, 229, 199, 0.45);
+}
+
+.border-glow {
+  box-shadow: 0 0 0 1px rgba(0, 229, 199, 0.15), 0 0 32px -8px rgba(0, 229, 199, 0.25);
+}
+
+.mask-fade-bottom {
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+.mask-fade-x {
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
