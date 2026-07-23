@@ -3,6 +3,7 @@ import { Chakra_Petch, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import CursorGlow from "@/components/CursorGlow";
 
 const display = Chakra_Petch({
   subsets: ["latin"],
@@ -46,6 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
       <body className="font-body bg-void text-ink antialiased selection:bg-teal/20">
+        <CursorGlow />
         <Navbar />
         <main>{children}</main>
         <Footer />
