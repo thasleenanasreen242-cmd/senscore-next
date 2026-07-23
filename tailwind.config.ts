@@ -5,27 +5,27 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        void: "#03192E",
-        surface: "#052C54",
-        surface2: "#073A6B",
-        line: "rgba(232, 237, 242, 0.10)",
+        void: "#0A1B2E",
+        surface: "#12263D",
+        surface2: "#183048",
+        line: "rgba(244, 246, 248, 0.10)",
         teal: {
-          DEFAULT: "#2E8FD6",
-          light: "#6DC2FF",
-          dim: "#084888",
-          glow: "rgba(46, 143, 214, 0.45)",
+          DEFAULT: "#C9A15A",
+          light: "#E0C084",
+          dim: "#8A6E3D",
+          glow: "rgba(201, 161, 90, 0.35)",
         },
         indigo: {
-          DEFAULT: "#3D5AFE",
-          dim: "#28399E",
+          DEFAULT: "#3E6B96",
+          dim: "#284B6E",
         },
         amber: {
-          DEFAULT: "#FF7A45",
-          dim: "#B0501F",
+          DEFAULT: "#C9A15A",
+          dim: "#8A6E3D",
         },
-        ink: "#E8EDF2",
-        mute: "#9FB2C8",
-        faint: "#5B7392",
+        ink: "#F4F6F8",
+        mute: "#8FA3B8",
+        faint: "#516B85",
       },
       fontFamily: {
         display: ["var(--font-display)", "sans-serif"],
@@ -34,8 +34,8 @@ const config: Config = {
       },
       backgroundImage: {
         "grid-fade":
-          "linear-gradient(180deg, rgba(3,25,46,0) 0%, #03192E 85%)",
-        "blue-gradient": "linear-gradient(90deg, #084888 0%, #2E8FD6 100%)",
+          "linear-gradient(180deg, rgba(10,27,46,0) 0%, #0A1B2E 85%)",
+        "blue-gradient": "linear-gradient(90deg, #084888 0%, #3E6B96 100%)",
       },
       keyframes: {
         scan: {
