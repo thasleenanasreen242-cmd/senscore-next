@@ -31,7 +31,7 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 lg:px-10">
-        <Link href="/" className="group relative flex items-center py-2">
+        <Link href="/" className="group relative flex items-center gap-3 py-2">
           <span
             aria-hidden
             className="pointer-events-none absolute -left-6 -top-4 h-24 w-40 rounded-full bg-teal/25 blur-3xl transition-opacity duration-300 group-hover:bg-teal/40"
@@ -39,11 +39,14 @@ export default function Navbar() {
           <Image
             src="/logo.png.webp"
             alt="SensCore"
-            width={280}
-            height={90}
-            className="relative h-16 w-auto object-contain drop-shadow-[0_0_18px_rgba(34,184,255,0.45)] sm:h-20"
+            width={200}
+            height={70}
+            className="relative h-12 w-auto object-contain drop-shadow-[0_0_18px_rgba(34,184,255,0.45)] sm:h-14"
             priority
           />
+          <span className="relative font-display text-xl font-semibold tracking-wide text-ink sm:text-2xl">
+            SENS<span className="text-teal">CORE</span>
+          </span>
         </Link>
 
         <div className="hidden items-center gap-9 lg:flex">
