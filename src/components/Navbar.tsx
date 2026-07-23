@@ -30,14 +30,18 @@ export default function Navbar() {
         scrolled ? "bg-void/80 backdrop-blur-lg border-b border-line" : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-10">
-        <Link href="/" className="flex items-center">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 lg:px-10">
+        <Link href="/" className="group relative flex items-center py-2">
+          <span
+            aria-hidden
+            className="pointer-events-none absolute -left-6 -top-4 h-24 w-40 rounded-full bg-teal/25 blur-3xl transition-opacity duration-300 group-hover:bg-teal/40"
+          />
           <Image
             src="/logo.png.webp"
             alt="SensCore"
-            width={160}
-            height={48}
-            className="h-11 w-auto object-contain"
+            width={280}
+            height={90}
+            className="relative h-16 w-auto object-contain drop-shadow-[0_0_18px_rgba(34,184,255,0.45)] sm:h-20"
             priority
           />
         </Link>
