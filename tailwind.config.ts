@@ -10,9 +10,10 @@ const config: Config = {
         surface2: "#101B36",
         line: "rgba(232, 237, 242, 0.08)",
         teal: {
-          DEFAULT: "#22B8FF",
-          dim: "#0E6FAF",
-          glow: "rgba(34, 184, 255, 0.35)",
+          DEFAULT: "#084888",
+          light: "#2E8FD6",
+          dim: "#052C54",
+          glow: "rgba(8, 72, 136, 0.45)",
         },
         indigo: {
           DEFAULT: "#3D5AFE",
@@ -34,6 +35,7 @@ const config: Config = {
       backgroundImage: {
         "grid-fade":
           "linear-gradient(180deg, rgba(5,9,20,0) 0%, #050914 85%)",
+        "blue-gradient": "linear-gradient(90deg, #084888 0%, #2E8FD6 100%)",
       },
       keyframes: {
         scan: {
