@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import CursorGlow from "@/components/CursorGlow";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ScrollProgress from "@/components/ScrollProgress";
+import StatusTicker from "@/components/StatusTicker";
 
 const display = Chakra_Petch({
   subsets: ["latin"],
@@ -52,7 +53,11 @@ export default function RootLayout({
         <ScrollProgress />
         <CursorGlow />
         <WhatsAppButton />
-        <Navbar />
+        <div className="fixed inset-x-0 top-0 z-40 pt-[3px]">
+          <Navbar />
+        </div>
+        <div className="h-[68px] sm:h-[76px]" />
+        <StatusTicker />
         <main>{children}</main>
         <Footer />
       </body>
