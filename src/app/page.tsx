@@ -8,6 +8,8 @@ import SectionEyebrow from "@/components/SectionEyebrow";
 import GlowButton from "@/components/GlowButton";
 import StatReadout from "@/components/StatReadout";
 import TiltCard from "@/components/TiltCard";
+import DecodeText from "@/components/DecodeText";
+import ParallaxLayer from "@/components/ParallaxLayer";
 import {
   PRODUCT_CATEGORIES, INDUSTRIES, PARTNERS, CLIENTS,
 } from "@/lib/data";
@@ -26,7 +28,9 @@ export default function HomePage() {
     <>
       {/* ---------------- HERO ---------------- */}
       <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden pt-24">
-        <HUDBackground density={7} />
+        <ParallaxLayer speed={0.25} className="absolute inset-0">
+          <HUDBackground density={7} />
+        </ParallaxLayer>
 
         <div className="relative mx-auto w-full max-w-7xl px-6 lg:px-10">
           <Reveal>
@@ -36,15 +40,18 @@ export default function HomePage() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.08}>
-            <h1 className="mt-7 max-w-4xl font-display text-[2.6rem] font-semibold leading-[1.05] tracking-tight text-ink sm:text-6xl lg:text-7xl">
-              Industrial systems that{" "}
-              <span className="text-teal text-glow-teal">sense, decide,</span>{" "}
-              and act on their own.
-            </h1>
-          </Reveal>
+          <h1 className="mt-7 max-w-4xl font-display text-[2.6rem] font-semibold leading-[1.05] tracking-tight text-ink sm:text-6xl lg:text-7xl">
+            <DecodeText text="Industrial systems that" delay={0.1} />
+            <br />
+            <DecodeText
+              text="sense, decide,"
+              delay={0.5}
+              className="text-teal text-glow-teal"
+            />{" "}
+            <DecodeText text="and act on their own." delay={0.9} />
+          </h1>
 
-          <Reveal delay={0.16}>
+          <Reveal delay={1.4}>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-mute sm:text-lg">
               SensCore fuses AI with Industrial IoT to give UAE industries a
               self-optimizing process layer — instrumentation that doesn&apos;t
@@ -52,14 +59,14 @@ export default function HomePage() {
             </p>
           </Reveal>
 
-          <Reveal delay={0.24}>
+          <Reveal delay={1.5}>
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <GlowButton href="/products">Explore Solutions</GlowButton>
               <GlowButton href="/contact" variant="ghost">Contact Us</GlowButton>
             </div>
           </Reveal>
 
-          <Reveal delay={0.34}>
+          <Reveal delay={1.6}>
             <div className="mt-16 grid grid-cols-2 gap-8 border-t border-line pt-8 sm:grid-cols-4">
               <StatReadout value={4200} suffix="+" label="Sensors deployed" />
               <StatReadout value={99.4} suffix="%" decimals={1} label="Platform uptime" />
@@ -126,10 +133,10 @@ export default function HomePage() {
               const Icon = ICONS[cat.id] ?? Gauge;
               return (
                 <Reveal key={cat.id} delay={i * 0.05}>
-                  <TiltCard className="group h-full">
+                  <TiltCard className="group gradient-border h-full">
                     <Link
                       href="/products"
-                      className="flex h-full flex-col rounded-2xl border border-line bg-surface p-7 transition-colors duration-300 hover:border-teal/40 hover:bg-surface2"
+                      className="glass-panel flex h-full flex-col rounded-2xl p-7 transition-colors duration-300 hover:bg-surface2/60"
                     >
                       <div className="flex items-center justify-between">
                         <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-teal/30 bg-teal/5 text-teal">
