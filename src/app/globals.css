@@ -27,7 +27,7 @@ body::before {
 }
 
 ::selection {
-  background: rgba(0, 229, 199, 0.25);
+  background: rgba(132, 164, 196, 0.25);
   color: #ffffff;
 }
 
@@ -35,19 +35,19 @@ body::before {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #05070a;
+  background: #03192e;
 }
 ::-webkit-scrollbar-thumb {
   background: #1a2231;
   border-radius: 999px;
-  border: 2px solid #05070a;
+  border: 2px solid #03192e;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #263047;
 }
 
 :focus-visible {
-  outline: 2px solid #00e5c7;
+  outline: 2px solid #84a4c4;
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -68,15 +68,15 @@ body::before {
 }
 
 .text-glow-teal {
-  background: linear-gradient(90deg, #084888 0%, #2E8FD6 60%, #6DC2FF 100%);
+  background: linear-gradient(90deg, #5A82A8 0%, #84A4C4 60%, #A9C1DA 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 0 30px rgba(8, 72, 136, 0.55);
+  text-shadow: 0 0 20px rgba(132, 164, 196, 0.35);
 }
 
 .border-glow {
-  box-shadow: 0 0 0 1px rgba(0, 229, 199, 0.15), 0 0 32px -8px rgba(0, 229, 199, 0.25);
+  box-shadow: 0 0 0 1px rgba(132, 164, 196, 0.15), 0 0 32px -8px rgba(132, 164, 196, 0.25);
 }
 
 .mask-fade-bottom {
@@ -90,7 +90,7 @@ body::before {
 }
 
 .glass-panel {
-  background: rgba(18, 38, 61, 0.45);
+  background: rgba(5, 44, 84, 0.45);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(232, 237, 242, 0.12);
@@ -107,7 +107,7 @@ body::before {
   inset: -1px;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(120deg, #084888, #2E8FD6, #084888, #6DC2FF, #084888);
+  background: linear-gradient(120deg, #084888, #5A82A8, #084888, #84A4C4, #084888);
   background-size: 300% 300%;
   animation: gradient-rotate 6s linear infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
