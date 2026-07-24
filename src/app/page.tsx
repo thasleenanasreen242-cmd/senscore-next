@@ -27,11 +27,8 @@ export default function HomePage() {
   return (
     <>
       {/* ---------------- HERO ---------------- */}
-      <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden pt-24">
-        <ParallaxLayer speed={0.25} className="absolute inset-0">
-          <HUDBackground density={7} />
-        </ParallaxLayer>
-
+     <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden pt-24">
+        <HUDBackground density={7} />
         <div className="relative mx-auto w-full max-w-7xl px-6 lg:px-10">
           <Reveal>
             <div className="inline-flex items-center gap-2 rounded-full border border-teal/30 bg-teal/5 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-teal">
