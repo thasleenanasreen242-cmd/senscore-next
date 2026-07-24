@@ -58,14 +58,14 @@ export default function ProductsPage() {
 
                <Reveal delay={0.1}>
                   <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl border border-line bg-surface hud-grid-fine">
-                    {cat.id === "instrumentation" ? (
+                   {cat.id === "instrumentation" ? (
                       <video
                         src="/instrumentation.mp4"
                         autoPlay
                         loop
                         muted
                         playsInline
-                        className="absolute inset-0 h-full w-full object-contain bg-void"
+                        className="absolute inset-0 h-full w-full object-cover"
                       />
                     ) : (
                       <>
