@@ -65,7 +65,7 @@ export default function ProductsPage() {
                         loop
                         muted
                         playsInline
-                        className="absolute inset-0 h-full w-full object-cover"
+                        className="absolute inset-0 h-full w-full object-contain bg-void"
                       />
                     ) : (
                       <>
