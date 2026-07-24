@@ -55,7 +55,13 @@ body::before {
   outline-offset: 3px;
   border-radius: 2px;
 }
-
+@media (pointer: fine) {
+  .custom-cursor-active,
+  .custom-cursor-active a,
+  .custom-cursor-active button {
+    cursor: none;
+  }
+}
 /* Schematic grid backdrop used behind hero/section content */
 .hud-grid {
   background-image:
