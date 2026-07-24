@@ -10,10 +10,10 @@ const config: Config = {
         surface2: "#073A6B",
         line: "rgba(232, 237, 242, 0.10)",
         teal: {
-          DEFAULT: "#084888",
-          light: "#84A4C4",
-          dim: "#052C54",
-          glow: "rgba(8, 72, 136, 0.45)",
+          DEFAULT: "#84A4C4",
+          light: "#A9C1DA",
+          dim: "#084888",
+          glow: "rgba(132, 164, 196, 0.35)",
         },
         indigo: {
           DEFAULT: "#3D5AFE",
