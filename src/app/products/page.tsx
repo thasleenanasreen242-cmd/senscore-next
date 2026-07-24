@@ -56,13 +56,26 @@ export default function ProductsPage() {
                   </ul>
                 </Reveal>
 
-                <Reveal delay={0.1}>
+               <Reveal delay={0.1}>
                   <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl border border-line bg-surface hud-grid-fine">
-                    <div className="absolute inset-0 bg-gradient-to-br from-teal/[0.08] via-transparent to-indigo/[0.08]" />
-                    <span className="relative flex h-24 w-24 items-center justify-center rounded-2xl border border-teal/30 bg-void/60 text-teal shadow-[0_0_60px_-10px_rgba(0,229,199,0.4)]">
-                      <Icon size={40} strokeWidth={1.5} />
-                    </span>
-                    <span className="absolute bottom-5 right-5 font-mono text-[10px] uppercase tracking-[0.2em] text-faint">
+                    {cat.id === "instrumentation" ? (
+                      <video
+                        src="/instrumentation.mp4"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="absolute inset-0 h-full w-full object-cover"
+                      />
+                    ) : (
+                      <>
+                        <div className="absolute inset-0 bg-gradient-to-br from-teal/[0.08] via-transparent to-indigo/[0.08]" />
+                        <span className="relative flex h-24 w-24 items-center justify-center rounded-2xl border border-teal/30 bg-void/60 text-teal shadow-[0_0_60px_-10px_rgba(0,229,199,0.4)]">
+                          <Icon size={40} strokeWidth={1.5} />
+                        </span>
+                      </>
+                    )}
+                    <span className="absolute bottom-5 right-5 z-10 font-mono text-[10px] uppercase tracking-[0.2em] text-faint">
                       {cat.tag} / MODULE.{String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
