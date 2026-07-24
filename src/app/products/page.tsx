@@ -4,6 +4,7 @@ import Reveal from "@/components/Reveal";
 import SectionEyebrow from "@/components/SectionEyebrow";
 import GlowButton from "@/components/GlowButton";
 import { PRODUCT_CATEGORIES } from "@/lib/data";
+import MutableVideo from "@/components/MutableVideo";
 
 const ICONS: Record<string, any> = {
   instrumentation: Gauge,
