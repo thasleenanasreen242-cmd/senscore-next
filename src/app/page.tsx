@@ -9,7 +9,7 @@ import GlowButton from "@/components/GlowButton";
 import StatReadout from "@/components/StatReadout";
 import TiltCard from "@/components/TiltCard";
 import DecodeText from "@/components/DecodeText";
-import ParallaxLayer from "@/components/ParallaxLayer";
+import RevealWords from "@/components/RevealWords";
 import {
   PRODUCT_CATEGORIES, INDUSTRIES, PARTNERS, CLIENTS,
 } from "@/lib/data";
@@ -27,8 +27,9 @@ export default function HomePage() {
   return (
     <>
       {/* ---------------- HERO ---------------- */}
-     <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden pt-24">
+      <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden pt-24">
         <HUDBackground density={7} />
+
         <div className="relative mx-auto w-full max-w-7xl px-6 lg:px-10">
           <Reveal>
             <div className="inline-flex items-center gap-2 rounded-full border border-teal/30 bg-teal/5 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-teal">
@@ -48,13 +49,12 @@ export default function HomePage() {
             <DecodeText text="and act on their own." delay={0.9} />
           </h1>
 
-          <Reveal delay={1.4}>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-mute sm:text-lg">
-              SensCore fuses AI with Industrial IoT to give UAE industries a
-              self-optimizing process layer — instrumentation that doesn&apos;t
-              just report data, but reasons over it in real time.
-            </p>
-          </Reveal>
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-mute sm:text-lg">
+            <RevealWords
+              text="SensCore fuses AI with Industrial IoT to give UAE industries a self-optimizing process layer — instrumentation that doesn't just report data, but reasons over it in real time."
+              delay={1.3}
+            />
+          </p>
 
           <Reveal delay={1.5}>
             <div className="mt-9 flex flex-wrap items-center gap-4">
