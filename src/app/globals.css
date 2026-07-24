@@ -11,7 +11,11 @@ html {
 }
 
 body {
-  background-color: #03192e;
+  background-color: #000000;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(8, 72, 136, 0.25) 0%, transparent 60%),
+    linear-gradient(180deg, #000000 0%, #060a10 50%, #000000 100%);
+  background-attachment: fixed;
   color: #e8edf2;
 }
 
@@ -27,7 +31,7 @@ body::before {
 }
 
 ::selection {
-  background: rgba(132, 164, 196, 0.25);
+  background: rgba(90, 130, 168, 0.25);
   color: #ffffff;
 }
 
@@ -35,19 +39,19 @@ body::before {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #03192e;
+  background: #000000;
 }
 ::-webkit-scrollbar-thumb {
   background: #1a2231;
   border-radius: 999px;
-  border: 2px solid #03192e;
+  border: 2px solid #000000;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #263047;
 }
 
 :focus-visible {
-  outline: 2px solid #84a4c4;
+  outline: 2px solid #5a82a8;
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -72,11 +76,11 @@ body::before {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 0 20px rgba(132, 164, 196, 0.35);
+  text-shadow: 0 0 20px rgba(90, 130, 168, 0.35);
 }
 
 .border-glow {
-  box-shadow: 0 0 0 1px rgba(132, 164, 196, 0.15), 0 0 32px -8px rgba(132, 164, 196, 0.25);
+  box-shadow: 0 0 0 1px rgba(90, 130, 168, 0.15), 0 0 32px -8px rgba(90, 130, 168, 0.25);
 }
 
 .mask-fade-bottom {
@@ -90,7 +94,7 @@ body::before {
 }
 
 .glass-panel {
-  background: rgba(5, 44, 84, 0.45);
+  background: rgba(10, 14, 20, 0.55);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(232, 237, 242, 0.12);
