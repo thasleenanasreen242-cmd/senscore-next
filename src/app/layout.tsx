@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CursorGlow from "@/components/CursorGlow";
+import CustomCursor from "@/components/CustomCursor";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ScrollProgress from "@/components/ScrollProgress";
 import StatusTicker from "@/components/StatusTicker";
@@ -52,6 +53,7 @@ export default function RootLayout({
       <body className="font-body bg-void text-ink antialiased selection:bg-teal/20">
         <ScrollProgress />
         <CursorGlow />
+        <CustomCursor />
         <WhatsAppButton />
         <div className="fixed inset-x-0 top-0 z-40 pt-[3px]">
           <Navbar />
