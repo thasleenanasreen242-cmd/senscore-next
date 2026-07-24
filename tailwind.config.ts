@@ -5,10 +5,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        void: "#3A3D42",
-        surface: "#45484E",
-        surface2: "#50545B",
-        line: "rgba(232, 237, 242, 0.14)",
+        void: "#03192E",
+        surface: "#052C54",
+        surface2: "#073A6B",
+        line: "rgba(232, 237, 242, 0.10)",
         teal: {
           DEFAULT: "#84A4C4",
           light: "#A9C1DA",
@@ -23,9 +23,9 @@ const config: Config = {
           DEFAULT: "#FF7A45",
           dim: "#B0501F",
         },
-        ink: "#FFFFFF",
-        mute: "#C9CCD1",
-        faint: "#9498A0",
+        ink: "#E8EDF2",
+        mute: "#9FB2C8",
+        faint: "#5B7392",
       },
       fontFamily: {
         display: ["var(--font-display)", "sans-serif"],
@@ -34,7 +34,7 @@ const config: Config = {
       },
       backgroundImage: {
         "grid-fade":
-          "linear-gradient(180deg, rgba(58,61,66,0) 0%, #3A3D42 85%)",
+          "linear-gradient(180deg, rgba(3,25,46,0) 0%, #03192E 85%)",
         "blue-gradient": "linear-gradient(90deg, #084888 0%, #84A4C4 100%)",
       },
       keyframes: {
@@ -59,10 +59,4 @@ const config: Config = {
         scan: "scan 6s linear infinite",
         pulseGlow: "pulseGlow 2.4s ease-in-out infinite",
         marquee: "marquee 32s linear infinite",
-        drift: "drift 14s linear infinite",
-      },
-    },
-  },
-  plugins: [],
-};
-export default config;
+        drift: "drift 14s
