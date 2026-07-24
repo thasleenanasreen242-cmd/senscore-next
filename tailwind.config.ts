@@ -59,4 +59,10 @@ const config: Config = {
         scan: "scan 6s linear infinite",
         pulseGlow: "pulseGlow 2.4s ease-in-out infinite",
         marquee: "marquee 32s linear infinite",
-        drift: "drift 14s
+        drift: "drift 14s linear infinite",
+      },
+    },
+  },
+  plugins: [],
+};
+export default config;
