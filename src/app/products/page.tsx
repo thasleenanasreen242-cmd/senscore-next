@@ -3,8 +3,8 @@ import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionEyebrow from "@/components/SectionEyebrow";
 import GlowButton from "@/components/GlowButton";
-import { PRODUCT_CATEGORIES } from "@/lib/data";
 import MutableVideo from "@/components/MutableVideo";
+import { PRODUCT_CATEGORIES } from "@/lib/data";
 
 const ICONS: Record<string, any> = {
   instrumentation: Gauge,
@@ -13,6 +13,13 @@ const ICONS: Record<string, any> = {
   pipes: PipetteIcon,
   pumps: Waves,
   services: Wrench,
+};
+
+const VIDEOS: Record<string, string> = {
+  instrumentation: "/instrumentation.mp4",
+  automation: "/automation.mp4",
+  valves: "/valves.mp4",
+  pumps: "/pumps.mp4",
 };
 
 export default function ProductsPage() {
@@ -28,6 +35,7 @@ export default function ProductsPage() {
         <div className="mx-auto flex max-w-7xl flex-col gap-24 px-6 lg:px-10">
           {PRODUCT_CATEGORIES.map((cat, i) => {
             const Icon = ICONS[cat.id] ?? Gauge;
+            const videoSrc = VIDEOS[cat.id];
             const reversed = i % 2 === 1;
             return (
               <div
@@ -57,16 +65,12 @@ export default function ProductsPage() {
                   </ul>
                 </Reveal>
 
-               <Reveal delay={0.1}>
+                <Reveal delay={0.1}>
                   <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl border border-line bg-surface hud-grid-fine">
-                   {cat.id === "instrumentation" ? (
-                      <video
-                        src="/instrumentation.mp4"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="absolute inset-0 h-full w-full object-cover"
+                    {videoSrc ? (
+                      <MutableVideo
+                        src={videoSrc}
+                        className="absolute inset-0 h-full w-full object-contain bg-void"
                       />
                     ) : (
                       <>
