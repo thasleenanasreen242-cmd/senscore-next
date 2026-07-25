@@ -7,7 +7,6 @@ import CursorGlow from "@/components/CursorGlow";
 import CustomCursor from "@/components/CustomCursor";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ScrollProgress from "@/components/ScrollProgress";
-import StatusTicker from "@/components/StatusTicker";
 
 const display = Chakra_Petch({
   subsets: ["latin"],
@@ -59,7 +58,6 @@ export default function RootLayout({
           <Navbar />
         </div>
         <div className="h-[68px] sm:h-[76px]" />
-        <StatusTicker />
         <main>{children}</main>
         <Footer />
       </body>
