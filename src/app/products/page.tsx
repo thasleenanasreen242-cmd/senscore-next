@@ -70,7 +70,7 @@ export default function ProductsPage() {
                     {videoSrc ? (
                       <MutableVideo
                         src={videoSrc}
-                        className="absolute inset-0 h-full w-full object-contain bg-void"
+                        className="absolute inset-0 h-full w-full object-cover"
                       />
                     ) : (
                       <>
