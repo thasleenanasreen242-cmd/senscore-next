@@ -5,11 +5,6 @@ import ContactForm from "@/components/ContactForm";
 import { CONTACT } from "@/lib/data";
 
 
-export const metadata: Metadata = {
-  title: "Contact SensCore | Industrial Solutions in Abu Dhabi, UAE",
-  description:
-    "Get in touch with SensCore's engineering team for industrial instrumentation, automation, and AI-driven sensing solutions. Based in Abu Dhabi, serving clients across the UAE.",
-};
 
 const INFO = [
   { icon: MapPin, label: "Head office", value: CONTACT.address },
