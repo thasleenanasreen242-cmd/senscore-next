@@ -5,6 +5,15 @@ import SectionEyebrow from "@/components/SectionEyebrow";
 import GlowButton from "@/components/GlowButton";
 import MutableVideo from "@/components/MutableVideo";
 import { PRODUCT_CATEGORIES } from "@/lib/data";
+import { Gauge, Cpu, Sliders, PipetteIcon, Waves, Wrench, Check } from "lucide-react";
+
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Products & Services | SensCore Industrial Instrumentation",
+  description:
+    "Flowmeters, level and pressure transmitters, automation gateways, valves, pumps, and piping — certified industrial hardware from 60+ global manufacturer brands, supplied and supported in the UAE.",
+};
 
 const ICONS: Record<string, any> = {
   instrumentation: Gauge,
