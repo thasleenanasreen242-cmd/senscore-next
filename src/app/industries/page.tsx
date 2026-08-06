@@ -3,15 +3,6 @@ import Reveal from "@/components/Reveal";
 import SectionEyebrow from "@/components/SectionEyebrow";
 import GlowButton from "@/components/GlowButton";
 import { INDUSTRIES, CLIENTS } from "@/lib/data";
-import PageHero from "@/components/PageHero";
-
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Industries We Serve | SensCore UAE",
-  description:
-    "SensCore delivers autonomous sensing solutions for Oil & Gas, Manufacturing, Food & Beverage, Water & Utilities, Power & Energy, and HVAC & Facilities across the UAE.",
-};
 
 export default function IndustriesPage() {
   return (
