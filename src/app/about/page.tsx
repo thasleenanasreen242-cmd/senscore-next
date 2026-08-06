@@ -4,15 +4,8 @@ import Reveal from "@/components/Reveal";
 import SectionEyebrow from "@/components/SectionEyebrow";
 import GlowButton from "@/components/GlowButton";
 import { REPRESENTED_BRANDS } from "@/lib/data";
-import { ShieldCheck, Target, Eye, Users } from "lucide-react";
 
-import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "About SensCore | UAE's Autonomous AI Industrial Platform",
-  description:
-    "SensCore engineers the UAE's autonomous industrial future — certified instrumentation, automation, and an AI decision layer built for oil & gas, manufacturing, water, and energy sectors.",
-};
 const VALUES = [
   {
     icon: ShieldCheck,
