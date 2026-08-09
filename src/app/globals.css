@@ -114,16 +114,14 @@ body::before {
   0% { background-position: 0% 50%; }
   100% { background-position: 300% 50%; }
 }
-@keyframes marquee-reverse {
-  from {
-    transform: translateX(-50%);
-  }
-  to {
-    transform: translateX(0);
-  }
+.scan-sweep {
+  background: linear-gradient(90deg, transparent, rgba(90, 130, 168, 0.12), transparent);
+  animation: scan-sweep 8s ease-in-out infinite;
 }
-.animate-marquee-reverse {
-  animation: marquee-reverse 55s linear infinite;
+@keyframes scan-sweep {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(600%); }
+  100% { transform: translateX(-100%); }
 }
 @media (prefers-reduced-motion: reduce) {
   *,
