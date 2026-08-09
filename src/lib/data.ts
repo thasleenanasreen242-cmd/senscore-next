@@ -258,7 +258,40 @@ export const REPRESENTED_BRANDS = [
 export const CONTACT = {
   address: "9th Floor, Mazyad Mall - Business Tower 3, MBZ City, Abu Dhabi, UAE",
   email: "info@senscoretech.com",
+  enquiriesEmail: "enquiries@senscore.ae",
   phone: "+971 50 103 5348",
   phoneHref: "tel:+971501035348",
   linkedin: "https://www.linkedin.com/company/senscore/",
 };
+
+export const LOCATIONS = [
+  {
+    country: "UAE",
+    label: "Head Office",
+    address: "9th Floor, Mazyad Mall, Business Tower 3, MBZ City, Abu Dhabi, UAE",
+  },
+  {
+    country: "South Africa",
+    label: "SensCore",
+    address: "65, 2nd Ave, Lambton, Germiston, Johannesburg, South Africa",
+    phone: "+27 67 668 4947",
+  },
+  {
+    country: "Georgia",
+    label: "SensCore",
+    address: "Unit 87 Crossroad, Avlabari, Tbilisi, Georgia",
+    phone: "+995 59 364 9007",
+  },
+  {
+    country: "UK",
+    label: "SensCore",
+    address: "63 Barnwood Rd, Gloucester GL2 0SF, United Kingdom",
+    phone: "+44 7384 055110",
+  },
+  {
+    country: "India",
+    label: "SensCore",
+    address: "HiLITE Business Park, State Highway 28, Palazhi, Kozhikode, Kerala 673014, India",
+    phone: "+91 956 719 2688",
+  },
+];
