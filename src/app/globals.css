@@ -1,15 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 * {
   box-sizing: border-box;
 }
-
 html {
   scroll-behavior: smooth;
 }
-
 body {
   background-color: #000000;
   background-image:
@@ -18,7 +15,6 @@ body {
   background-attachment: fixed;
   color: #e8edf2;
 }
-
 body::before {
   content: "";
   position: fixed;
@@ -29,12 +25,10 @@ body::before {
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
-
 ::selection {
   background: rgba(90, 130, 168, 0.25);
   color: #ffffff;
 }
-
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -49,7 +43,6 @@ body::before {
 ::-webkit-scrollbar-thumb:hover {
   background: #263047;
 }
-
 :focus-visible {
   outline: 2px solid #5a82a8;
   outline-offset: 3px;
@@ -69,14 +62,12 @@ body::before {
     linear-gradient(90deg, rgba(232, 237, 242, 0.05) 1px, transparent 1px);
   background-size: 44px 44px;
 }
-
 .hud-grid-fine {
   background-image:
     linear-gradient(rgba(232, 237, 242, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(232, 237, 242, 0.035) 1px, transparent 1px);
   background-size: 22px 22px;
 }
-
 .text-glow-teal {
   background: linear-gradient(90deg, #5A82A8 0%, #84A4C4 60%, #A9C1DA 100%);
   -webkit-background-clip: text;
@@ -84,33 +75,27 @@ body::before {
   color: transparent;
   text-shadow: 0 0 20px rgba(90, 130, 168, 0.35);
 }
-
 .border-glow {
   box-shadow: 0 0 0 1px rgba(90, 130, 168, 0.15), 0 0 32px -8px rgba(90, 130, 168, 0.25);
 }
-
 .mask-fade-bottom {
   mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
 }
-
 .mask-fade-x {
   mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
 }
-
 .glass-panel {
   background: rgba(10, 14, 20, 0.55);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(232, 237, 242, 0.12);
 }
-
 .gradient-border {
   position: relative;
   border-radius: 1rem;
 }
-
 .gradient-border::before {
   content: "";
   position: absolute;
@@ -125,12 +110,21 @@ body::before {
   mask-composite: exclude;
   pointer-events: none;
 }
-
 @keyframes gradient-rotate {
   0% { background-position: 0% 50%; }
   100% { background-position: 300% 50%; }
 }
-
+@keyframes marquee-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.animate-marquee-reverse {
+  animation: marquee-reverse 55s linear infinite;
+}
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
