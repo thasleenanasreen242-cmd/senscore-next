@@ -1,30 +1,30 @@
-import { ShieldCheck, Target, Eye, Users } from "lucide-react";
+import { ShieldCheck, Gem, Users, ListChecks } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionEyebrow from "@/components/SectionEyebrow";
 import GlowButton from "@/components/GlowButton";
-import { REPRESENTED_BRANDS } from "@/lib/data";
+import { REPRESENTED_BRANDS, PARTNERS } from "@/lib/data";
 
 const VALUES = [
   {
     icon: ShieldCheck,
-    title: "Integrity",
-    text: "We recommend solutions based on operational requirements, not sales targets.",
+    title: "Engineering First",
+    text: "Application-driven decisions, not catalogue-based selling. We specify for the process, not the price list.",
   },
   {
-    icon: Target,
-    title: "Reliability",
-    text: "Field-proven industrial products backed by dependable technical support.",
-  },
-  {
-    icon: Eye,
-    title: "Transparency",
-    text: "Real-time monitoring and actionable insights keep you informed at every stage.",
+    icon: Gem,
+    title: "Precision & Quality",
+    text: "Accuracy, consistency, and reliability in every solution, from the instrument selected to the documentation that comes with it.",
   },
   {
     icon: Users,
-    title: "Partnership",
-    text: "From consultation to commissioning and long-term support, we're with you throughout the lifecycle.",
+    title: "Customer Focus",
+    text: "Solutions built around real operational needs, with support that continues long after commissioning.",
+  },
+  {
+    icon: ListChecks,
+    title: "Execution Discipline",
+    text: "Structured processes and accountable delivery. What we commit to is what arrives.",
   },
 ];
 
@@ -37,6 +37,22 @@ export default function AboutPage() {
         description="SensCore delivers intelligent sensing, industrial automation, and AI-driven monitoring solutions that help organizations improve safety, efficiency, and operational performance."
       />
 
+      <section className="border-b border-line py-16 sm:py-20">
+        <div className="mx-auto max-w-3xl px-6 text-center lg:px-10">
+          <Reveal>
+            <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">
+              Engineering first. Always.
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-mute sm:text-lg">
+              We were built on a conviction that industrial supply should
+              start with the application, not the catalogue. Engineering-led
+              selection, proven manufacturers, and support that continues
+              after the delivery note is signed.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="border-b border-line py-24 sm:py-32">
         <div className="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-2 lg:px-10">
           <Reveal>
@@ -46,9 +62,11 @@ export default function AboutPage() {
             </h2>
 
             <p className="mt-6 text-base leading-relaxed text-mute sm:text-lg">
-              We help industries transform operational data into meaningful
-              insights through intelligent sensing, automation, and predictive
-              technologies that improve productivity and reliability.
+              We deliver forward-thinking industrial solutions that help our
+              clients succeed every time. Rooted in trust and built on
+              engineering judgment, we partner with global manufacturers to
+              bring proven technologies that enhance performance, drive
+              efficiency, and reduce operational cost.
             </p>
           </Reveal>
 
@@ -57,15 +75,23 @@ export default function AboutPage() {
 
             <p className="mt-6 text-base leading-relaxed text-mute sm:text-lg">
               SensCore began by supplying high-quality industrial
-              instrumentation across the UAE. Over time, we recognized that
-              customers needed more than hardware—they needed actionable
-              intelligence.
+              instrumentation across the UAE. With a deep industry focus and
+              a commitment to long-term impact, we grew into something
+              clients relied on beyond the delivery note.
             </p>
 
             <p className="mt-4 text-base leading-relaxed text-mute sm:text-lg">
-              Today we combine trusted industrial equipment with modern AI and
-              automation technologies to help businesses monitor, predict, and
-              optimize their operations.
+              We are not just a supplier. We are a strategic ally in
+              navigating industrial challenges and unlocking future-ready
+              solutions. That means reading the specification properly,
+              selecting for the application rather than the price list, and
+              staying accountable for the outcome.
+            </p>
+
+            <p className="mt-4 text-base leading-relaxed text-mute sm:text-lg">
+              Today we combine trusted industrial equipment with automation
+              and analytics, so the speed behind every proposal matches the
+              engineering standard behind every selection.
             </p>
           </Reveal>
         </div>
@@ -125,6 +151,22 @@ export default function AboutPage() {
                   className="font-mono text-xs uppercase tracking-[0.1em] text-mute transition-colors hover:text-teal"
                 >
                   {brand}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.15}>
+            <h3 className="mt-16 font-mono text-xs uppercase tracking-[0.15em] text-teal">
+              Authorised Manufacturers
+            </h3>
+            <div className="mt-5 flex flex-wrap gap-x-8 gap-y-4">
+              {PARTNERS.map((partner) => (
+                <span
+                  key={partner.name}
+                  className="font-display text-lg font-medium text-ink transition-colors hover:text-teal"
+                >
+                  {partner.name}
                 </span>
               ))}
             </div>
