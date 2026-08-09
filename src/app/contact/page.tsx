@@ -46,10 +46,7 @@ export default function ContactPage() {
               {INFO.map(function (item) {
                 var Icon = item.icon;
                 return (
-                  <div
-                    key={item.label}
-                    className="flex items-start gap-4 rounded-2xl border border-line bg-surface p-6"
-                  >
+                  <div key={item.label} className="flex items-start gap-4 rounded-2xl border border-line bg-surface p-6">
                     <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-teal/30 bg-teal/5 text-teal">
                       <Icon size={19} strokeWidth={1.75} />
                     </span>
@@ -58,10 +55,7 @@ export default function ContactPage() {
                         {item.label}
                       </div>
                       {item.href ? (
-                        
-                          href={item.href}
-                          className="mt-1 block text-sm text-ink hover:text-teal transition-colors"
-                        >
+                        <a href={item.href} className="mt-1 block text-sm text-ink hover:text-teal transition-colors">
                           {item.value}
                         </a>
                       ) : (
@@ -113,10 +107,7 @@ export default function ContactPage() {
                       {loc.address}
                     </p>
                     {loc.phone ? (
-                      
-                        href={"tel:" + loc.phone.replace(/\s+/g, "")}
-                        className="mt-3 block text-sm text-ink hover:text-teal transition-colors"
-                      >
+                      <a href={"tel:" + loc.phone.replace(/\s+/g, "")} className="mt-3 block text-sm text-ink hover:text-teal transition-colors">
                         {loc.phone}
                       </a>
                     ) : null}
