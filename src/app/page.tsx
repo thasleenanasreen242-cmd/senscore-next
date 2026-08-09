@@ -11,7 +11,7 @@ import TiltCard from "@/components/TiltCard";
 import DecodeText from "@/components/DecodeText";
 import RevealWords from "@/components/RevealWords";
 import {
-  PRODUCT_CATEGORIES, INDUSTRIES, PARTNERS, CLIENTS,
+  PRODUCT_CATEGORIES, INDUSTRIES, PARTNERS,
 } from "@/lib/data";
 
 const ICONS: Record<string, any> = {
@@ -51,7 +51,7 @@ export default function HomePage() {
 
           <p className="mt-6 max-w-xl text-base leading-relaxed text-mute sm:text-lg">
             <RevealWords
-              text="SensCore fuses AI with Industrial IoT to give UAE industries a self-optimizing process layer — instrumentation that doesn't just report data, but reasons over it in real time."
+              text="SensCore fuses precision systems with AI and Industrial IoT, a self-optimizing process layer built for real operations that can't afford to wait for a human to notice."
               delay={1.3}
             />
           </p>
@@ -65,10 +65,10 @@ export default function HomePage() {
 
           <Reveal delay={1.6}>
             <div className="mt-16 grid grid-cols-2 gap-8 border-t border-line pt-8 sm:grid-cols-4">
-              <StatReadout value={4200} suffix="+" label="Sensors deployed" />
-              <StatReadout value={99.4} suffix="%" decimals={1} label="Platform uptime" />
-              <StatReadout value={60} suffix="+" label="Represented brands" />
-              <StatReadout value={20} suffix="+" label="Enterprise clients" />
+              <StatReadout value={4200} suffix="+" label="Sensors integrated" />
+              <StatReadout value={200} suffix="+" label="Auto-decisions per day" />
+              <StatReadout value={12} suffix="+" label="AI agents deployed" />
+              <StatReadout value={100} suffix="+" label="Industrial clients served" />
             </div>
           </Reveal>
         </div>
@@ -88,12 +88,13 @@ export default function HomePage() {
             </Reveal>
             <Reveal delay={0.1}>
               <p className="text-base leading-relaxed text-mute sm:text-lg">
-                We deliver forward-thinking industrial solutions rooted in trust
-                and built on innovation, partnering with global leaders to bring
-                proven technologies that enhance performance and reduce
-                operational cost. Our AI layer turns every sensor into a
-                decision-maker — flagging drift before it becomes downtime,
-                and routing insight straight to the people who need it.
+                We deliver industrial solutions rooted in trust and built on
+                engineering judgment, partnering with global manufacturers to
+                bring proven technologies that lift performance and cut
+                operational cost. Our intelligence layer sits behind every
+                enquiry, matching your specification to the right solution,
+                pulling live manufacturer data, and putting a technically
+                sound proposal in your hands in hours, not weeks.
               </p>
               <div className="mt-8 flex flex-wrap gap-x-10 gap-y-4 font-mono text-xs uppercase tracking-[0.15em] text-mute">
                 {["Integrity", "Reliability", "Continuous improvement"].map((v) => (
@@ -224,27 +225,6 @@ export default function HomePage() {
               </span>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ---------------- CLIENTS ---------------- */}
-      <section className="relative border-t border-line bg-surface py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <Reveal>
-            <SectionEyebrow index="05" label="Few of our clients" />
-          </Reveal>
-          <Reveal delay={0.08}>
-            <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-3 lg:grid-cols-4">
-              {CLIENTS.map((c) => (
-                <div
-                  key={c}
-                  className="flex h-24 items-center justify-center bg-surface px-4 text-center font-mono text-xs uppercase tracking-[0.1em] text-mute transition-colors hover:text-ink"
-                >
-                  {c}
-                </div>
-              ))}
-            </div>
-          </Reveal>
         </div>
       </section>
 
