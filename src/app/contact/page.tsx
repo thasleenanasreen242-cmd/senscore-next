@@ -1,8 +1,9 @@
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
+import SectionEyebrow from "@/components/SectionEyebrow";
 import ContactForm from "@/components/ContactForm";
-import { CONTACT } from "@/lib/data";
+import { CONTACT, LOCATIONS } from "@/lib/data";
 
 const INFO = [
   {
@@ -37,14 +38,12 @@ export default function ContactPage() {
         title="Let's Put Your Process on Autopilot"
         description="Tell us about your site, your bottleneck, or simply say hello. Our engineering team replies within one business day."
       />
-
       <section className="py-24 sm:py-32">
         <div className="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 lg:px-10">
           <Reveal>
             <div className="flex flex-col gap-6">
               {INFO.map((item) => {
                 const Icon = item.icon;
-
                 return (
                   <div
                     key={item.label}
@@ -53,14 +52,12 @@ export default function ContactPage() {
                     <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-teal/30 bg-teal/5 text-teal">
                       <Icon size={19} strokeWidth={1.75} />
                     </span>
-
                     <div>
                       <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-faint">
                         {item.label}
                       </div>
-
                       {item.href ? (
-                        <a
+                        
                           href={item.href}
                           className="mt-1 block text-sm text-ink hover:text-teal transition-colors"
                         >
@@ -75,7 +72,6 @@ export default function ContactPage() {
                   </div>
                 );
               })}
-
               <div className="overflow-hidden rounded-2xl border border-line">
                 <iframe
                   title="SensCore Location - Abu Dhabi"
@@ -87,12 +83,45 @@ export default function ContactPage() {
               </div>
             </div>
           </Reveal>
-
           <Reveal delay={0.1}>
             <div className="rounded-2xl border border-line bg-surface p-8 sm:p-10">
               <ContactForm />
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="border-t border-line bg-surface py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <Reveal>
+            <SectionEyebrow index="—" label="Our Locations" />
+          </Reveal>
+
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {LOCATIONS.map((loc, i) => (
+              <Reveal key={loc.country} delay={i * 0.05}>
+                <div className="h-full rounded-2xl border border-line bg-void/40 p-6">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-teal">
+                    {loc.country}
+                  </div>
+                  <div className="mt-2 font-display text-lg font-medium text-ink">
+                    {loc.label}
+                  </div>
+                  <p className="mt-3 text-sm leading-relaxed text-mute">
+                    {loc.address}
+                  </p>
+                  {loc.phone && (
+                    
+                      href={`tel:${loc.phone.replace(/\s+/g, "")}`}
+                      className="mt-3 block text-sm text-ink hover:text-teal transition-colors"
+                    >
+                      {loc.phone}
+                    </a>
+                  )}
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
     </>
