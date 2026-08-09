@@ -13,12 +13,11 @@ export const PRODUCT_CATEGORIES = [
     tag: "SENSE",
     description:
       "Flowmeters, level, pressure, and temperature transmitters, specified for the medium, the pressure, and the ambient reality of a GCC site rather than the datasheet ideal.",
-    groups: [
-      { heading: "Flow Meters", items: "Electromagnetic, Vortex, Ultrasonic, Thermal mass & Differential pressure flow meters" },
-      { heading: "Level Measurement", items: "Radar, Ultrasonic & Magnetostrictive level transmitters, Float switches" },
-      { heading: "Pressure Measurement", items: "Pressure & Differential pressure transmitters, Digital pressure gauges, Pressure switches" },
-      { heading: "Temperature Measurement", items: "RTDs, Thermocouples, Temperature transmitters, Infrared thermometers, Temperature gauges" },
-      { heading: "Other Instruments", items: "Flow switches, Signal isolators, Indicators, Data loggers, Portable instruments" },
+    items: [
+      "Electromagnetic, Vortex & Coriolis Flowmeters",
+      "Ultrasonic & Thermal Mass Flowmeters",
+      "Radar Level Transmitters & Level Switches",
+      "Pressure & Temperature Transmitters",
     ],
   },
   {
@@ -27,13 +26,11 @@ export const PRODUCT_CATEGORIES = [
     tag: "CONNECT",
     description:
       "The nervous system linking field devices to the control room. PLCs, IIoT gateways, and edge nodes selected to survive the environment they're installed in.",
-    groups: [
-      { heading: "Controllers & I/O", items: "PLCs, Remote I/O systems, IO-Link modules" },
-      { heading: "Sensors", items: "Proximity, Inductive, Photoelectric, Capacitive & Ultrasonic" },
-      { heading: "Communication", items: "Industrial protocol gateways, Ethernet switches, Serial/fieldbus converters" },
-      { heading: "Connectors & Cable Assemblies", items: "Circular, IO-Link, Push-Pull self-locking, D-SUB & MIL-standard connectors" },
-      { heading: "RFID & Identification", items: "RFID read/write heads, Smart sensor hubs" },
-      { heading: "HMI & SCADA", items: "Operator panels, Industrial PCs, SCADA software" },
+    items: [
+      "Programmable Logic Controllers (PLCs) & Remote I/O",
+      "Proximity, Photoelectric & Ultrasonic Sensors",
+      "Industrial Protocol Gateways & Ethernet Switches",
+      "HMI, SCADA & Industrial PCs",
     ],
   },
   {
@@ -42,10 +39,11 @@ export const PRODUCT_CATEGORIES = [
     tag: "CONTROL",
     description:
       "Control, isolation, and safety valves engineered for demanding pressures, corrosive media, and continuous duty. Sized and trimmed to the actual service condition.",
-    groups: [
-      { heading: "Pipeline Valves", items: "Butterfly, Ball, Gate, Globe & Check valves" },
-      { heading: "Automation Valves", items: "Solenoid valves, Control valves, Actuated ball & butterfly valves" },
-      { heading: "Specialty Valves", items: "Plug valves, Safety relief valves (API/ASME certified), Cryogenic valves" },
+    items: [
+      "Butterfly, Ball, Gate & Globe Valves",
+      "Solenoid & Control Valves",
+      "Actuated Ball & Butterfly Valves",
+      "Safety Relief Valves (API/ASME Certified)",
     ],
   },
   {
@@ -54,8 +52,11 @@ export const PRODUCT_CATEGORIES = [
     tag: "ANALYSE",
     description:
       "Gas, liquid, and water quality analysis covering pH, conductivity, dissolved oxygen, turbidity and beyond. The measurements that decide whether your process is compliant, not just running.",
-    groups: [
-      { heading: "Analyzers & Gas Detectors", items: "Water quality analyzers, Oxygen analyzers, Moisture analyzers, CO₂ and multi-gas detectors" },
+    items: [
+      "Water Quality Analyzers",
+      "Oxygen & Moisture Analyzers",
+      "CO₂ & Multi-Gas Detectors",
+      "pH, Conductivity & Turbidity Sensors",
     ],
   },
   {
@@ -64,12 +65,11 @@ export const PRODUCT_CATEGORIES = [
     tag: "MOVE",
     description:
       "AODD, centrifugal, and process pumps selected for chemical compatibility, duty point, and energy cost over the life of the asset, not just the purchase price.",
-    groups: [
-      { heading: "AODD Pumps", items: "Metallic and Non-metallic Air Operated Diaphragm pumps" },
-      { heading: "Metering & Dosing Pumps", items: "Precision chemical dosing and metering pumps" },
-      { heading: "Specialized Pumps", items: "Powder transfer diaphragm, food-grade sanitary, mining slurry & gas-operated diaphragm pumps" },
-      { heading: "Centrifugal & Process Pumps", items: "API 610 standard, End suction & multistage, Vertical inline pumps" },
-      { heading: "Accessories & Spares", items: "Diaphragms, Valve balls/seats, Air valve assemblies, Repair kits, Surge dampeners, Air regulators" },
+    items: [
+      "AODD (Air-Operated Diaphragm) Pumps",
+      "Metering & Dosing Pumps",
+      "Centrifugal & Process Pumps (API 610)",
+      "Specialized & Sanitary Pumps",
     ],
   },
   {
@@ -78,14 +78,11 @@ export const PRODUCT_CATEGORIES = [
     tag: "PROTECT",
     description:
       "Spray shields, insulation kits, and sealing solutions for high-temperature and critical service lines. Spiral wound, RTJ, and metal jacketed gaskets, plus mapping and installation on site.",
-    groups: [
-      { heading: "Industrial Gaskets", items: "Spiral wound, RTJ, Kamm profile, Corrugated metal, Jacketed & Flat soft gaskets" },
-      { heading: "Sealing Solutions", items: "Graphite sealing products, PTFE sheets & tapes, Expanded graphite sheets, High-temperature sealing materials" },
-      { heading: "Flange Insulation Kits", items: "Complete insulation gasket kits, Phenolic sleeves & washers, GRE insulation sets" },
-      { heading: "Metallic & Semi-Metallic Gaskets", items: "Spiral wound with inner/outer rings, RTJ (R, RX, BX) & Metal jacketed gaskets" },
-      { heading: "Custom Machined Sealing Components", items: "CNC-machined gaskets, Special dimension gaskets, OEM sealing parts" },
-      { heading: "High-Temperature & Critical Service", items: "Solutions for Oil & Gas, Petrochemical, Power generation, Refineries" },
-      { heading: "Other Sealing Products", items: "O-rings, Rubber gaskets, Die-cut gaskets, Insulation accessories" },
+    items: [
+      "Spiral Wound & RTJ Gaskets",
+      "Flange Insulation Kits",
+      "Metallic & Semi-Metallic Gaskets",
+      "Custom Machined Sealing Components",
     ],
   },
   {
@@ -94,13 +91,11 @@ export const PRODUCT_CATEGORIES = [
     tag: "SUSTAIN",
     description:
       "Compressed Air Audit, Liquid, Gas & Steam flow Audit. Engineering support across the asset lifecycle. Sizing and selection, commissioning, calibration, spares, and troubleshooting.",
-    groups: [
-      { heading: "Compressed Air Audit Service", items: "Compressor efficiency, leakage & optimization analysis" },
-      { heading: "Flow Surveys", items: "Flow measurement surveys in existing gas/liquid lines" },
-      { heading: "Automation & Control Integration", items: "PLC programming, I/O configuration, HMI/SCADA integration" },
-      { heading: "Pump Services", items: "Installation supervision, preventive maintenance, troubleshooting, repair" },
-      { heading: "Valve Services", items: "Valve sizing support, Actuator mounting/testing, On-site leak testing" },
-      { heading: "Energy & Efficiency Services", items: "BTU/Energy measurement, Steam trap survey, Heat exchanger monitoring" },
+    items: [
+      "Compressed Air Audit Service",
+      "Flow Surveys",
+      "Automation & Control Integration",
+      "Pump & Valve Services",
     ],
   },
 ];
