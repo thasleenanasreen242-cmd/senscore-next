@@ -114,6 +114,9 @@ body::before {
   0% { background-position: 0% 50%; }
   100% { background-position: 300% 50%; }
 }
+.brands-marquee-slow {
+  animation-duration: 90s !important;
+}
 .scan-sweep {
   background: linear-gradient(90deg, transparent, rgba(90, 130, 168, 0.12), transparent);
   animation: scan-sweep 8s ease-in-out infinite;
