@@ -12,7 +12,7 @@ export const PRODUCT_CATEGORIES = [
     title: "Instrumentation",
     tag: "SENSE",
     description:
-      "Flowmeters, level, pressure, and temperature transmitters that turn physical process conditions into live, trustworthy data.",
+      "Flowmeters, level, pressure, and temperature transmitters, specified for the medium, the pressure, and the ambient reality of a GCC site rather than the datasheet ideal.",
     items: [
       "Electromagnetic, Vortex & Coriolis Flowmeters",
       "Ultrasonic & Thermal Mass Flowmeters",
@@ -25,12 +25,12 @@ export const PRODUCT_CATEGORIES = [
     title: "Automation & Connectivity",
     tag: "CONNECT",
     description:
-      "The nervous system linking field devices to control rooms — PLCs, IIoT gateways, and edge nodes built for uptime.",
+      "The nervous system linking field devices to the control room. PLCs, IIoT gateways, and edge nodes selected to survive the environment they're installed in.",
     items: [
-      "Industrial IoT Gateways & Edge Devices",
-      "PLC & SCADA Integration",
-      "Wireless Sensor Networks",
-      "Predictive Maintenance Platforms",
+      "Programmable Logic Controllers (PLCs) & Remote I/O",
+      "Proximity, Photoelectric & Ultrasonic Sensors",
+      "Industrial Protocol Gateways & Ethernet Switches",
+      "HMI, SCADA & Industrial PCs",
     ],
   },
   {
@@ -38,25 +38,25 @@ export const PRODUCT_CATEGORIES = [
     title: "Valves",
     tag: "CONTROL",
     description:
-      "Precision flow control hardware engineered for demanding pressures, corrosive media, and continuous duty cycles.",
+      "Control, isolation, and safety valves engineered for demanding pressures, corrosive media, and continuous duty. Sized and trimmed to the actual service condition.",
     items: [
-      "Control & Isolation Valves",
+      "Butterfly, Ball, Gate & Globe Valves",
+      "Solenoid & Control Valves",
       "Actuated Ball & Butterfly Valves",
-      "Safety Relief Valves",
-      "Solenoid & Pneumatic Valves",
+      "Safety Relief Valves (API/ASME Certified)",
     ],
   },
   {
-    id: "pipes",
-    title: "Pipes & Fittings",
-    tag: "CARRY",
+    id: "analysers",
+    title: "Analysers",
+    tag: "ANALYSE",
     description:
-      "Certified piping infrastructure for process, utility, and hygienic lines — sized and specified for the GCC's toughest sites.",
+      "Gas, liquid, and water quality analysis covering pH, conductivity, dissolved oxygen, turbidity and beyond. The measurements that decide whether your process is compliant, not just running.",
     items: [
-      "Carbon & Stainless Steel Pipe",
-      "Precision Casting Fittings",
-      "Flanges & Couplings",
-      "Hygienic Process Piping",
+      "Water Quality Analyzers",
+      "Oxygen & Moisture Analyzers",
+      "CO₂ & Multi-Gas Detectors",
+      "pH, Conductivity & Turbidity Sensors",
     ],
   },
   {
@@ -64,12 +64,25 @@ export const PRODUCT_CATEGORIES = [
     title: "Pumps",
     tag: "MOVE",
     description:
-      "AODD, centrifugal, and process pumps selected for chemical compatibility, energy efficiency, and low total cost of ownership.",
+      "AODD, centrifugal, and process pumps selected for chemical compatibility, duty point, and energy cost over the life of the asset, not just the purchase price.",
     items: [
-      "AODD (Air-Operated Double Diaphragm) Pumps",
-      "Centrifugal & Process Pumps",
-      "Dosing & Metering Pumps",
-      "Sump & Submersible Pumps",
+      "AODD (Air-Operated Diaphragm) Pumps",
+      "Metering & Dosing Pumps",
+      "Centrifugal & Process Pumps (API 610)",
+      "Specialized & Sanitary Pumps",
+    ],
+  },
+  {
+    id: "flangeguards",
+    title: "Flange Guards & Gaskets",
+    tag: "PROTECT",
+    description:
+      "Spray shields, insulation kits, and sealing solutions for high-temperature and critical service lines. Spiral wound, RTJ, and metal jacketed gaskets, plus mapping and installation on site.",
+    items: [
+      "Spiral Wound & RTJ Gaskets",
+      "Flange Insulation Kits",
+      "Metallic & Semi-Metallic Gaskets",
+      "Custom Machined Sealing Components",
     ],
   },
   {
@@ -77,12 +90,12 @@ export const PRODUCT_CATEGORIES = [
     title: "Services",
     tag: "SUSTAIN",
     description:
-      "Field-proven engineering support across the asset lifecycle — from commissioning to continuous optimization.",
+      "Compressed Air Audit, Liquid, Gas & Steam flow Audit. Engineering support across the asset lifecycle. Sizing and selection, commissioning, calibration, spares, and troubleshooting.",
     items: [
-      "Commissioning & Calibration",
-      "Predictive Maintenance Programs",
-      "Retrofit & System Integration",
-      "24/7 Technical Support",
+      "Compressed Air Audit Service",
+      "Flow Surveys",
+      "Automation & Control Integration",
+      "Pump & Valve Services",
     ],
   },
 ];
