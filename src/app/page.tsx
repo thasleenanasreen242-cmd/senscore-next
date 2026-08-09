@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {
-  Gauge, Cpu, Sliders, PipetteIcon, Waves, Wrench, ArrowUpRight, Sparkles,
+  Gauge, Cpu, Sliders, TestTube, Waves, ShieldCheck, Wrench, ArrowUpRight, Sparkles,
 } from "lucide-react";
 import HUDBackground from "@/components/HUDBackground";
 import Reveal from "@/components/Reveal";
@@ -11,15 +11,16 @@ import TiltCard from "@/components/TiltCard";
 import DecodeText from "@/components/DecodeText";
 import RevealWords from "@/components/RevealWords";
 import {
-  PRODUCT_CATEGORIES, INDUSTRIES, PARTNERS,
+  PRODUCT_CATEGORIES, INDUSTRIES, REPRESENTED_BRANDS,
 } from "@/lib/data";
 
 const ICONS: Record<string, any> = {
   instrumentation: Gauge,
   automation: Cpu,
   valves: Sliders,
-  pipes: PipetteIcon,
+  analysers: TestTube,
   pumps: Waves,
+  flangeguards: ShieldCheck,
   services: Wrench,
 };
 
@@ -209,22 +210,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------------- PARTNERS MARQUEE ---------------- */}
-      <section className="relative overflow-hidden border-t border-line py-16">
-        <div className="mx-auto mb-10 max-w-7xl px-6 lg:px-10">
-          <SectionEyebrow index="04" label="Trusted global partners" />
-        </div>
-        <div className="mask-fade-x">
-          <div className="flex w-max animate-marquee gap-16">
-            {[...PARTNERS, ...PARTNERS].map((p, i) => (
-              <span
-                key={`${p.name}-${i}`}
-                className="whitespace-nowrap font-display text-2xl font-medium text-faint transition-colors hover:text-ink"
-              >
-                {p.name}
-              </span>
-            ))}
-          </div>
+      {/* ---------------- TRUSTED BRANDS ---------------- */}
+      <section className="relative border-t border-line py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <Reveal>
+            <SectionEyebrow index="04" label="Trusted Global Brands" />
+          </Reveal>
+          <Reveal delay={0.08}>
+            <p className="mt-8 max-w-5xl text-sm leading-loose text-mute sm:text-base">
+              {REPRESENTED_BRANDS.join(", ")}
+            </p>
+          </Reveal>
         </div>
       </section>
 
