@@ -225,12 +225,12 @@ export const INDUSTRIES = [
 ];
 
 export const PARTNERS = [
-  { name: "Marvtech", href: "https://en.marvtech.cn/" },
+  { name: "Feejoy", href: "https://en.feejoy.com/" },
+  { name: "ODOT Automation", href: "https://www.odotautomation.com/" },
+  { name: "Artema", href: "" },
   { name: "Comate", href: "https://www.comate-instruments.com/" },
   { name: "DJ Pumps", href: "https://www.pumpfromchina.com/" },
-  { name: "Feejoy", href: "https://en.feejoy.com/" },
-  { name: "Meide", href: "https://www.meide-casting.com/en/" },
-  { name: "ODOT Automation", href: "https://www.odotautomation.com/" },
+  { name: "Probest", href: "" },
 ];
 
 export const CLIENTS = [
