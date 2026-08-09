@@ -1,4 +1,4 @@
-import { Gauge, Cpu, Sliders, PipetteIcon, Waves, Wrench, Check } from "lucide-react";
+import { Gauge, Cpu, Sliders, TestTube, Waves, ShieldCheck, Wrench } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionEyebrow from "@/components/SectionEyebrow";
@@ -10,8 +10,9 @@ const ICONS: Record<string, any> = {
   instrumentation: Gauge,
   automation: Cpu,
   valves: Sliders,
-  pipes: PipetteIcon,
+  analysers: TestTube,
   pumps: Waves,
+  flangeguards: ShieldCheck,
   services: Wrench,
 };
 
@@ -28,7 +29,7 @@ export default function ProductsPage() {
       <PageHero
         eyebrow="Products & Services"
         title="Every layer of the process, instrumented"
-        description="From the sensor on the pipe to the model in the cloud — SensCore specs, supplies, and supports the full stack, backed by certified global manufacturers."
+        description="From the sensor on the pipe to the control room that reads it, SensCore specifies, supplies, and supports the full technology stack, backed by established global manufacturers."
       />
 
       <section className="py-24 sm:py-32">
@@ -40,7 +41,7 @@ export default function ProductsPage() {
             return (
               <div
                 key={cat.id}
-                className={`grid items-center gap-12 lg:grid-cols-2 lg:gap-20 ${
+                className={`grid items-start gap-12 lg:grid-cols-2 lg:gap-20 ${
                   reversed ? "lg:[&>*:first-child]:order-2" : ""
                 }`}
               >
@@ -55,18 +56,22 @@ export default function ProductsPage() {
                   <p className="mt-5 text-base leading-relaxed text-mute sm:text-lg">
                     {cat.description}
                   </p>
-                  <ul className="mt-7 flex flex-col gap-3">
-                    {cat.items.map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-sm text-ink">
-                        <Check size={16} className="mt-0.5 shrink-0 text-teal" />
-                        {item}
-                      </li>
+                  <div className="mt-8 flex flex-col gap-5">
+                    {cat.groups.map((group) => (
+                      <div key={group.heading} className="border-l-2 border-teal/30 pl-4">
+                        <h3 className="font-mono text-xs uppercase tracking-[0.15em] text-teal">
+                          {group.heading}
+                        </h3>
+                        <p className="mt-1.5 text-sm leading-relaxed text-mute">
+                          {group.items}
+                        </p>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </Reveal>
 
                 <Reveal delay={0.1}>
-                  <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl border border-line bg-surface hud-grid-fine">
+                  <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl border border-line bg-surface hud-grid-fine lg:sticky lg:top-28">
                     {videoSrc ? (
                       <MutableVideo
                         src={videoSrc}
