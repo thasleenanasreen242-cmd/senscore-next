@@ -210,38 +210,31 @@ export default function HomePage() {
         </div>
       </section>
 
-    {/* ---------------- TRUSTED BRANDS ---------------- */}
+      {/* ---------------- TRUSTED BRANDS ---------------- */}
       <section className="relative overflow-hidden border-t border-line py-24 sm:py-32">
-        <div className="mx-auto mb-12 max-w-7xl px-6 lg:px-10">
+        <div className="absolute inset-0 hud-grid-fine opacity-20" />
+        <div className="scan-sweep pointer-events-none absolute inset-y-0 left-0 w-40" />
+
+        <div className="relative mx-auto mb-16 max-w-7xl px-6 lg:px-10">
           <Reveal>
             <SectionEyebrow index="04" label="Trusted Global Brands" />
           </Reveal>
         </div>
 
-        <div className="mask-fade-x flex flex-col gap-4">
-          <div className="flex w-max animate-marquee gap-3">
+        <div className="relative mask-fade-x">
+          <div className="flex w-max animate-marquee items-center gap-6">
             {[...REPRESENTED_BRANDS, ...REPRESENTED_BRANDS].map((brand, i) => (
-              <span
-                key={`${brand}-a-${i}`}
-                className="whitespace-nowrap rounded-full border border-line bg-surface px-5 py-2 font-mono text-xs uppercase tracking-[0.1em] text-mute transition-colors hover:border-teal/40 hover:text-teal"
-              >
-                {brand}
-              </span>
-            ))}
-          </div>
-          <div className="flex w-max animate-marquee-reverse gap-3">
-            {[...REPRESENTED_BRANDS.slice().reverse(), ...REPRESENTED_BRANDS.slice().reverse()].map((brand, i) => (
-              <span
-                key={`${brand}-b-${i}`}
-                className="whitespace-nowrap rounded-full border border-line bg-surface px-5 py-2 font-mono text-xs uppercase tracking-[0.1em] text-mute transition-colors hover:border-teal/40 hover:text-teal"
-              >
-                {brand}
+              <span key={`brand-${i}`} className="flex items-center gap-6">
+                <span className="whitespace-nowrap font-display text-xl font-medium text-faint transition-colors duration-300 hover:text-teal sm:text-2xl">
+                  {brand}
+                </span>
+                <span className="h-1 w-1 shrink-0 rounded-full bg-teal/40" />
               </span>
             ))}
           </div>
         </div>
       </section>
-      
+
       {/* ---------------- CTA ---------------- */}
       <section className="relative overflow-hidden border-t border-line py-28">
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-teal/10 blur-[120px]" />
