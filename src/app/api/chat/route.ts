@@ -23,7 +23,8 @@ Answer visitor questions helpfully and concisely based on this information. If a
 
 export async function POST(req: NextRequest) {
   try {
-    const { messages } = await req.json();
+    const body = await req.json();
+    const messages = body.messages;
 
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
@@ -31,22 +32,25 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ reply: "Sorry, I'm having trouble connecting right now." }, { status: 200 });
     }
 
-    const contents = messages.map((m: { role: string; content: string }) => ({
-      role: m.role === "assistant" ? "model" : "user",
-      parts: [{ text: m.content }],
-    }));
+    const contents = messages.map(function (m: { role: string; content: string }) {
+      return {
+        role: m.role === "assistant" ? "model" : "user",
+        parts: [{ text: m.content }],
+      };
+    });
 
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents,
-          systemInstruction: { parts: [{ text: SYSTEM_CONTEXT }] },
-        }),
-      }
-    );
+    const url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=" + apiKey;
+
+    const requestBody = {
+      contents: contents,
+      systemInstruction: { parts: [{ text: SYSTEM_CONTEXT }] },
+    };
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(requestBody),
+    });
 
     if (!response.ok) {
       const errText = await response.text();
@@ -55,9 +59,11 @@ export async function POST(req: NextRequest) {
     }
 
     const data = await response.json();
-    const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text ?? "Sorry, I couldn't generate a response.";
+    const reply = data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0] && data.candidates[0].content.parts[0].text
+      ? data.candidates[0].content.parts[0].text
+      : "Sorry, I couldn't generate a response.";
 
-    return NextResponse.json({ reply });
+    return NextResponse.json({ reply: reply });
   } catch (err) {
     console.error("Chat route error:", err);
     return NextResponse.json({ reply: "Sorry, something went wrong. Please try again." }, { status: 200 });
