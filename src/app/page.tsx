@@ -222,7 +222,7 @@ export default function HomePage() {
         </div>
 
         <div className="relative mask-fade-x">
-         <div className="flex w-max animate-marquee brands-marquee-slow items-center gap-6">
+          <div className="flex w-max animate-marquee brands-marquee-slow items-center gap-6">
             {[...REPRESENTED_BRANDS, ...REPRESENTED_BRANDS].map((brand, i) => (
               <span key={`brand-${i}`} className="flex items-center gap-6">
                 <span className="whitespace-nowrap font-display text-xl font-medium text-faint transition-colors duration-300 hover:text-teal sm:text-2xl">
@@ -235,7 +235,7 @@ export default function HomePage() {
         </div>
       </section>
 
-     {/* ---------------- CTA ---------------- */}
+      {/* ---------------- CTA ---------------- */}
       <section className="relative overflow-hidden border-t border-line py-28">
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-teal/10 blur-[120px]" />
         <div className="relative mx-auto max-w-3xl px-6 text-center">
@@ -259,3 +259,6 @@ export default function HomePage() {
           </Reveal>
         </div>
       </section>
+    </>
+  );
+}
