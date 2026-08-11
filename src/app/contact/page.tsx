@@ -70,7 +70,7 @@ export default function ContactPage() {
               <div className="overflow-hidden rounded-2xl border border-line">
                 <iframe
                   title="SensCore Location - Abu Dhabi"
-                 src="https://www.google.com/maps?q=SensCore,24.3730906,54.538865&output=embed"
+              src="https://www.google.com/maps?q=SensCore+9th+Floor+Mazyad+Mall+Business+Tower+3+MBZ+City+Abu+Dhabi&output=embed"
                   className="h-64 w-full grayscale invert-[0.92] contrast-[1.1]"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
