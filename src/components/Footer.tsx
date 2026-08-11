@@ -29,7 +29,7 @@ export default function Footer() {
                 className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1.5 text-mute transition-colors hover:border-teal/50 hover:text-teal"
               >
                 <Linkedin size={16} />
-                <span className="text-sm">LinkedIn</span>
+                <span className="text-sm">SensCore</span>
               </Link>
               <Link
                 href={CONTACT.instagram}
@@ -37,7 +37,7 @@ export default function Footer() {
                 className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1.5 text-mute transition-colors hover:border-teal/50 hover:text-teal"
               >
                 <Instagram size={16} />
-                <span className="text-sm">Instagram</span>
+                <span className="text-sm">@senscoretech</span>
               </Link>
             </div>
           </div>
