@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Linkedin, Mail, Phone, MapPin, Radio } from "lucide-react";
+import { Linkedin, Instagram, Mail, Phone, MapPin, Radio } from "lucide-react";
 import { NAV_LINKS, CONTACT } from "@/lib/data";
 
 export default function Footer() {
@@ -22,13 +22,24 @@ export default function Footer() {
               sensing, connectivity, and predictive intelligence into one
               self-optimizing system.
             </p>
-            <Link
-              href={CONTACT.linkedin}
-              target="_blank"
-              className="mt-6 inline-flex h-9 w-9 items-center justify-center rounded-full border border-line text-mute transition-colors hover:border-teal/50 hover:text-teal"
-            >
-              <Linkedin size={16} />
-            </Link>
+            <div className="mt-6 flex items-center gap-3">
+              <Link
+                href={CONTACT.linkedin}
+                target="_blank"
+                className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1.5 text-mute transition-colors hover:border-teal/50 hover:text-teal"
+              >
+                <Linkedin size={16} />
+                <span className="text-sm">LinkedIn</span>
+              </Link>
+              <Link
+                href={CONTACT.instagram}
+                target="_blank"
+                className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1.5 text-mute transition-colors hover:border-teal/50 hover:text-teal"
+              >
+                <Instagram size={16} />
+                <span className="text-sm">Instagram</span>
+              </Link>
+            </div>
           </div>
 
           <div>
