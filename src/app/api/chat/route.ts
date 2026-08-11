@@ -27,7 +27,8 @@ export async function POST(req: NextRequest) {
 
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
-      return NextResponse.json({ error: "API key not configured" }, { status: 500 });
+      console.error("GEMINI_API_KEY is not set");
+      return NextResponse.json({ reply: "Sorry, I'm having trouble connecting right now." }, { status: 200 });
     }
 
     const contents = messages.map((m: { role: string; content: string }) => ({
@@ -36,7 +37,7 @@ export async function POST(req: NextRequest) {
     }));
 
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -49,7 +50,8 @@ export async function POST(req: NextRequest) {
 
     if (!response.ok) {
       const errText = await response.text();
-      return NextResponse.json({ error: "Gemini request failed", detail: errText }, { status: 502 });
+      console.error("Gemini API error:", response.status, errText);
+      return NextResponse.json({ reply: "Sorry, I'm having trouble connecting right now." }, { status: 200 });
     }
 
     const data = await response.json();
@@ -57,6 +59,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ reply });
   } catch (err) {
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
+    console.error("Chat route error:", err);
+    return NextResponse.json({ reply: "Sorry, something went wrong. Please try again." }, { status: 200 });
   }
 }
