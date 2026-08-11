@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send } from "lucide-react";
+import { Bot, X, Send } from "lucide-react";
 
 type Message = { role: "user" | "assistant"; content: string };
 
@@ -53,7 +53,7 @@ export default function ChatWidget() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-6 right-24 z-50 flex flex-col items-end gap-3">
       {open && (
         <div className="flex h-[480px] w-[340px] flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-2xl sm:w-[380px]">
           <div className="flex items-center justify-between border-b border-line bg-void/60 px-4 py-3">
@@ -113,7 +113,7 @@ export default function ChatWidget() {
         className="flex h-14 w-14 items-center justify-center rounded-full bg-teal text-void shadow-lg shadow-teal/30 transition-transform hover:scale-105"
         aria-label="Open chat"
       >
-        {open ? <X size={22} /> : <MessageCircle size={22} />}
+        {open ? <X size={22} /> : <Bot size={22} />}
       </button>
     </div>
   );
