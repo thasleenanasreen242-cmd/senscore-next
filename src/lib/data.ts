@@ -262,6 +262,7 @@ export const CONTACT = {
   phone: "+971 50 103 5348",
   phoneHref: "tel:+971501035348",
   linkedin: "https://www.linkedin.com/company/senscore/",
+  instagram: "https://www.instagram.com/senscoretech",
 };
 
 export const LOCATIONS = [
