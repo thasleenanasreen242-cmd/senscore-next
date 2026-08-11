@@ -235,7 +235,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------------- CTA ---------------- */}
+     {/* ---------------- CTA ---------------- */}
       <section className="relative overflow-hidden border-t border-line py-28">
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-teal/10 blur-[120px]" />
         <div className="relative mx-auto max-w-3xl px-6 text-center">
@@ -246,18 +246,16 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mx-auto mt-5 max-w-lg text-base leading-relaxed text-mute sm:text-lg">
-              Talk to our engineers about deploying SensCore&apos;s autonomous
-              sensing layer across your site.
+              Start with a conversation. Our engineers will review your
+              application and specify what&apos;s right for it, from the
+              field device up.
             </p>
           </Reveal>
           <Reveal delay={0.2}>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-              <GlowButton href="/contact">Contact Us</GlowButton>
+              <GlowButton href="/contact">Talk to an Engineer</GlowButton>
               <GlowButton href="/products" variant="ghost">View Products</GlowButton>
             </div>
           </Reveal>
         </div>
       </section>
-    </>
-  );
-}
