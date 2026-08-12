@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Bot, X, Send } from "lucide-react";
+import { Bot, X, Send, Sparkles } from "lucide-react";
 
 type Message = { role: "user" | "assistant"; content: string };
 
@@ -53,37 +53,60 @@ export default function ChatWidget() {
   }
 
   return (
-    <div className="fixed bottom-6 right-24 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-6 right-24 z-50 flex flex-col items-end gap-3 max-sm:right-4">
       {open && (
         <div
           id="senscore-chat-panel"
           role="dialog"
           aria-modal="false"
           aria-labelledby="senscore-chat-title"
-          className="flex h-[480px] w-[340px] flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-2xl sm:w-[380px]"
+          className="flex h-[520px] w-[360px] flex-col overflow-hidden rounded-[28px] border border-line bg-surface shadow-2xl shadow-black/20 sm:w-[390px]"
         >
-          <div className="flex items-center justify-between border-b border-line bg-void/60 px-4 py-3">
-            <span id="senscore-chat-title" className="font-display text-sm font-semibold text-ink">SensCore Assistant</span>
-            <button onClick={function () { setOpen(false); }} aria-label="Close chat">
-              <X size={18} className="text-mute hover:text-ink" aria-hidden="true" />
-            </button>
+          <div className="relative overflow-hidden border-b border-line bg-void/70 px-5 py-4">
+            <div className="absolute -right-8 -top-10 h-24 w-24 rounded-full bg-teal/10 blur-2xl" />
+            <div className="relative flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-teal text-void shadow-lg shadow-teal/20">
+                  <Bot size={22} aria-hidden="true" />
+                  <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-surface bg-emerald-400" />
+                </div>
+                <div>
+                  <div id="senscore-chat-title" className="font-display text-sm font-semibold text-ink">SensCore Assistant</div>
+                  <div className="mt-0.5 flex items-center gap-1.5 text-[11px] text-mute">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Online · AI Assistant
+                  </div>
+                </div>
+              </div>
+              <button
+                onClick={function () { setOpen(false); }}
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-line bg-surface/70 transition hover:bg-void"
+                aria-label="Close chat"
+              >
+                <X size={17} className="text-mute hover:text-ink" aria-hidden="true" />
+              </button>
+            </div>
           </div>
 
           <div
             ref={scrollRef}
-            className="flex-1 space-y-3 overflow-y-auto px-4 py-4"
+            className="flex-1 space-y-4 overflow-y-auto bg-surface px-4 py-5"
             role="log"
             aria-live="polite"
             aria-label="Chat messages"
           >
             {messages.map(function (m, i) {
               return (
-                <div key={i} className={m.role === "user" ? "flex justify-end" : "flex justify-start"}>
+                <div key={i} className={m.role === "user" ? "flex justify-end" : "flex items-start gap-2.5"}>
+                  {m.role === "assistant" && (
+                    <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-teal/15 text-teal">
+                      <Sparkles size={15} aria-hidden="true" />
+                    </div>
+                  )}
                   <div
                     className={
                       m.role === "user"
-                        ? "max-w-[85%] rounded-2xl rounded-br-sm bg-teal/20 px-4 py-2 text-sm text-ink"
-                        : "max-w-[85%] rounded-2xl rounded-bl-sm bg-void/60 px-4 py-2 text-sm text-mute"
+                        ? "max-w-[82%] rounded-[20px] rounded-br-md bg-teal px-4 py-2.5 text-sm leading-6 text-void shadow-sm"
+                        : "max-w-[82%] rounded-[20px] rounded-bl-md border border-line bg-void/50 px-4 py-2.5 text-sm leading-6 text-ink"
                     }
                   >
                     {m.content}
@@ -92,44 +115,49 @@ export default function ChatWidget() {
               );
             })}
             {loading && (
-              <div className="flex justify-start" role="status" aria-label="Assistant is typing">
-                <div className="rounded-2xl rounded-bl-sm bg-void/60 px-4 py-2 text-sm text-faint">
-                  Typing...
+              <div className="flex items-start gap-2.5" role="status" aria-label="Assistant is typing">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-teal/15 text-teal">
+                  <Sparkles size={15} aria-hidden="true" />
+                </div>
+                <div className="rounded-[20px] rounded-bl-md border border-line bg-void/50 px-4 py-2.5 text-sm text-faint">
+                  Thinking...
                 </div>
               </div>
             )}
           </div>
 
-          <div className="flex items-center gap-2 border-t border-line p-3">
-            <label htmlFor="senscore-chat-input" className="sr-only">Message</label>
-            <input
-              id="senscore-chat-input"
-              value={input}
-              onChange={function (e) { setInput(e.target.value); }}
-              onKeyDown={handleKeyDown}
-              placeholder="Ask about our products..."
-              className="flex-1 rounded-full border border-line bg-void/40 px-4 py-2 text-sm text-ink placeholder:text-faint focus:outline-none focus:border-teal/40"
-            />
-            <button
-              onClick={sendMessage}
-              disabled={loading}
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-teal text-void disabled:opacity-50"
-              aria-label="Send message"
-            >
-              <Send size={16} aria-hidden="true" />
-            </button>
+          <div className="border-t border-line bg-surface p-3.5">
+            <div className="flex items-center gap-2 rounded-full border border-line bg-void/40 p-1.5 focus-within:border-teal/40">
+              <label htmlFor="senscore-chat-input" className="sr-only">Message</label>
+              <input
+                id="senscore-chat-input"
+                value={input}
+                onChange={function (e) { setInput(e.target.value); }}
+                onKeyDown={handleKeyDown}
+                placeholder="Ask about SensCore..."
+                className="min-w-0 flex-1 bg-transparent px-3 py-2 text-sm text-ink placeholder:text-faint focus:outline-none"
+              />
+              <button
+                onClick={sendMessage}
+                disabled={loading}
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-teal text-void transition hover:scale-105 disabled:opacity-50"
+                aria-label="Send message"
+              >
+                <Send size={15} aria-hidden="true" />
+              </button>
+            </div>
           </div>
         </div>
       )}
 
       <button
         onClick={function () { setOpen(!open); }}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-teal text-void shadow-lg shadow-teal/30 transition-transform hover:scale-105"
+        className="group flex h-16 w-16 items-center justify-center rounded-[22px] border border-teal/20 bg-teal text-void shadow-xl shadow-teal/25 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-teal/35 max-sm:h-14 max-sm:w-14 max-sm:rounded-[20px]"
         aria-label={open ? "Close chat" : "Open chat"}
         aria-expanded={open}
         aria-controls="senscore-chat-panel"
       >
-        {open ? <X size={22} aria-hidden="true" /> : <Bot size={22} aria-hidden="true" />}
+        {open ? <X size={23} aria-hidden="true" /> : <Bot size={25} aria-hidden="true" className="transition-transform group-hover:scale-110" />}
       </button>
     </div>
   );
