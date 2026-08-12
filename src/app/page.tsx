@@ -152,7 +152,7 @@ export default function HomePage() {
                         {cat.description}
                       </p>
                       <div className="mt-6 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-teal opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        View items
+                        Explore {cat.title}
                         <ArrowUpRight size={13} />
                       </div>
                     </Link>
