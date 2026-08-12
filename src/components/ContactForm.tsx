@@ -34,9 +34,10 @@ export default function ContactForm() {
       <motion.div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
+        aria-live="polite"
         className="flex h-full min-h-[420px] flex-col items-center justify-center rounded-2xl border border-teal/30 bg-teal/5 p-10 text-center"
       >
-        <CheckCircle2 size={40} className="text-teal" />
+        <CheckCircle2 size={40} className="text-teal" aria-hidden="true" />
         <h3 className="mt-5 font-display text-xl font-medium text-ink">
           Message received
         </h3>
@@ -65,10 +66,11 @@ export default function ContactForm() {
       </div>
       <Field label="Industry" name="industry" as="select" />
       <div>
-        <label className="font-mono text-[11px] uppercase tracking-[0.15em] text-mute">
+        <label htmlFor="message" className="font-mono text-[11px] uppercase tracking-[0.15em] text-mute">
           Message
         </label>
         <textarea
+          id="message"
           name="message"
           required
           rows={5}
@@ -84,19 +86,19 @@ export default function ContactForm() {
       >
         {status === "loading" ? (
           <>
-            <Loader2 size={16} className="animate-spin" />
+            <Loader2 size={16} className="animate-spin" aria-hidden="true" />
             Sending
           </>
         ) : (
           <>
             Send message
-            <Send size={15} className="transition-transform group-hover:translate-x-0.5" />
+            <Send size={15} className="transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
           </>
         )}
       </button>
 
       {status === "error" && (
-        <p className="font-mono text-xs text-amber">
+        <p className="font-mono text-xs text-amber" role="alert">
           Something went wrong — please email info@senscoretech.com directly.
         </p>
       )}
@@ -117,14 +119,17 @@ function Field({
   required?: boolean;
   as?: "select";
 }) {
+  const id = `contact-${name}`;
+
   return (
     <div>
-      <label className="font-mono text-[11px] uppercase tracking-[0.15em] text-mute">
+      <label htmlFor={id} className="font-mono text-[11px] uppercase tracking-[0.15em] text-mute">
         {label}
         {required && <span className="text-teal"> *</span>}
       </label>
       {as === "select" ? (
         <select
+          id={id}
           name={name}
           className="mt-2 w-full rounded-lg border border-line bg-surface2 px-4 py-3 text-sm text-ink focus:border-teal/50 focus:outline-none"
           defaultValue=""
@@ -138,6 +143,7 @@ function Field({
         </select>
       ) : (
         <input
+          id={id}
           type={type}
           name={name}
           required={required}
