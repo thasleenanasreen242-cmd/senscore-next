@@ -55,15 +55,27 @@ export default function ChatWidget() {
   return (
     <div className="fixed bottom-6 right-24 z-50 flex flex-col items-end gap-3">
       {open && (
-        <div className="flex h-[480px] w-[340px] flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-2xl sm:w-[380px]">
+        <div
+          id="senscore-chat-panel"
+          role="dialog"
+          aria-modal="false"
+          aria-labelledby="senscore-chat-title"
+          className="flex h-[480px] w-[340px] flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-2xl sm:w-[380px]"
+        >
           <div className="flex items-center justify-between border-b border-line bg-void/60 px-4 py-3">
-            <span className="font-display text-sm font-semibold text-ink">SensCore Assistant</span>
+            <span id="senscore-chat-title" className="font-display text-sm font-semibold text-ink">SensCore Assistant</span>
             <button onClick={function () { setOpen(false); }} aria-label="Close chat">
-              <X size={18} className="text-mute hover:text-ink" />
+              <X size={18} className="text-mute hover:text-ink" aria-hidden="true" />
             </button>
           </div>
 
-          <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
+          <div
+            ref={scrollRef}
+            className="flex-1 space-y-3 overflow-y-auto px-4 py-4"
+            role="log"
+            aria-live="polite"
+            aria-label="Chat messages"
+          >
             {messages.map(function (m, i) {
               return (
                 <div key={i} className={m.role === "user" ? "flex justify-end" : "flex justify-start"}>
@@ -80,7 +92,7 @@ export default function ChatWidget() {
               );
             })}
             {loading && (
-              <div className="flex justify-start">
+              <div className="flex justify-start" role="status" aria-label="Assistant is typing">
                 <div className="rounded-2xl rounded-bl-sm bg-void/60 px-4 py-2 text-sm text-faint">
                   Typing...
                 </div>
@@ -89,7 +101,9 @@ export default function ChatWidget() {
           </div>
 
           <div className="flex items-center gap-2 border-t border-line p-3">
+            <label htmlFor="senscore-chat-input" className="sr-only">Message</label>
             <input
+              id="senscore-chat-input"
               value={input}
               onChange={function (e) { setInput(e.target.value); }}
               onKeyDown={handleKeyDown}
@@ -102,7 +116,7 @@ export default function ChatWidget() {
               className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-teal text-void disabled:opacity-50"
               aria-label="Send message"
             >
-              <Send size={16} />
+              <Send size={16} aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -111,9 +125,11 @@ export default function ChatWidget() {
       <button
         onClick={function () { setOpen(!open); }}
         className="flex h-14 w-14 items-center justify-center rounded-full bg-teal text-void shadow-lg shadow-teal/30 transition-transform hover:scale-105"
-        aria-label="Open chat"
+        aria-label={open ? "Close chat" : "Open chat"}
+        aria-expanded={open}
+        aria-controls="senscore-chat-panel"
       >
-        {open ? <X size={22} /> : <Bot size={22} />}
+        {open ? <X size={22} aria-hidden="true" /> : <Bot size={22} aria-hidden="true" />}
       </button>
     </div>
   );
