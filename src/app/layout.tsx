@@ -40,6 +40,19 @@ export const metadata: Metadata = {
     siteName: "SensCore",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/logo.png.webp",
+        alt: "SensCore",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "SensCore | UAE's First Autonomous AI Industrial Platform",
+    description:
+      "The UAE's first autonomous AI industrial sensing platform. Real-time instrumentation, predictive automation, and self-optimizing process control.",
+    images: ["/logo.png.webp"],
   },
 };
 
