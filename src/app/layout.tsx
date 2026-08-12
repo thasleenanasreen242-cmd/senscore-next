@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.senscoretech.com"),
   title: "SensCore | Autonomous AI Industrial Platform",
   description:
-    "SensCore combines AI and Industrial IoT into an autonomous sensing platform for real-time instrumentation, predictive automation, and intelligent process control.",
+    "SensCore combines AI and Industrial IoT into an autonomous platform for real-time instrumentation, predictive automation, and intelligent process control.",
   alternates: {
     canonical: "https://www.senscoretech.com/",
   },
