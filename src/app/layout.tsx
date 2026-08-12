@@ -29,14 +29,17 @@ const mono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.senscoretech.com"),
-  title: "SensCore | UAE's First Autonomous AI Industrial Platform",
+  title: "SensCore | Autonomous AI Industrial Platform",
   description:
-    "SensCore fuses AI and Industrial IoT into one autonomous sensing platform — the first of its kind in the UAE. Real-time instrumentation, predictive automation, and self-optimizing process control.",
+    "SensCore combines AI and Industrial IoT into an autonomous sensing platform for real-time instrumentation, predictive automation, and intelligent process control.",
+  alternates: {
+    canonical: "https://www.senscoretech.com/",
+  },
   openGraph: {
-    title: "SensCore | UAE's First Autonomous AI Industrial Platform",
+    title: "SensCore | Autonomous AI Industrial Platform",
     description:
-      "The UAE's first autonomous AI industrial sensing platform. Real-time instrumentation, predictive automation, and self-optimizing process control.",
-    url: "https://www.senscoretech.com",
+      "SensCore combines AI and Industrial IoT into an autonomous sensing platform for real-time instrumentation, predictive automation, and intelligent process control.",
+    url: "https://www.senscoretech.com/",
     siteName: "SensCore",
     locale: "en_US",
     type: "website",
@@ -48,10 +51,10 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: "summary",
-    title: "SensCore | UAE's First Autonomous AI Industrial Platform",
+    card: "summary_large_image",
+    title: "SensCore | Autonomous AI Industrial Platform",
     description:
-      "The UAE's first autonomous AI industrial sensing platform. Real-time instrumentation, predictive automation, and self-optimizing process control.",
+      "SensCore combines AI and Industrial IoT into an autonomous sensing platform for real-time instrumentation, predictive automation, and intelligent process control.",
     images: ["/logo.png.webp"],
   },
 };
