@@ -1,9 +1,17 @@
+import type { Metadata } from "next";
 import { ShieldCheck, Gem, Users, ListChecks } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionEyebrow from "@/components/SectionEyebrow";
 import GlowButton from "@/components/GlowButton";
 import { REPRESENTED_BRANDS, PARTNERS } from "@/lib/data";
+
+export const metadata: Metadata = {
+  title: "SensCore | Industrial Automation and Instrumentation",
+  description:
+    "Learn about SensCore, an engineering-led industrial automation and instrumentation partner delivering sensing, control, and monitoring solutions.",
+  alternates: { canonical: "https://www.senscoretech.com/about" },
+};
 
 const VALUES = [
   {
