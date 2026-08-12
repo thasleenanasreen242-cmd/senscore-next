@@ -56,6 +56,40 @@ export const metadata: Metadata = {
   },
 };
 
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.senscoretech.com/#organization",
+      name: "SensCore",
+      url: "https://www.senscoretech.com",
+      logo: "https://www.senscoretech.com/logo.png.webp",
+      email: "info@senscoretech.com",
+      telephone: "+971 50 103 5348",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "9th Floor, Mazyad Mall, Business Tower 3, MBZ City",
+        addressLocality: "Abu Dhabi",
+        addressCountry: "AE",
+      },
+      sameAs: [
+        "https://www.linkedin.com/company/senscore/",
+        "https://www.instagram.com/senscoretech",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.senscoretech.com/#website",
+      url: "https://www.senscoretech.com",
+      name: "SensCore",
+      publisher: {
+        "@id": "https://www.senscoretech.com/#organization",
+      },
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -64,6 +98,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
       <body className="font-body bg-void text-ink antialiased selection:bg-teal/20">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
         <ScrollProgress />
         <CursorGlow />
         <CustomCursor />
