@@ -1,9 +1,17 @@
+import type { Metadata } from "next";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionEyebrow from "@/components/SectionEyebrow";
 import ContactForm from "@/components/ContactForm";
 import { CONTACT, LOCATIONS } from "@/lib/data";
+
+export const metadata: Metadata = {
+  title: "Contact SensCore | Industrial Engineering Support",
+  description:
+    "Contact SensCore for industrial instrumentation, automation, sensing, site surveys, engineering support, and process monitoring solutions.",
+  alternates: { canonical: "https://www.senscoretech.com/contact" },
+};
 
 const INFO = [
   {
@@ -70,7 +78,7 @@ export default function ContactPage() {
               <div className="overflow-hidden rounded-2xl border border-line">
                 <iframe
                   title="SensCore Location - Abu Dhabi"
-              src="https://www.google.com/maps?q=SensCore+9th+Floor+Mazyad+Mall+Business+Tower+3+MBZ+City+Abu+Dhabi&output=embed"
+                  src="https://www.google.com/maps?q=SensCore+9th+Floor+Mazyad+Mall+Business+Tower+3+MBZ+City+Abu+Dhabi&output=embed"
                   className="h-64 w-full grayscale invert-[0.92] contrast-[1.1]"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
