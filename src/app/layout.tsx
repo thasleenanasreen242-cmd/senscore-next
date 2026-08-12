@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "SensCore | Autonomous AI Industrial Platform",
     description:
-      "SensCore combines AI and Industrial IoT into an autonomous sensing platform for real-time instrumentation, predictive automation, and intelligent process control.",
+      "SensCore combines AI and Industrial IoT into an autonomous platform for real-time instrumentation, predictive automation, and intelligent process control.",
     url: "https://www.senscoretech.com/",
     siteName: "SensCore",
     locale: "en_US",
