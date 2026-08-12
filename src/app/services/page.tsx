@@ -1,8 +1,16 @@
+import type { Metadata } from "next";
 import { Search, CheckCircle2, Wind, ShieldCheck, FileSearch, Wrench } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionEyebrow from "@/components/SectionEyebrow";
 import GlowButton from "@/components/GlowButton";
+
+export const metadata: Metadata = {
+  title: "Industrial Engineering Services | SensCore",
+  description:
+    "SensCore provides onsite flow surveys, flowmeter verification, compressed air audits, application engineering, commissioning, and technical support.",
+  alternates: { canonical: "https://www.senscoretech.com/services" },
+};
 
 const CORE_SERVICES = [
   {
