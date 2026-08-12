@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Gauge, Cpu, Sliders, TestTube, Waves, ShieldCheck, Wrench } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
@@ -5,6 +6,13 @@ import SectionEyebrow from "@/components/SectionEyebrow";
 import GlowButton from "@/components/GlowButton";
 import MutableVideo from "@/components/MutableVideo";
 import { PRODUCT_CATEGORIES } from "@/lib/data";
+
+export const metadata: Metadata = {
+  title: "Industrial Instrumentation & Automation | SensCore",
+  description:
+    "Explore SensCore industrial instrumentation, automation, valves, pumps, analysers, and process solutions from established global manufacturers.",
+  alternates: { canonical: "https://www.senscoretech.com/products" },
+};
 
 const ICONS: Record<string, any> = {
   instrumentation: Gauge,
