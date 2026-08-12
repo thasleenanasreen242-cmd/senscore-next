@@ -1,9 +1,17 @@
+import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionEyebrow from "@/components/SectionEyebrow";
 import GlowButton from "@/components/GlowButton";
 import { Check } from "lucide-react";
 import { INDUSTRIES } from "@/lib/data";
+
+export const metadata: Metadata = {
+  title: "Industrial Automation Solutions by Industry | SensCore",
+  description:
+    "Explore SensCore industrial sensing, instrumentation, automation, and monitoring solutions for oil and gas, manufacturing, utilities, energy, and more.",
+  alternates: { canonical: "https://www.senscoretech.com/industries" },
+};
 
 export default function IndustriesPage() {
   return (
