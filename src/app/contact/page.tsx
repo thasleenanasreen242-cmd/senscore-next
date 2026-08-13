@@ -26,6 +26,12 @@ const INFO = [
     href: "mailto:" + CONTACT.email,
   },
   {
+    icon: Mail,
+    label: "Enquiries",
+    value: CONTACT.enquiriesEmail,
+    href: "mailto:" + CONTACT.enquiriesEmail,
+  },
+  {
     icon: Phone,
     label: "Phone",
     value: CONTACT.phone,
