@@ -16,7 +16,7 @@ const INFO = [
   { icon: MapPin, label: "Head Office", value: "9th Floor, Mazyad Mall, Business Tower 3, MBZ City, Abu Dhabi, UAE" },
   { icon: MapPin, label: "Warehouse & Logistics", value: "No. 22, Mussafah 9, Mussafah Industrial Area, PO Box 35514, Abu Dhabi, UAE" },
   { icon: Mail, label: "Email", value: "info@senscoretech.com", href: "mailto:info@senscoretech.com" },
-  { icon: Mail, label: "Enquiries", value: "enquiries@senscore.ae", href: "mailto:enquiries@senscore.ae" },
+  { icon: Mail, label: "Enquiries", value: "enquiries@senscoretech.com", href: "mailto:enquiries@senscoretech.com" },
   { icon: Phone, label: "Phone", value: "+971 50 103 5348", href: "tel:+971501035348" },
   { icon: Clock, label: "Support", value: "24/7 for active deployments" },
 ];
