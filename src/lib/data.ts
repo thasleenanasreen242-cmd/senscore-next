@@ -113,6 +113,7 @@ export const INDUSTRIES = [
     id: "oil-gas",
     title: "Oil & Gas",
     badge: "Zone 1 / 2 · Hazardous Area Solutions",
+    footerTag: "Upstream · Midstream · Downstream",
     description:
       "Instrumentation, flow control and engineered solutions for upstream, midstream and downstream applications, including hazardous areas and critical-service process lines.",
     stat: "±0.1%",
@@ -132,6 +133,7 @@ export const INDUSTRIES = [
     id: "manufacturing",
     title: "Manufacturing",
     badge: "4–20mA / HART — Field to Control Room",
+    footerTag: "Measurement · Automation · Energy Efficiency",
     description:
       "Industrial instrumentation, automation and efficiency solutions for manufacturing facilities, helping improve process visibility, production reliability and energy performance.",
     stat: "24/7",
@@ -151,6 +153,7 @@ export const INDUSTRIES = [
     id: "food-beverage",
     title: "Food & Beverage",
     badge: "3-A / FDA — Hygienic Design",
+    footerTag: "Hygienic Process Measurement",
     description:
       "Hygienic instrumentation, process control and analysis solutions for food and beverage production, selected around cleanability, product compatibility and process requirements.",
     stat: "HACCP",
@@ -170,6 +173,7 @@ export const INDUSTRIES = [
     id: "water-utilities",
     title: "Water & Utilities",
     badge: "±0.3% — Flow Accuracy",
+    footerTag: "Flow · Quality · Level Monitoring",
     description:
       "Flow measurement, water quality analysis and process control solutions for water treatment, distribution, wastewater and utility networks.",
     stat: "-18%",
@@ -190,6 +194,7 @@ export const INDUSTRIES = [
     id: "power-energy",
     title: "Power Generation & Energy",
     badge: "24/7 Line Monitoring",
+    footerTag: "Steam · Water · Utility Measurement",
     description:
       "Instrumentation, flow measurement and control solutions for steam, feedwater, utilities and critical process systems in power generation and energy facilities.",
     stat: "3x",
@@ -209,6 +214,7 @@ export const INDUSTRIES = [
     id: "hvac-facilities",
     title: "HVAC, District Cooling & Facilities",
     badge: "DN15–DN2000 — Line Size Coverage",
+    footerTag: "Chilled Water · HVAC · Building Utilities",
     description:
       "Flow, pressure, temperature and control solutions for chilled water, district cooling, HVAC systems and building utility networks.",
     stat: "-22%",
