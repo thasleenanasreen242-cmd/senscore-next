@@ -36,13 +36,13 @@ export default function IndustriesPage() {
                     <p className="mt-4 text-sm leading-relaxed text-mute sm:text-base">
                       {industry.description}
                     </p>
-                    <div className="mt-4 inline-flex items-center rounded-full border border-teal/30 bg-teal/5 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-teal">
-                      [{industry.badge}]
-                    </div>
                   </div>
 
                   <div className="flex flex-col items-end text-right">
-                    <span className="font-display text-3xl font-bold text-teal">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-teal">
+                      [{industry.badge}]
+                    </span>
+                    <span className="mt-3 font-display text-3xl font-bold text-teal">
                       {industry.stat}
                     </span>
                     <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-faint">
