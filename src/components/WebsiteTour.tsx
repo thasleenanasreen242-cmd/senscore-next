@@ -2,49 +2,28 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Check, MapPin, Sparkles, X, PlayCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, Bot, Check, Compass, Layers3, MapPin, MessageCircle, Sparkles, X } from "lucide-react";
 
 const STORAGE_KEY = "senscore-website-tour-completed";
 
 const steps = [
-  {
-    title: "Welcome to SensCore",
-    text: "Take a quick tour to discover our industrial engineering solutions, products, services and contact options.",
-    icon: Sparkles,
-    selector: null,
-  },
-  {
-    title: "Explore our solutions",
-    text: "Browse Products to explore instrumentation, automation, valves, analysers, pumps and sealing solutions.",
-    icon: ArrowRight,
-    selector: 'a[href="/products"]',
-  },
-  {
-    title: "See our engineering services",
-    text: "Discover flow surveys, flowmeter verification, compressed-air audits, commissioning and application engineering.",
-    icon: ArrowRight,
-    selector: 'a[href="/industrial-engineering-services"]',
-  },
-  {
-    title: "Find your industry",
-    text: "Explore solutions selected for Oil & Gas, Manufacturing, Food & Beverage, Water & Utilities, Energy and HVAC applications.",
-    icon: ArrowRight,
-    selector: 'a[href="/industries"]',
-  },
-  {
-    title: "Let's connect",
-    text: "When you're ready, visit Contact to request a quotation, discuss an application or speak with the SensCore team.",
-    icon: MapPin,
-    selector: 'a[href="/contact"]',
-  },
+  { title: "Welcome to SensCore", text: "Take a guided tour of SensCore's industrial engineering platform, from solutions and industries to AI-assisted support.", icon: Sparkles, selector: null, scroll: false },
+  { title: "Navigate the platform", text: "Use the main navigation to move between products, services, industries, knowledge and contact options.", icon: Compass, selector: "header", scroll: false },
+  { title: "Start with the core proposition", text: "Discover how SensCore combines instrumentation, automation, Industrial IoT and AI-enabled intelligence for industrial operations.", icon: Sparkles, selector: "main > section:nth-of-type(1)", scroll: true },
+  { title: "Explore products & solutions", text: "Review instrumentation, automation, valves, analysers, pumps and other engineered solution categories.", icon: Layers3, selector: "main > section:nth-of-type(3)", scroll: true },
+  { title: "Find your industry", text: "Explore application-focused solutions across Oil & Gas, Manufacturing, Food & Beverage, Water, Energy and HVAC.", icon: Compass, selector: "main > section:nth-of-type(4)", scroll: true },
+  { title: "Trusted global brands", text: "See the global manufacturers represented by SensCore and the technologies available through its engineering network.", icon: Layers3, selector: "main > section:nth-of-type(5)", scroll: true },
+  { title: "Meet Aile, the AI assistant", text: "Ask about products, services, applications or industry requirements using the SensCore AI assistant.", icon: Bot, selector: 'button[aria-label="Open Aile"]', scroll: false },
+  { title: "Connect on WhatsApp", text: "Use WhatsApp for a direct conversation about an application, product requirement or enquiry.", icon: MessageCircle, selector: 'a[aria-label="Chat with us on WhatsApp"]', scroll: false },
+  { title: "Talk to an engineer", text: "Ready to discuss an application or request a quotation? Use the contact options to start a conversation with SensCore.", icon: MapPin, selector: "main > section:nth-of-type(6)", scroll: true },
 ];
 
 function getRect(selector: string | null) {
   if (!selector || typeof window === "undefined") return null;
   const element = document.querySelector(selector) as HTMLElement | null;
   if (!element) return null;
-  const rect = element.getBoundingClientRect();
-  return { top: rect.top, left: rect.left, width: rect.width, height: rect.height };
+  const r = element.getBoundingClientRect();
+  return { top: r.top, left: r.left, width: r.width, height: r.height };
 }
 
 export default function WebsiteTour() {
@@ -53,190 +32,72 @@ export default function WebsiteTour() {
   const [rect, setRect] = useState<ReturnType<typeof getRect>>(null);
   const [showRestart, setShowRestart] = useState(false);
 
-  // Auto-open on first visit
   useEffect(() => {
-    if (window.localStorage.getItem(STORAGE_KEY) !== "true") {
-      const timer = window.setTimeout(() => setOpen(true), 900);
+    if (window.localStorage.getItem(STORAGE_KEY) === "true") setShowRestart(true);
+    else {
+      const timer = window.setTimeout(() => setOpen(true), 1000);
       return () => window.clearTimeout(timer);
-    } else {
-      setShowRestart(true);
     }
   }, []);
 
-  // Listen for external restart trigger
   useEffect(() => {
-    const openTour = () => {
-      setStep(0);
-      setOpen(true);
-    };
+    const openTour = () => { setStep(0); setOpen(true); };
     window.addEventListener("senscore:open-tour", openTour);
     return () => window.removeEventListener("senscore:open-tour", openTour);
   }, []);
 
-  // Track the real target element's position
   useEffect(() => {
     if (!open) return;
-    const update = () => setRect(getRect(steps[step].selector));
+    const selector = steps[step].selector;
+    const target = selector ? document.querySelector(selector) as HTMLElement | null : null;
+    if (target && steps[step].scroll) {
+      window.setTimeout(() => target.scrollIntoView({ behavior: "smooth", block: "center" }), 80);
+    }
+    const update = () => setRect(getRect(selector));
     update();
     window.addEventListener("resize", update);
     window.addEventListener("scroll", update, { passive: true });
-    return () => {
-      window.removeEventListener("resize", update);
-      window.removeEventListener("scroll", update);
-    };
+    return () => { window.removeEventListener("resize", update); window.removeEventListener("scroll", update); };
   }, [open, step]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") close();
+      if (event.key === "ArrowLeft") setStep((v) => Math.max(0, v - 1));
+      if (event.key === "ArrowRight") setStep((v) => Math.min(steps.length - 1, v + 1));
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  });
 
   const close = () => {
     window.localStorage.setItem(STORAGE_KEY, "true");
     setOpen(false);
     setShowRestart(true);
   };
-
-  const restart = () => {
-    setStep(0);
-    setOpen(true);
-  };
-
-  const next = () => (step === steps.length - 1 ? close() : setStep((current) => current + 1));
-
-  const goToHighlightedElement = () => {
-    const selector = steps[step].selector;
-    if (!selector) return;
-    const element = document.querySelector(selector) as HTMLElement | null;
-    if (!element) return;
-    element.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
-    window.setTimeout(() => setRect(getRect(selector)), 400);
-  };
-
-  const Icon = steps[step].icon;
+  const restart = () => { setStep(0); setOpen(true); };
+  const next = () => step === steps.length - 1 ? close() : setStep((v) => v + 1);
+  const previous = () => setStep((v) => Math.max(0, v - 1));
+  const current = steps[step];
+  const Icon = current.icon;
   const isLast = step === steps.length - 1;
 
-  return (
-    <>
-      {/* Floating restart button — visible once tour has been completed/skipped */}
-      {showRestart && !open && (
-        <button
-          onClick={restart}
-          aria-label="Restart website tour"
-          className="fixed bottom-6 right-6 z-[90] flex items-center gap-2 rounded-full border border-teal/30 bg-[#0b121a]/90 px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.15em] text-teal shadow-[0_0_24px_rgba(45,212,191,0.12)] backdrop-blur-xl transition-all hover:border-teal/50 hover:bg-teal/10 hover:shadow-[0_0_30px_rgba(45,212,191,0.2)]"
-        >
-          <PlayCircle size={15} />
-          Take the tour
-        </button>
-      )}
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100]"
-            role="dialog"
-            aria-modal="true"
-            aria-label="SensCore website tour"
-          >
-            {/* Subtle overlay only — site stays sharp */}
-            <div className="absolute inset-0 bg-black/35" />
-
-            {/* Real element highlight — bright teal border + soft glow/pulse */}
-            {rect && (
-              <motion.div
-                layout
-                transition={{ type: "spring", stiffness: 260, damping: 28 }}
-                className="pointer-events-none absolute z-[101] rounded-xl border-2 border-teal shadow-[0_0_0_9999px_rgba(0,0,0,0.45),0_0_28px_rgba(45,212,191,0.45)]"
-                style={{
-                  top: rect.top - 6,
-                  left: rect.left - 6,
-                  width: rect.width + 12,
-                  height: rect.height + 12,
-                }}
-              >
-                <motion.span
-                  className="absolute inset-0 rounded-xl border-2 border-teal/70"
-                  animate={{ opacity: [0.9, 0.2, 0.9], scale: [1, 1.04, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                />
-              </motion.div>
-            )}
-
-            {/* Explanation card */}
-            <motion.div
-              initial={{ opacity: 0, y: 18, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 18 }}
-              className="absolute bottom-6 left-1/2 z-[102] w-[calc(100%-2rem)] max-w-md -translate-x-1/2 rounded-2xl border border-teal/25 bg-[#0b121a]/95 p-5 shadow-2xl backdrop-blur-xl sm:bottom-8 sm:p-6"
-            >
-              <button
-                onClick={close}
-                aria-label="Skip website tour"
-                className="absolute right-3 top-3 rounded-full p-2 text-mute transition-colors hover:bg-white/5 hover:text-ink"
-              >
-                <X size={17} />
-              </button>
-
-              <div className="flex items-start gap-4 pr-8">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-teal/30 bg-teal/10 text-teal">
-                  <Icon size={19} />
-                </div>
-                <div>
-                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-teal">
-                    SensCore tour · {step + 1}/{steps.length}
-                  </div>
-                  <h2 className="mt-1 font-display text-xl font-semibold text-ink">
-                    {steps[step].title}
-                  </h2>
-                </div>
-              </div>
-
-              <p className="mt-4 text-sm leading-relaxed text-mute">{steps[step].text}</p>
-
-              <div className="mt-5 flex items-center justify-between gap-4">
-                <div className="flex gap-1.5">
-                  {steps.map((_, index) => (
-                    <span
-                      key={index}
-                      className={`h-1.5 rounded-full transition-all ${
-                        index === step ? "w-6 bg-teal" : "w-1.5 bg-white/20"
-                      }`}
-                    />
-                  ))}
-                </div>
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={close}
-                    className="rounded-lg px-3 py-2 text-xs font-medium text-mute transition-colors hover:text-ink"
-                  >
-                    Skip
-                  </button>
-                  {steps[step].selector && (
-                    <button
-                      onClick={goToHighlightedElement}
-                      className="rounded-lg px-3 py-2 text-xs font-medium text-teal transition-colors hover:bg-teal/10"
-                    >
-                      Show me
-                    </button>
-                  )}
-                  <button
-                    onClick={next}
-                    className="inline-flex items-center gap-2 rounded-lg bg-teal px-4 py-2.5 text-xs font-semibold text-[#061015] transition-transform hover:scale-[1.02]"
-                  >
-                    {isLast ? (
-                      <>
-                        <Check size={14} /> Finish
-                      </>
-                    ) : (
-                      <>
-                        Next <ArrowRight size={14} />
-                      </>
-                    )}
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
-  );
+  return <>
+    {showRestart && !open && <button type="button" onClick={restart} aria-label="Restart website tour" className="fixed bottom-6 right-6 z-[90] inline-flex items-center gap-2 rounded-full border border-teal/30 bg-[#0b121a]/90 px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.15em] text-teal shadow-[0_0_24px_rgba(45,212,191,0.12)] backdrop-blur-xl transition hover:border-teal/50 hover:bg-teal/10 max-sm:bottom-4 max-sm:right-4"><Compass size={15} />Take the tour</button>}
+    <AnimatePresence>
+      {open && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100]" role="dialog" aria-modal="true" aria-labelledby="senscore-tour-title" aria-describedby="senscore-tour-description">
+        <div className="absolute inset-0 bg-[#02070b]/55" />
+        {rect && <motion.div layout transition={{ type: "spring", stiffness: 260, damping: 28 }} className="pointer-events-none absolute z-[101] rounded-2xl border-2 border-teal shadow-[0_0_0_9999px_rgba(2,7,11,0.46),0_0_32px_rgba(45,212,191,0.42)]" style={{ top: rect.top - 8, left: rect.left - 8, width: rect.width + 16, height: rect.height + 16 }}><motion.span className="absolute inset-0 rounded-2xl border border-teal/70" animate={{ opacity: [0.9, 0.2, 0.9], scale: [1, 1.015, 1] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }} /></motion.div>}
+        <motion.div key={step} initial={{ opacity: 0, y: 14, scale: .98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 8 }} className="absolute bottom-6 left-1/2 z-[102] w-[calc(100%-2rem)] max-w-[430px] -translate-x-1/2 rounded-2xl border border-teal/25 bg-[#0b121a]/96 p-5 shadow-[0_24px_80px_rgba(0,0,0,.5)] backdrop-blur-2xl sm:bottom-8 sm:p-6">
+          <button type="button" onClick={close} aria-label="Close website tour" className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full text-mute hover:bg-white/5 hover:text-ink"><X size={17} /></button>
+          <div className="flex items-start gap-4 pr-8"><div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-teal/30 bg-teal/10 text-teal"><Icon size={19} /></div><div><div className="font-mono text-[10px] uppercase tracking-[0.2em] text-teal">SensCore tour · {String(step + 1).padStart(2,"0")} / {String(steps.length).padStart(2,"0")}</div><h2 id="senscore-tour-title" className="mt-1 font-display text-xl font-semibold text-ink">{current.title}</h2></div></div>
+          <p id="senscore-tour-description" className="mt-4 text-sm leading-relaxed text-mute">{current.text}</p>
+          <div className="mt-5 h-1 overflow-hidden rounded-full bg-white/10"><motion.div className="h-full rounded-full bg-teal" animate={{ width: `${((step + 1) / steps.length) * 100}%` }} /></div>
+          <div className="mt-5 flex items-center justify-between gap-3"><button type="button" onClick={close} className="rounded-lg px-2 py-2 text-xs text-mute hover:text-ink">Skip tour</button><div className="flex items-center gap-2"><button type="button" onClick={previous} disabled={step === 0} aria-label="Previous tour step" className="flex h-10 w-10 items-center justify-center rounded-lg border border-line text-mute hover:border-teal/40 hover:text-ink disabled:opacity-30"><ArrowLeft size={15} /></button><button type="button" onClick={next} className="inline-flex h-10 items-center gap-2 rounded-lg bg-teal px-4 text-xs font-semibold text-[#061015] hover:scale-[1.02]">{isLast ? <><Check size={14}/>Finish</> : <>Next <ArrowRight size={14}/></>}</button></div></div>
+          <div className="mt-4 flex justify-between border-t border-line pt-3 font-mono text-[9px] uppercase tracking-[0.16em] text-faint"><span>← → navigate</span><span>Esc closes</span></div>
+        </motion.div>
+      </motion.div>}
+    </AnimatePresence>
+  </>;
 }
