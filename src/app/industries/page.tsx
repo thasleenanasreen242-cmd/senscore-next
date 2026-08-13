@@ -39,9 +39,14 @@ export default function IndustriesPage() {
                   </div>
 
                   <div className="flex flex-col items-end text-right">
-                    <div className="inline-flex items-center rounded-full border border-teal/30 bg-teal/5 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-teal">
+                    <span className="font-display text-lg font-bold uppercase tracking-[0.1em] text-teal sm:text-xl">
                       {industry.badge}
-                    </div>
+                    </span>
+                    {industry.footerTag ? (
+                      <span className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.15em] text-faint">
+                        {industry.footerTag}
+                      </span>
+                    ) : null}
                   </div>
                 </div>
 
@@ -53,12 +58,6 @@ export default function IndustriesPage() {
                     </div>
                   ))}
                 </div>
-
-                {industry.footerTag ? (
-                  <div className="mt-6 font-mono text-[10px] uppercase tracking-[0.2em] text-faint">
-                    {industry.footerTag}
-                  </div>
-                ) : null}
               </div>
             </Reveal>
           ))}
