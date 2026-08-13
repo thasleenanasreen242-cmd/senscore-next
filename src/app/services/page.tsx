@@ -6,64 +6,60 @@ import SectionEyebrow from "@/components/SectionEyebrow";
 import GlowButton from "@/components/GlowButton";
 
 export const metadata: Metadata = {
-  title: "Industrial Engineering Services | SensCore",
+  title: "Industrial Engineering Services UAE | Flow Surveys & Compressed Air Audits | SensCore",
   description:
-    "SensCore provides onsite flow surveys, flowmeter verification, compressed air audits, application engineering, commissioning, and technical support.",
-  alternates: { canonical: "https://www.senscoretech.com/services" },
+    "Industrial engineering services in the UAE including flow surveys, flowmeter verification, compressed air audits, leak detection, commissioning and application engineering.",
+  alternates: { canonical: "https://www.senscoretech.com/industrial-engineering-services/" },
 };
 
 const CORE_SERVICES = [
   {
     icon: Search,
-    title: "Onsite Flow Survey",
+    title: "On-Site Flow Survey",
     description:
-      "Non-invasive measurement of your existing lines to establish actual flow conditions before any instrument is specified. Identifies where meters are misapplied, undersized, or reading incorrectly, and gives you real data to design against rather than assumed values.",
+      "Establish actual flow conditions before selecting or replacing a flow meter. Using non-invasive flow measurement where technically suitable, we assess existing liquid, gas or utility lines to understand real operating flow rates and process conditions. The findings can help identify incorrectly sized or misapplied meters and provide measured data for instrument selection, system assessment and troubleshooting.",
   },
   {
     icon: CheckCircle2,
     title: "Flowmeter Verification",
     description:
-      "In-situ verification of installed flowmeters against reference measurement. Confirms whether a meter still performs to specification without removing it from the line, and produces documentation you can present during audit.",
+      "Check the performance of an installed flow meter without unnecessary process interruption. Where site conditions allow, SensCore compares the installed meter against a suitable reference measurement to assess its operating performance. The verification helps identify measurement deviations, installation issues and potential instrument problems while keeping the meter in service. A documented verification report records the test conditions, observations and measurement results.",
   },
   {
     icon: Wind,
-    title: "Compressed Air Services",
+    title: "Compressed Air Audits & Efficiency Services",
     description:
-      "A complete assessment of how your compressed air system generates, distributes, and consumes air, and what those costs are.",
+      "Understand where compressed air is generated, distributed, consumed and lost. SensCore assesses compressed air systems using actual operating data to identify efficiency losses, leakage and opportunities for performance improvement.",
     subItems: [
-      { label: "Network Audit", detail: "End-to-end mapping of generation, distribution, and demand, with a written report and prioritised recommendations." },
-      { label: "Leakage Testing", detail: "Ultrasonic detection across the distribution network, with each leak located, tagged, sized, and costed." },
-      { label: "Efficiency Analysis", detail: "Specific energy consumption and load profile measured against actual demand, identifying oversizing, pressure band issues, and control losses." },
+      { label: "Compressed Air Network Audit", detail: "Assessment of compressor generation, distribution and demand, supported by measured data and prioritised engineering recommendations." },
+      { label: "Compressed Air Leak Detection", detail: "Ultrasonic inspection of the compressed air network to locate and tag leaks, with estimated leakage rates and associated operating cost where sufficient system data is available." },
+      { label: "Compressor Efficiency Analysis", detail: "Measurement of compressor output, energy consumption and load profile against actual plant demand to identify inefficient operation, pressure issues, capacity mismatch and control losses." },
     ],
   },
   {
     icon: ShieldCheck,
-    title: "Flange Guard Mapping & Installation",
+    title: "Flange Guard Survey, Mapping & Installation",
     description:
-      "Site survey to identify flanges requiring protection, matched to line size, media, and temperature, followed by supply and installation. Produces a documented register of protected joints.",
+      "Identify, document and protect critical flanged joints. We survey process lines to identify flanges requiring spray protection, review line size, process media, temperature and service conditions, then support flange guard selection, mapping, supply and installation. The completed survey can provide a structured register of protected flange locations for future inspection and maintenance.",
   },
   {
     icon: FileSearch,
-    title: "Application Engineering & Selection",
+    title: "Application Engineering & Equipment Selection",
     description:
-      "Review of your P&ID, datasheet, or specification against the medium, duty, and operating conditions, returning an instrument selection with the reasoning behind it. Included on every enquiry at no cost.",
+      "Select equipment around the application, not simply the catalogue. Send us your P&ID, datasheet, RFQ or process requirements. Our engineers review the medium, operating conditions, duty and technical specification before recommending a suitable instrumentation, valve, pump or process solution, together with the reasoning behind the selection. Application review is included as part of our enquiry process.",
   },
   {
     icon: Wrench,
     title: "Commissioning & Technical Support",
     description:
-      "Configuration, calibration, and startup support for supplied instrumentation, plus troubleshooting when something in the field doesn't behave as specified.",
+      "Engineering support from installation through operation. SensCore provides configuration, start-up assistance, functional checks and troubleshooting for supplied equipment. Where applicable, we also support instrument setup, parameter verification and coordination of calibration requirements. Our objective is to help ensure the installed solution performs in line with the intended application and operating conditions.",
   },
 ];
 
 export default function ServicesPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Services"
-        title="Specified. Installed. Verified."
-        description="Supply is where most vendors stop. We survey, verify, commission, and audit — so the instrument you bought keeps doing what it was specified to do."
-      />
+      <PageHero eyebrow="Industrial Engineering Services in the UAE" title="Specified. Installed. Verified." description="Supply is only one part of a reliable industrial solution. SensCore supports industrial facilities across the UAE with on-site measurement, verification, commissioning, audits and application engineering to help equipment perform as intended in real operating conditions." />
 
       <section className="py-24 sm:py-32">
         <div className="mx-auto flex max-w-7xl flex-col gap-20 px-6 lg:px-10">
@@ -123,16 +119,10 @@ export default function ServicesPage() {
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-teal/10 blur-[120px]" />
         <div className="relative mx-auto max-w-2xl px-6">
           <Reveal>
-            <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
-              Start with a survey, not a quotation.
-            </h2>
+            <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">Start with a survey, not a quotation.</h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-4 text-base text-mute">
-              Tell us what you&apos;re trying to measure or where you think
-              you&apos;re losing efficiency. We&apos;ll scope the survey and
-              tell you honestly whether it&apos;s worth doing.
-            </p>
+            <p className="mt-4 text-base text-mute">Tell us what you are trying to measure, verify or improve. We will review the application, define the appropriate scope and tell you whether an on-site survey is likely to add meaningful value.</p>
           </Reveal>
           <Reveal delay={0.18}>
             <div className="mt-8">
