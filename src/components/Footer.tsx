@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Linkedin, Instagram, Mail, Phone, MapPin, Radio } from "lucide-react";
 import { NAV_LINKS, CONTACT, LOCATIONS } from "@/lib/data";
 
+const HEAD_OFFICE_MAP = "https://www.google.com/maps/search/?api=1&query=9th+Floor%2C+Mazyad+Mall%2C+Business+Tower+3%2C+MBZ+City%2C+Abu+Dhabi%2C+UAE";
+
 export default function Footer() {
   return (
     <footer className="relative border-t border-line bg-surface">
@@ -46,7 +48,12 @@ export default function Footer() {
           <div>
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-teal">Contact</div>
             <ul className="mt-4 flex flex-col gap-3 text-sm text-mute">
-              <li className="flex items-start gap-2"><MapPin size={15} className="mt-0.5 shrink-0 text-teal" /><span><span className="block text-ink/80">Head Office</span>9th Floor, Mazyad Mall, Business Tower 3<br />MBZ City, Abu Dhabi, UAE</span></li>
+              <li>
+                <a href={HEAD_OFFICE_MAP} target="_blank" rel="noopener noreferrer" className="group flex items-start gap-2 transition-colors hover:text-ink" aria-label="Open SensCore Head Office in Google Maps">
+                  <MapPin size={15} className="mt-0.5 shrink-0 text-teal transition-transform group-hover:scale-110" />
+                  <span><span className="block text-ink/80 group-hover:text-teal">Head Office</span>9th Floor, Mazyad Mall, Business Tower 3<br />MBZ City, Abu Dhabi, UAE</span>
+                </a>
+              </li>
               <li className="flex items-start gap-2"><MapPin size={15} className="mt-0.5 shrink-0 text-teal" /><span><span className="block text-ink/80">Warehouse & Logistics</span>No. 22, Mussafah 9, Mussafah Industrial Area<br />PO Box 35514, Abu Dhabi, UAE</span></li>
               <li className="flex items-center gap-2"><Mail size={15} className="shrink-0 text-teal" /><a href={`mailto:${CONTACT.email}`} className="hover:text-ink">{CONTACT.email}</a></li>
               <li className="flex items-center gap-2"><Phone size={15} className="shrink-0 text-teal" /><a href={CONTACT.phoneHref} className="hover:text-ink">{CONTACT.phone}</a></li>
