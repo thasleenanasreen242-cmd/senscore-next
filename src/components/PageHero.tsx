@@ -4,10 +4,12 @@ import Reveal from "@/components/Reveal";
 export default function PageHero({
   eyebrow,
   title,
+  subheading,
   description,
 }: {
   eyebrow: string;
   title: string;
+  subheading?: string;
   description: string;
 }) {
   return (
@@ -20,14 +22,15 @@ export default function PageHero({
           </div>
         </Reveal>
         <Reveal delay={0.08}>
-          <h1 className="mt-6 font-display text-4xl font-semibold leading-tight text-ink sm:text-6xl">
-            {title}
-          </h1>
+          <h1 className="mt-6 font-display text-4xl font-semibold leading-tight text-ink sm:text-6xl">{title}</h1>
         </Reveal>
-        <Reveal delay={0.16}>
-          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-mute sm:text-lg">
-            {description}
-          </p>
+        {subheading && (
+          <Reveal delay={0.14}>
+            <h2 className="mx-auto mt-4 max-w-xl font-display text-lg font-bold leading-tight text-ink sm:text-xl">{subheading}</h2>
+          </Reveal>
+        )}
+        <Reveal delay={subheading ? 0.2 : 0.16}>
+          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-mute sm:text-lg">{description}</p>
         </Reveal>
       </div>
     </section>
