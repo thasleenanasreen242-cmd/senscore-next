@@ -112,7 +112,10 @@ export default function WebsiteTour() {
   const [showRestart, setShowRestart] = useState(false);
 
   useEffect(() => {
-    if (window.localStorage.getItem(STORAGE_KEY) === "true") {
+    const completed =
+      window.localStorage.getItem(STORAGE_KEY) === "true";
+
+    if (completed) {
       setShowRestart(true);
     } else {
       const timer = window.setTimeout(() => {
@@ -137,7 +140,10 @@ export default function WebsiteTour() {
   }, []);
 
   useEffect(() => {
-    if (!open) return;
+    if (!open) {
+      setRect(null);
+      return;
+    }
 
     const selector = steps[step].selector;
 
@@ -177,14 +183,18 @@ export default function WebsiteTour() {
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         close();
+        return;
       }
 
       if (event.key === "ArrowLeft") {
-        setStep((v) => Math.max(0, v - 1));
+        setStep((value) => Math.max(0, value - 1));
+        return;
       }
 
       if (event.key === "ArrowRight") {
-        setStep((v) => Math.min(steps.length - 1, v + 1));
+        setStep((value) =>
+          Math.min(steps.length - 1, value + 1)
+        );
       }
     };
 
@@ -193,7 +203,7 @@ export default function WebsiteTour() {
     return () => {
       window.removeEventListener("keydown", onKey);
     };
-  });
+  }, [open]);
 
   const close = () => {
     window.localStorage.setItem(STORAGE_KEY, "true");
@@ -210,12 +220,12 @@ export default function WebsiteTour() {
     if (step === steps.length - 1) {
       close();
     } else {
-      setStep((v) => v + 1);
+      setStep((value) => value + 1);
     }
   };
 
   const previous = () => {
-    setStep((v) => Math.max(0, v - 1));
+    setStep((value) => Math.max(0, value - 1));
   };
 
   const current = steps[step];
@@ -224,19 +234,57 @@ export default function WebsiteTour() {
 
   return (
     <>
-      {/* Take the Tour button */}
+      {/* =========================================================
+          TAKE THE TOUR BUTTON
+          z-[90] keeps it BELOW Aile / chatbot
+          ========================================================= */}
+
       {showRestart && !open && (
         <button
           type="button"
           onClick={restart}
           aria-label="Restart website tour"
-          className="fixed right-6 top-[205px] z-[90] inline-flex cursor-pointer items-center gap-2 rounded-full border border-teal/30 bg-[#0b121a]/90 px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.15em] text-teal shadow-[0_0_24px_rgba(45,212,191,0.12)] backdrop-blur-xl transition hover:border-teal/50 hover:bg-teal/10 max-sm:right-4 max-sm:top-[190px]"
-          style={{ cursor: "pointer" }}
+          className="
+            fixed
+            right-6
+            top-[205px]
+            z-[90]
+            inline-flex
+            cursor-pointer
+            items-center
+            gap-2
+            rounded-full
+            border
+            border-teal/30
+            bg-[#0b121a]/90
+            px-4
+            py-2.5
+            font-mono
+            text-[11px]
+            uppercase
+            tracking-[0.15em]
+            text-teal
+            shadow-[0_0_24px_rgba(45,212,191,0.12)]
+            backdrop-blur-xl
+            transition-all
+            duration-300
+            hover:border-teal/50
+            hover:bg-teal/10
+            max-sm:right-4
+            max-sm:top-[190px]
+          "
+          style={{
+            cursor: "pointer",
+          }}
         >
           <Compass size={15} />
           Take the tour
         </button>
       )}
+
+      {/* =========================================================
+          TOUR
+          ========================================================= */}
 
       <AnimatePresence>
         {open && (
@@ -244,7 +292,12 @@ export default function WebsiteTour() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] cursor-default"
+            className="
+              fixed
+              inset-0
+              z-[100]
+              cursor-default
+            "
             style={{
               cursor: "default",
             }}
@@ -253,15 +306,27 @@ export default function WebsiteTour() {
             aria-labelledby="senscore-tour-title"
             aria-describedby="senscore-tour-description"
           >
-            {/* Dark overlay */}
+            {/* =====================================================
+                DARK OVERLAY
+                ===================================================== */}
+
             <div
-              className="absolute inset-0 z-[100] cursor-default bg-[#02070b]/55"
+              className="
+                absolute
+                inset-0
+                z-[100]
+                cursor-default
+                bg-[#02070b]/55
+              "
               style={{
                 cursor: "default",
               }}
             />
 
-            {/* Highlight / spotlight */}
+            {/* =====================================================
+                SPOTLIGHT
+                ===================================================== */}
+
             {rect && (
               <motion.div
                 layout
@@ -270,7 +335,15 @@ export default function WebsiteTour() {
                   stiffness: 260,
                   damping: 28,
                 }}
-                className="pointer-events-none absolute z-[101] rounded-2xl border-2 border-teal shadow-[0_0_0_9999px_rgba(2,7,11,0.46),0_0_32px_rgba(45,212,191,0.42)]"
+                className="
+                  pointer-events-none
+                  absolute
+                  z-[101]
+                  rounded-2xl
+                  border-2
+                  border-teal
+                  shadow-[0_0_0_9999px_rgba(2,7,11,0.46),0_0_32px_rgba(45,212,191,0.42)]
+                "
                 style={{
                   top: rect.top - 8,
                   left: rect.left - 8,
@@ -279,7 +352,13 @@ export default function WebsiteTour() {
                 }}
               >
                 <motion.span
-                  className="absolute inset-0 rounded-2xl border border-teal/70"
+                  className="
+                    absolute
+                    inset-0
+                    rounded-2xl
+                    border
+                    border-teal/70
+                  "
                   animate={{
                     opacity: [0.9, 0.2, 0.9],
                     scale: [1, 1.015, 1],
@@ -293,7 +372,10 @@ export default function WebsiteTour() {
               </motion.div>
             )}
 
-            {/* Tour window — intentionally BELOW Aile/chatbot */}
+            {/* =====================================================
+                TOUR WINDOW
+                ===================================================== */}
+
             <motion.div
               key={step}
               initial={{
@@ -310,17 +392,50 @@ export default function WebsiteTour() {
                 opacity: 0,
                 y: 8,
               }}
-              className="absolute bottom-6 left-1/2 z-[102] w-[calc(100%-2rem)] max-w-[430px] -translate-x-1/2 cursor-default rounded-2xl border border-teal/25 bg-[#0b121a]/96 p-5 shadow-[0_24px_80px_rgba(0,0,0,.5)] backdrop-blur-2xl sm:bottom-8 sm:p-6"
+              className="
+                absolute
+                bottom-6
+                left-1/2
+                z-[102]
+                w-[calc(100%-2rem)]
+                max-w-[430px]
+                -translate-x-1/2
+                cursor-default
+                rounded-2xl
+                border
+                border-teal/25
+                bg-[#0b121a]/96
+                p-5
+                shadow-[0_24px_80px_rgba(0,0,0,.5)]
+                backdrop-blur-2xl
+                sm:bottom-8
+                sm:p-6
+              "
               style={{
                 cursor: "default",
               }}
             >
-              {/* Close */}
+              {/* Close button */}
+
               <button
                 type="button"
                 onClick={close}
                 aria-label="Close website tour"
-                className="absolute right-3 top-3 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full text-mute hover:bg-white/5 hover:text-ink"
+                className="
+                  absolute
+                  right-3
+                  top-3
+                  flex
+                  h-9
+                  w-9
+                  cursor-pointer
+                  items-center
+                  justify-center
+                  rounded-full
+                  text-mute
+                  hover:bg-white/5
+                  hover:text-ink
+                "
                 style={{
                   cursor: "pointer",
                 }}
@@ -329,13 +444,36 @@ export default function WebsiteTour() {
               </button>
 
               {/* Header */}
+
               <div className="flex items-start gap-4 pr-8">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-teal/30 bg-teal/10 text-teal">
+                <div
+                  className="
+                    flex
+                    h-11
+                    w-11
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-xl
+                    border
+                    border-teal/30
+                    bg-teal/10
+                    text-teal
+                  "
+                >
                   <Icon size={19} />
                 </div>
 
                 <div>
-                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-teal">
+                  <div
+                    className="
+                      font-mono
+                      text-[10px]
+                      uppercase
+                      tracking-[0.2em]
+                      text-teal
+                    "
+                  >
                     SensCore tour ·{" "}
                     {String(step + 1).padStart(2, "0")} /{" "}
                     {String(steps.length).padStart(2, "0")}
@@ -343,7 +481,13 @@ export default function WebsiteTour() {
 
                   <h2
                     id="senscore-tour-title"
-                    className="mt-1 font-display text-xl font-semibold text-ink"
+                    className="
+                      mt-1
+                      font-display
+                      text-xl
+                      font-semibold
+                      text-ink
+                    "
                   >
                     {current.title}
                   </h2>
@@ -351,17 +495,36 @@ export default function WebsiteTour() {
               </div>
 
               {/* Description */}
+
               <p
                 id="senscore-tour-description"
-                className="mt-4 text-sm leading-relaxed text-mute"
+                className="
+                  mt-4
+                  text-sm
+                  leading-relaxed
+                  text-mute
+                "
               >
                 {current.text}
               </p>
 
-              {/* Progress */}
-              <div className="mt-5 h-1 overflow-hidden rounded-full bg-white/10">
+              {/* Progress bar */}
+
+              <div
+                className="
+                  mt-5
+                  h-1
+                  overflow-hidden
+                  rounded-full
+                  bg-white/10
+                "
+              >
                 <motion.div
-                  className="h-full rounded-full bg-teal"
+                  className="
+                    h-full
+                    rounded-full
+                    bg-teal
+                  "
                   animate={{
                     width: `${((step + 1) / steps.length) * 100}%`,
                   }}
@@ -369,11 +532,28 @@ export default function WebsiteTour() {
               </div>
 
               {/* Navigation */}
-              <div className="mt-5 flex items-center justify-between gap-3">
+
+              <div
+                className="
+                  mt-5
+                  flex
+                  items-center
+                  justify-between
+                  gap-3
+                "
+              >
                 <button
                   type="button"
                   onClick={close}
-                  className="cursor-pointer rounded-lg px-2 py-2 text-xs text-mute hover:text-ink"
+                  className="
+                    cursor-pointer
+                    rounded-lg
+                    px-2
+                    py-2
+                    text-xs
+                    text-mute
+                    hover:text-ink
+                  "
                   style={{
                     cursor: "pointer",
                   }}
@@ -383,20 +563,38 @@ export default function WebsiteTour() {
 
                 <div className="flex items-center gap-2">
                   {/* Previous */}
+
                   <button
                     type="button"
                     onClick={previous}
                     disabled={step === 0}
                     aria-label="Previous tour step"
-                    className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border border-line text-mute hover:border-teal/40 hover:text-ink disabled:cursor-not-allowed disabled:opacity-30"
+                    className="
+                      flex
+                      h-10
+                      w-10
+                      cursor-pointer
+                      items-center
+                      justify-center
+                      rounded-lg
+                      border
+                      border-line
+                      text-mute
+                      hover:border-teal/40
+                      hover:text-ink
+                      disabled:cursor-not-allowed
+                      disabled:opacity-30
+                    "
                     style={{
-                      cursor: step === 0 ? "not-allowed" : "pointer",
+                      cursor:
+                        step === 0 ? "not-allowed" : "pointer",
                     }}
                   >
                     <ArrowLeft size={15} />
                   </button>
 
                   {/* Next */}
+
                   <button
                     type="button"
                     onClick={next}
@@ -405,7 +603,20 @@ export default function WebsiteTour() {
                         ? "Finish website tour"
                         : "Next tour step"
                     }
-                    className="inline-flex h-10 cursor-pointer items-center gap-2 rounded-lg bg-teal px-4 text-xs font-semibold text-[#061015] hover:scale-[1.02]"
+                    className="
+                      inline-flex
+                      h-10
+                      cursor-pointer
+                      items-center
+                      gap-2
+                      rounded-lg
+                      bg-teal
+                      px-4
+                      text-xs
+                      font-semibold
+                      text-[#061015]
+                      hover:scale-[1.02]
+                    "
                     style={{
                       cursor: "pointer",
                     }}
@@ -426,13 +637,30 @@ export default function WebsiteTour() {
               </div>
 
               {/* Keyboard help */}
-              <div className="mt-4 flex justify-between border-t border-line pt-3 font-mono text-[9px] uppercase tracking-[0.16em] text-faint">
+
+              <div
+                className="
+                  mt-4
+                  flex
+                  justify-between
+                  border-t
+                  border-line
+                  pt-3
+                  font-mono
+                  text-[9px]
+                  uppercase
+                  tracking-[0.16em]
+                  text-faint
+                "
+              >
                 <span className="inline-flex items-center gap-1.5">
                   <MousePointer2 size={11} />
                   Cursor active
                 </span>
 
-                <span>← → navigate · Esc closes</span>
+                <span>
+                  ← → navigate · Esc closes
+                </span>
               </div>
             </motion.div>
           </motion.div>
