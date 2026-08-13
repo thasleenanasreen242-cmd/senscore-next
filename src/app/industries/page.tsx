@@ -14,17 +14,17 @@ export const metadata: Metadata = {
 export default function IndustriesPage() {
   return (
     <>
-      <PageHero eyebrow="Industries" title="Industrial Engineering Solutions Across the UAE" description="From process measurement and automation to flow control and equipment solutions, SensCore supports industrial applications with technologies selected around operating conditions, process requirements and lifecycle performance." />
+      <PageHero eyebrow="Industries" title="Industrial Engineering Solutions Across the UAE" description="" />
 
-      <section className="border-b border-line py-20 sm:py-24">
-        <div className="mx-auto max-w-4xl px-6 text-center lg:px-10">
+      <section className="border-b border-line py-8 sm:py-10">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <Reveal>
-            <h2 className="font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl">
+            <h2 className="font-display text-2xl font-bold leading-tight text-ink sm:text-3xl">
               Different sectors. Different demands. One engineering approach.
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-mute sm:text-lg">
+            <p className="mt-3 max-w-4xl text-base leading-relaxed text-mute sm:text-lg">
               From process measurement and automation to flow control and equipment solutions, SensCore supports industrial applications with technologies selected around operating conditions, process requirements and lifecycle performance.
             </p>
           </Reveal>
