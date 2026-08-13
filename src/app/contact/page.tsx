@@ -103,18 +103,21 @@ export default function ContactPage() {
                 );
               })}
 
-              {/* Blue + White highlighted map */}
-              <div className="relative overflow-hidden rounded-2xl border border-blue-300/60 bg-white shadow-[0_0_36px_rgba(37,99,235,0.22)]">
-                {/* Soft blue highlight */}
-                <div className="pointer-events-none absolute inset-0 z-[1] bg-blue-500/10" />
+              {/* Premium blue map */}
+              <div className="relative overflow-hidden rounded-2xl border border-blue-400/50 bg-[#071a3a] shadow-[0_0_40px_rgba(30,111,255,0.24)]">
+                {/* Deep blue base */}
+                <div className="pointer-events-none absolute inset-0 z-[1] bg-[#071a3a]/65" />
 
-                {/* Blue border highlight */}
-                <div className="pointer-events-none absolute inset-0 z-[2] rounded-2xl border-2 border-blue-500/40" />
+                {/* Soft blue glow */}
+                <div className="pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(circle_at_50%_45%,rgba(77,145,255,0.28),transparent_52%)]" />
+
+                {/* White glass highlight */}
+                <div className="pointer-events-none absolute inset-0 z-[3] rounded-2xl border border-white/20" />
 
                 <iframe
                   title="SensCore Location - Abu Dhabi"
                   src="https://www.google.com/maps?q=SensCore+9th+Floor+Mazyad+Mall+Business+Tower+3+MBZ+City+Abu+Dhabi&output=embed"
-                  className="relative z-0 h-64 w-full brightness-[1.08] contrast-[0.9] saturate-[1.25] hue-rotate-[175deg]"
+                  className="relative z-0 h-64 w-full grayscale brightness-[0.8] contrast-[1.15] saturate-0 opacity-[0.82] mix-blend-screen"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 />
@@ -155,9 +158,7 @@ export default function ContactPage() {
 
                     {loc.phone ? (
                       <a
-                        href={
-                          "tel:" + loc.phone.replace(/\s+/g, "")
-                        }
+                        href={"tel:" + loc.phone.replace(/\s+/g, "")}
                         className="mt-3 block text-sm text-ink transition-colors hover:text-teal"
                       >
                         {loc.phone}
