@@ -116,8 +116,8 @@ export const INDUSTRIES = [
     footerTag: "Upstream · Midstream · Downstream",
     description:
       "Instrumentation, flow control and engineered solutions for upstream, midstream and downstream applications, including hazardous areas and critical-service process lines.",
-    stat: "±0.1%",
-    statLabel: "Custody metering accuracy",
+    stat: "Zone 1 / 2",
+    statLabel: "Hazardous Area Solutions",
     supply: [
       "Flow measurement for liquids, gas and hydrocarbons — Coriolis, ultrasonic, vortex & turbine flow meters",
       "Tank & separator level measurement — Radar and guided wave radar",
@@ -136,8 +136,8 @@ export const INDUSTRIES = [
     footerTag: "Measurement · Automation · Energy Efficiency",
     description:
       "Industrial instrumentation, automation and efficiency solutions for manufacturing facilities, helping improve process visibility, production reliability and energy performance.",
-    stat: "24/7",
-    statLabel: "Line monitoring",
+    stat: "4–20mA / HART",
+    statLabel: "Field to Control Room",
     supply: [
       "Flow, pressure, level and temperature instrumentation",
       "PLCs, remote I/O, HMI/SCADA and IIoT connectivity",
@@ -156,8 +156,8 @@ export const INDUSTRIES = [
     footerTag: "Hygienic · Process Measurement",
     description:
       "Hygienic instrumentation, process control and analysis solutions for food and beverage production, selected around cleanability, product compatibility and process requirements.",
-    stat: "HACCP",
-    statLabel: "Compliant data trails",
+    stat: "3-A / FDA",
+    statLabel: "Hygienic Design",
     supply: [
       "Hygienic flow measurement — Electromagnetic and Coriolis flow meters with sanitary process connections",
       "Hygienic level measurement for tanks, vessels and process systems",
@@ -176,8 +176,8 @@ export const INDUSTRIES = [
     footerTag: "Flow · Quality · Level Monitoring",
     description:
       "Flow measurement, water quality analysis and process control solutions for water treatment, distribution, wastewater and utility networks.",
-    stat: "-18%",
-    statLabel: "Avg. non-revenue water",
+    stat: "±0.3%",
+    statLabel: "Flow Accuracy",
     supply: [
       "Electromagnetic flow meters for water and wastewater applications",
       "Bulk and district water metering",
@@ -197,8 +197,8 @@ export const INDUSTRIES = [
     footerTag: "Steam · Water · Utility Measurement",
     description:
       "Instrumentation, flow measurement and control solutions for steam, feedwater, utilities and critical process systems in power generation and energy facilities.",
-    stat: "3x",
-    statLabel: "Faster fault detection",
+    stat: "24/7",
+    statLabel: "Line Monitoring",
     supply: [
       "Steam and feedwater flow measurement — Vortex and differential pressure technologies",
       "Temperature measurement — RTDs, thermocouples and temperature transmitters",
@@ -217,8 +217,8 @@ export const INDUSTRIES = [
     footerTag: "Chilled Water · HVAC · Building Utilities",
     description:
       "Flow, pressure, temperature and control solutions for chilled water, district cooling, HVAC systems and building utility networks.",
-    stat: "-22%",
-    statLabel: "Avg. energy reduction",
+    stat: "DN15–DN2000",
+    statLabel: "Line Size Coverage",
     supply: [
       "Chilled water and thermal energy measurement",
       "Temperature measurement for ducts, pipes and HVAC systems",
