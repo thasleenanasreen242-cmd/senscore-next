@@ -17,7 +17,7 @@ export default function AboutPage() {
       <section className="border-b border-line py-16 sm:py-20">
         <div className="mx-auto max-w-3xl px-6 text-center lg:px-10">
           <Reveal>
-            <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">Engineering first. Always.</h2>
+            <h2 className="font-display text-xl font-semibold text-ink sm:text-2xl">Engineering first. Always.</h2>
             <p className="mt-4 text-base leading-relaxed text-mute sm:text-lg">We were built on a simple conviction: industrial supply should start with the application, not the catalogue. That means engineering-led selection, proven technologies from trusted manufacturers, and technical support that continues well beyond delivery.</p>
           </Reveal>
         </div>
