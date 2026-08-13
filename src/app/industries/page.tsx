@@ -14,7 +14,23 @@ export const metadata: Metadata = {
 export default function IndustriesPage() {
   return (
     <>
-      <PageHero eyebrow="Industries" title="Industrial Engineering Solutions Across the UAE" description="Different sectors. Different demands. One engineering approach. From process measurement and automation to flow control and equipment solutions, SensCore supports industrial applications with technologies selected around operating conditions, process requirements and lifecycle performance." />
+      <PageHero eyebrow="Industries" title="Industrial Engineering Solutions Across the UAE" description="From process measurement and automation to flow control and equipment solutions, SensCore supports industrial applications with technologies selected around operating conditions, process requirements and lifecycle performance." />
+
+      <section className="border-b border-line py-20 sm:py-24">
+        <div className="mx-auto max-w-4xl px-6 text-center lg:px-10">
+          <Reveal>
+            <h2 className="font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl">
+              Different sectors. Different demands. One engineering approach.
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-mute sm:text-lg">
+              From process measurement and automation to flow control and equipment solutions, SensCore supports industrial applications with technologies selected around operating conditions, process requirements and lifecycle performance.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="py-24 sm:py-32">
         <div className="mx-auto flex max-w-7xl flex-col gap-24 px-6 lg:px-10">
           {INDUSTRIES.map((industry, index) => <Reveal key={industry.id} delay={index * 0.03}>
@@ -29,6 +45,7 @@ export default function IndustriesPage() {
           </Reveal>)}
         </div>
       </section>
+
       <section className="relative overflow-hidden py-24"><div className="relative mx-auto max-w-2xl px-6 text-center"><Reveal><h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">Don&apos;t See Your Industry?</h2></Reveal><Reveal delay={0.1}><p className="mt-4 text-base text-mute">If your application involves measurement, automation, flow control, process analysis or industrial equipment, our engineers can review the requirement and help identify a technically suitable solution.</p></Reveal><Reveal delay={0.2}><div className="mt-8"><GlowButton href="/contact">Tell Us About Your Application</GlowButton></div></Reveal></div></section>
     </>
   );
