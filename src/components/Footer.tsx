@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Linkedin, Instagram, Mail, Phone, MapPin, Radio } from "lucide-react";
-import { NAV_LINKS, CONTACT } from "@/lib/data";
+import { NAV_LINKS, CONTACT, LOCATIONS } from "@/lib/data";
 
 export default function Footer() {
   return (
@@ -18,9 +18,10 @@ export default function Footer() {
               </span>
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-mute">
-              The UAE&apos;s first autonomous AI industrial platform — fusing
-              sensing, connectivity, and predictive intelligence into one
-              self-optimizing system.
+              Engineered sensing, control, flow and industrial automation
+              solutions for real operating environments in the UAE.
+              Application-driven engineering, supported by intelligent
+              systems built for faster, clearer decisions.
             </p>
             <div className="mt-6 flex items-center gap-3">
               <Link
@@ -65,18 +66,23 @@ export default function Footer() {
               Solutions
             </div>
             <ul className="mt-4 flex flex-col gap-3">
-              {["Instrumentation", "Automation & Connectivity", "Valves", "Pumps"].map(
-                (item) => (
-                  <li key={item}>
-                    <Link
-                      href="/products"
-                      className="text-sm text-mute transition-colors hover:text-ink"
-                    >
-                      {item}
-                    </Link>
-                  </li>
-                )
-              )}
+              {[
+                "Instrumentation",
+                "Automation & Connectivity",
+                "Valves",
+                "Analysers",
+                "Pumps",
+                "Services",
+              ].map((item) => (
+                <li key={item}>
+                  <Link
+                    href={item === "Services" ? "/services" : "/products"}
+                    className="text-sm text-mute transition-colors hover:text-ink"
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -87,7 +93,17 @@ export default function Footer() {
             <ul className="mt-4 flex flex-col gap-3 text-sm text-mute">
               <li className="flex items-start gap-2">
                 <MapPin size={15} className="mt-0.5 shrink-0 text-teal" />
-                <span>{CONTACT.address}</span>
+                <span>
+                  <span className="block text-ink/80">{LOCATIONS[0].label}</span>
+                  {LOCATIONS[0].address}
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <MapPin size={15} className="mt-0.5 shrink-0 text-teal" />
+                <span>
+                  <span className="block text-ink/80">{LOCATIONS[1].label}</span>
+                  {LOCATIONS[1].address}
+                </span>
               </li>
               <li className="flex items-center gap-2">
                 <Mail size={15} className="shrink-0 text-teal" />
@@ -105,12 +121,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-line pt-6 font-mono text-[11px] uppercase tracking-[0.15em] text-faint sm:flex-row">
+        <div className="mt-14 flex flex-col items-center justify-center gap-4 border-t border-line pt-6 font-mono text-[11px] uppercase tracking-[0.15em] text-faint sm:flex-row">
           <span>© {new Date().getFullYear()} SensCore. All rights reserved.</span>
-          <span className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-teal animate-pulseGlow" />
-            System status: all sensors online
-          </span>
         </div>
       </div>
     </footer>
