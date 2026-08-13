@@ -7,20 +7,16 @@ import { Check } from "lucide-react";
 import { INDUSTRIES } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Industrial Automation Solutions by Industry | SensCore",
+  title: "Industrial Solutions for UAE Industries | SensCore",
   description:
-    "Explore SensCore industrial sensing, instrumentation, automation, and monitoring solutions for oil and gas, manufacturing, utilities, energy, and more.",
+    "Instrumentation, automation, flow control and engineered industrial solutions for key UAE sectors, selected around real process and operating requirements.",
   alternates: { canonical: "https://www.senscoretech.com/industries" },
 };
 
 export default function IndustriesPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Industries"
-        title="Six Sectors. One Sensing Standard."
-        description="Every industry has different operational challenges. We bring the same engineering rigour to each, matching solutions to the conditions your process actually runs in."
-      />
+      <PageHero eyebrow="Industries" title="Different sectors. Different demands. One engineering approach." description="From process measurement and automation to flow control and equipment solutions, SensCore supports industrial applications with technologies selected around operating conditions, process requirements and lifecycle performance." />
 
       <section className="py-24 sm:py-32">
         <div className="mx-auto flex max-w-7xl flex-col gap-24 px-6 lg:px-10">
@@ -74,24 +70,16 @@ export default function IndustriesPage() {
 
         <div className="relative mx-auto max-w-2xl px-6 text-center">
           <Reveal>
-            <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
-              Don't See Your Industry?
-            </h2>
+            <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">Don&apos;t See Your Industry?</h2>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <p className="mt-4 text-base text-mute">
-              If your operation involves monitoring, automation, process
-              control, or industrial sensing, our team can design a solution
-              tailored to your environment.
-            </p>
+            <p className="mt-4 text-base text-mute">If your application involves measurement, automation, flow control, process analysis or industrial equipment, our engineers can review the requirement and help identify a technically suitable solution.</p>
           </Reveal>
 
           <Reveal delay={0.2}>
             <div className="mt-8">
-              <GlowButton href="/contact">
-                Tell Us About Your Project
-              </GlowButton>
+              <GlowButton href="/contact">Tell Us About Your Application</GlowButton>
             </div>
           </Reveal>
         </div>
