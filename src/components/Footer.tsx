@@ -39,7 +39,7 @@ export default function Footer() {
           <div>
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-teal">Solutions</div>
             <ul className="mt-4 flex flex-col gap-3">
-              {["Instrumentation", "Automation & Connectivity", "Valves", "Analysers", "Pumps", "Services"].map((item) => (
+              {["Instrumentation", "Automation & Connectivity", "Valves", "Analysers", "Pumps", "Flange Guards & Gaskets", "Services"].map((item) => (
                 <li key={item}><Link href={item === "Services" ? "/industrial-engineering-services" : "/products"} className="text-sm text-mute transition-colors hover:text-ink">{item}</Link></li>
               ))}
             </ul>
