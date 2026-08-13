@@ -166,6 +166,7 @@ export default function HomePage() {
       </section>
 
       {/* ---------------- INDUSTRIES ---------------- */}
+      {/* Industry metrics are sourced directly from the verified INDUSTRIES data. */}
       <section className="relative border-t border-line bg-surface py-28 sm:py-40">
         <div className="absolute inset-0 hud-grid-fine opacity-30" />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
