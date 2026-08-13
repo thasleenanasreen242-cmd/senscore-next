@@ -25,7 +25,7 @@ export default function IndustriesPage() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-3 max-w-4xl text-base leading-relaxed text-mute sm:text-lg">
-              From process measurement and automation to flow control and equipment solutions, SensCore supports industrial applications with technologies selected around operating conditions, process requirements and lifecycle performance.
+              From process measurement and automation to flow control and equipment solutions, SensCore provides industrial engineering solutions across the UAE, with technologies selected around operating conditions, process requirements and lifecycle performance.
             </p>
           </Reveal>
         </div>
