@@ -35,6 +35,12 @@ export default function WebsiteTour() {
   }, []);
 
   useEffect(() => {
+    const openTour = () => { setStep(0); setOpen(true); };
+    window.addEventListener("senscore:open-tour", openTour);
+    return () => window.removeEventListener("senscore:open-tour", openTour);
+  }, []);
+
+  useEffect(() => {
     if (!open) return;
     const update = () => {
       const target = getRect(steps[step].selector);
@@ -55,12 +61,7 @@ export default function WebsiteTour() {
     window.localStorage.setItem(STORAGE_KEY, "true");
     setOpen(false);
   };
-
-  const next = () => {
-    if (step === steps.length - 1) return close();
-    setStep((current) => current + 1);
-  };
-
+  const next = () => step === steps.length - 1 ? close() : setStep((current) => current + 1);
   const goToHighlightedElement = () => {
     const selector = steps[step].selector;
     if (!selector) return;
@@ -77,7 +78,6 @@ export default function WebsiteTour() {
   if (!open) return null;
   const Icon = steps[step].icon;
   const isLast = step === steps.length - 1;
-
   return (
     <AnimatePresence>
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100]" role="dialog" aria-modal="true" aria-label="SensCore website tour">
