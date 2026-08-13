@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import GlowButton from "@/components/GlowButton";
-import { Check } from "lucide-react";
+import { Check, ShieldCheck } from "lucide-react";
 import { INDUSTRIES } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -33,31 +33,56 @@ export default function IndustriesPage() {
 
       <section className="py-24 sm:py-32">
         <div className="mx-auto flex max-w-7xl flex-col gap-24 px-6 lg:px-10">
-          {INDUSTRIES.map((industry, index) => (
-            <Reveal key={industry.id} delay={index * 0.03}>
-              <div className="border-t border-line pt-10">
-                <div className="flex flex-wrap items-start justify-between gap-6">
-                  <div className="max-w-3xl">
-                    <div className="flex items-center gap-3">
-                      <span className="font-mono text-sm text-faint">{String(index + 1).padStart(2, "0")}</span>
-                      <h3 className="font-display text-2xl font-semibold text-ink sm:text-3xl">{industry.title}</h3>
+          {INDUSTRIES.map((industry, index) => {
+            const badgeParts = industry.badge.split(" · ");
+            const footerTags = industry.footerTag.split(" · ");
+
+            return (
+              <Reveal key={industry.id} delay={index * 0.03}>
+                <div className="group relative overflow-hidden rounded-2xl border border-line bg-surface/30 p-7 transition-all duration-500 hover:border-teal/25 hover:bg-surface/50 sm:p-10">
+                  <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-teal/[0.04] blur-3xl transition-opacity duration-500 group-hover:bg-teal/[0.08]" />
+                  <div className="relative border-t border-line pt-7 sm:pt-8">
+                    <div className="flex flex-col gap-7 lg:flex-row lg:items-start lg:justify-between">
+                      <div className="max-w-3xl">
+                        <div className="flex items-center gap-3">
+                          <span className="flex h-8 min-w-8 items-center justify-center rounded-full border border-teal/20 bg-teal/5 px-2 font-mono text-xs text-teal">{String(index + 1).padStart(2, "0")}</span>
+                          <h3 className="font-display text-2xl font-semibold text-ink sm:text-3xl">{industry.title}</h3>
+                        </div>
+                        <p className="mt-4 text-sm leading-relaxed text-mute sm:text-base">{industry.description}</p>
+                      </div>
+
+                      <div className="inline-flex w-fit items-center gap-3 rounded-full border border-teal/30 bg-gradient-to-r from-teal/[0.10] to-transparent px-4 py-2.5 shadow-[0_0_24px_rgba(45,212,191,0.07)] transition-all duration-300 group-hover:border-teal/50 group-hover:shadow-[0_0_30px_rgba(45,212,191,0.12)]">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-full border border-teal/30 bg-void/60 text-teal">
+                          <ShieldCheck size={14} strokeWidth={1.8} />
+                        </span>
+                        <span className="flex items-baseline gap-2">
+                          <span className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-teal">{badgeParts[0]}</span>
+                          {badgeParts[1] && <span className="hidden text-[10px] uppercase tracking-[0.12em] text-mute sm:inline">{badgeParts[1]}</span>}
+                        </span>
+                      </div>
                     </div>
-                    <p className="mt-4 text-sm leading-relaxed text-mute sm:text-base">{industry.description}</p>
+
+                    <div className="mt-8 grid gap-x-10 gap-y-4 sm:grid-cols-2">
+                      {industry.supply.map((item) => (
+                        <div key={item} className="flex items-start gap-3 text-sm leading-relaxed text-ink">
+                          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-teal/20 bg-teal/5">
+                            <Check size={12} className="text-teal" aria-hidden="true" />
+                          </span>
+                          <span>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="mt-8 flex flex-wrap gap-2">
+                      {footerTags.map((tag) => (
+                        <span key={tag} className="rounded-full border border-line bg-void/50 px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.18em] text-faint transition-colors duration-300 group-hover:border-teal/20 group-hover:text-mute">{tag}</span>
+                      ))}
+                    </div>
                   </div>
-                  <span className="inline-flex rounded-full border border-teal/30 bg-teal/5 px-4 py-2 font-display text-sm font-bold uppercase tracking-[0.1em] text-teal">{industry.badge}</span>
                 </div>
-                <div className="mt-8 grid gap-x-10 gap-y-4 sm:grid-cols-2">
-                  {industry.supply.map((item) => (
-                    <div key={item} className="flex items-start gap-3 text-sm leading-relaxed text-ink">
-                      <Check size={16} className="mt-1 shrink-0 text-teal" aria-hidden="true" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-6 font-mono text-[10px] uppercase tracking-[0.2em] text-faint">{industry.footerTag}</div>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            );
+          })}
         </div>
       </section>
 
