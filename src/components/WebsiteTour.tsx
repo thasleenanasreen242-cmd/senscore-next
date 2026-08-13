@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Check, MapPin, Sparkles, X } from "lucide-react";
 
 const STORAGE_KEY = "senscore-website-tour-completed";
-
 const steps = [
   { title: "Welcome to SensCore", text: "Take a quick tour to discover our industrial engineering solutions, products, services and contact options.", icon: Sparkles, selector: null },
   { title: "Explore our solutions", text: "Browse Products to explore instrumentation, automation, valves, analysers, pumps and sealing solutions.", icon: ArrowRight, selector: 'a[href="/products"]' },
@@ -56,6 +55,15 @@ export default function WebsiteTour() {
     setStep((current) => current + 1);
   };
 
+  const goToHighlightedElement = () => {
+    const selector = steps[step].selector;
+    if (!selector) return;
+    const element = document.querySelector(selector) as HTMLElement | null;
+    if (!element) return;
+    element.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+    window.setTimeout(() => setRect(getRect(selector)), 350);
+  };
+
   if (!open) return null;
   const Icon = steps[step].icon;
   const isLast = step === steps.length - 1;
@@ -64,8 +72,8 @@ export default function WebsiteTour() {
     <AnimatePresence>
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100]" role="dialog" aria-modal="true" aria-label="SensCore website tour">
         <div className="absolute inset-0 bg-black/65 backdrop-blur-[2px]" />
-        {rect && <motion.div layout transition={{ duration: 0.3 }} className="pointer-events-none absolute rounded-xl border-2 border-teal shadow-[0_0_0_9999px_rgba(0,0,0,0.65),0_0_35px_rgba(45,212,191,0.35)]" style={{ top: rect.top - 6, left: rect.left - 6, width: rect.width + 12, height: rect.height + 12 }} />}
-        <motion.div initial={{ opacity: 0, y: 18, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 18 }} className="absolute bottom-6 left-1/2 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 rounded-2xl border border-teal/25 bg-[#0b121a]/95 p-5 shadow-2xl backdrop-blur-xl sm:bottom-8 sm:p-6">
+        {rect && <motion.div layout transition={{ duration: 0.3 }} className="pointer-events-none absolute z-[101] rounded-xl border-2 border-teal shadow-[0_0_0_9999px_rgba(0,0,0,0.65),0_0_35px_rgba(45,212,191,0.35)]" style={{ top: rect.top - 6, left: rect.left - 6, width: rect.width + 12, height: rect.height + 12 }} />}
+        <motion.div initial={{ opacity: 0, y: 18, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 18 }} className="absolute bottom-6 left-1/2 z-[102] w-[calc(100%-2rem)] max-w-md -translate-x-1/2 rounded-2xl border border-teal/25 bg-[#0b121a]/95 p-5 shadow-2xl backdrop-blur-xl sm:bottom-8 sm:p-6">
           <button onClick={close} aria-label="Skip website tour" className="absolute right-3 top-3 rounded-full p-2 text-mute transition-colors hover:bg-white/5 hover:text-ink"><X size={17} /></button>
           <div className="flex items-start gap-4 pr-8">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-teal/30 bg-teal/10 text-teal"><Icon size={19} /></div>
@@ -74,7 +82,7 @@ export default function WebsiteTour() {
           <p className="mt-4 text-sm leading-relaxed text-mute">{steps[step].text}</p>
           <div className="mt-5 flex items-center justify-between gap-4">
             <div className="flex gap-1.5">{steps.map((_, index) => <span key={index} className={`h-1.5 rounded-full transition-all ${index === step ? "w-6 bg-teal" : "w-1.5 bg-white/20"}`} />)}</div>
-            <div className="flex items-center gap-2"><button onClick={close} className="rounded-lg px-3 py-2 text-xs font-medium text-mute transition-colors hover:text-ink">Skip</button><button onClick={next} className="inline-flex items-center gap-2 rounded-lg bg-teal px-4 py-2.5 text-xs font-semibold text-[#061015] transition-transform hover:scale-[1.02]">{isLast ? <><Check size={14} /> Finish</> : <>Next <ArrowRight size={14} /></>}</button></div>
+            <div className="flex items-center gap-2"><button onClick={close} className="rounded-lg px-3 py-2 text-xs font-medium text-mute transition-colors hover:text-ink">Skip</button>{steps[step].selector && <button onClick={goToHighlightedElement} className="rounded-lg px-3 py-2 text-xs font-medium text-teal transition-colors hover:bg-teal/10">Show me</button>}<button onClick={next} className="inline-flex items-center gap-2 rounded-lg bg-teal px-4 py-2.5 text-xs font-semibold text-[#061015] transition-transform hover:scale-[1.02]">{isLast ? <><Check size={14} /> Finish</> : <>Next <ArrowRight size={14} /></>}</button></div>
           </div>
         </motion.div>
       </motion.div>
