@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Gauge, Cpu, Sliders, TestTube, Waves, ShieldCheck } from "lucide-react";
+import { Gauge, Cpu, Sliders, TestTube, Waves, ShieldCheck, Wrench } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionEyebrow from "@/components/SectionEyebrow";
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://www.senscoretech.com/products" },
 };
 
-const ICONS: Record<string, any> = { instrumentation: Gauge, automation: Cpu, valves: Sliders, analysers: TestTube, pumps: Waves, flangeguards: ShieldCheck };
+const ICONS: Record<string, any> = { instrumentation: Gauge, automation: Cpu, valves: Sliders, analysers: TestTube, pumps: Waves, flangeguards: ShieldCheck, services: Wrench };
 const VIDEOS: Record<string, string> = { instrumentation: "/instrumentation.mp4", automation: "/automation.mp4", valves: "/valves.mp4", pumps: "/pumps.mp4" };
 const DISPLAY_TITLES: Record<string, string> = {
   instrumentation: "Industrial Instrumentation",
@@ -22,6 +22,7 @@ const DISPLAY_TITLES: Record<string, string> = {
   analysers: "Process Analysers & Gas Detection",
   pumps: "Industrial Pumps",
   flangeguards: "Flange Guards, Gaskets & Sealing Solutions",
+  services: "Industrial Engineering Services",
 };
 
 export default function ProductsPage() {
@@ -30,7 +31,7 @@ export default function ProductsPage() {
       <PageHero eyebrow="Products & Services" title="Industrial Instrumentation, Automation & Process Solutions" description="Every layer of the process, engineered. From field measurement and process analysis to automation, valves, pumps and critical piping solutions, SensCore specifies, supplies and supports industrial technologies for applications across the UAE, backed by established global manufacturers and application-driven engineering." />
       <section className="py-24 sm:py-32">
         <div className="mx-auto flex max-w-7xl flex-col gap-24 px-6 lg:px-10">
-          {PRODUCT_CATEGORIES.slice(0, 6).map((cat, i) => {
+          {PRODUCT_CATEGORIES.slice(0, 7).map((cat, i) => {
             const Icon = ICONS[cat.id] ?? Gauge;
             const videoSrc = VIDEOS[cat.id];
             const reversed = i % 2 === 1;
