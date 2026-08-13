@@ -34,11 +34,7 @@ const VIDEOS: Record<string, string> = {
 export default function ProductsPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Products & Services"
-        title="Every layer of the process, instrumented"
-        description="From the sensor on the pipe to the control room that reads it, SensCore specifies, supplies, and supports the full technology stack, backed by established global manufacturers."
-      />
+      <PageHero eyebrow="Products & Services" title="Every layer of the process, engineered." description="From field measurement and process analysis to automation, valves, pumps and critical piping solutions, SensCore specifies, supplies and supports industrial technologies for applications across the UAE, backed by established global manufacturers and application-driven engineering." />
 
       <section className="py-24 sm:py-32">
         <div className="mx-auto flex max-w-7xl flex-col gap-24 px-6 lg:px-10">
@@ -93,9 +89,7 @@ export default function ProductsPage() {
                         </span>
                       </>
                     )}
-                    <span className="absolute bottom-5 right-5 z-10 font-mono text-[10px] uppercase tracking-[0.2em] text-faint">
-                      {cat.tag} / MODULE.{String(i + 1).padStart(2, "0")}
-                    </span>
+                    <span className="absolute bottom-5 right-5 z-10 font-mono text-[10px] uppercase tracking-[0.2em] text-faint">{cat.tag}</span>
                   </div>
                 </Reveal>
               </div>
@@ -108,19 +102,16 @@ export default function ProductsPage() {
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-teal/10 blur-[120px]" />
         <div className="relative mx-auto max-w-2xl px-6">
           <Reveal>
-            <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">
-              Not sure which module fits your process?
-            </h2>
+            <h2 className="font-display text-3xl font-semibold text-ink sm:text-4xl">Send us the specification. We&apos;ll send back an answer.</h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-4 text-base text-mute">
-              Send us your P&amp;ID or spec sheet — we&apos;ll recommend the right stack.
-            </p>
+            <p className="mt-4 text-base text-mute">RFQ, datasheet, or a description of the application. Our engineers review it and respond with the right solution, the reasoning, and a price.</p>
           </Reveal>
           <Reveal delay={0.18}>
             <div className="mt-8">
-              <GlowButton href="/contact">Request a spec review</GlowButton>
+              <GlowButton href="/contact">Request a Spec Review*</GlowButton>
             </div>
+            <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.15em] text-faint">*Reviewed and answered within 24 hours</p>
           </Reveal>
         </div>
       </section>
