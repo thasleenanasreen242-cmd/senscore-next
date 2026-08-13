@@ -8,7 +8,7 @@ type Message = { role: "user" | "assistant"; content: string };
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: "assistant", content: "Hi! I'm the SensCore assistant. Ask me about our products, services, or industries we serve." },
+    { role: "assistant", content: "Hi! I’m Aile, SensCore AI Assistant. Ask me about our products, services, applications, or industries. If you have a specification or application requirement, I can also help you find the most relevant solution." },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -61,8 +61,8 @@ export default function ChatWidget() {
                   <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-surface bg-emerald-400" />
                 </div>
                 <div>
-                  <div id="senscore-chat-title" className="font-display text-sm font-semibold text-ink">SensCore Assistant</div>
-                  <div className="mt-0.5 flex items-center gap-1.5 text-[11px] text-mute"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Online · AI Assistant</div>
+                  <div id="senscore-chat-title" className="font-display text-sm font-semibold text-ink">Aile</div>
+                  <div className="mt-0.5 flex items-center gap-1.5 text-[11px] text-mute"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Online · SensCore AI Assistant</div>
                 </div>
               </div>
               <button onClick={function () { setOpen(false); }} className="flex h-9 w-9 items-center justify-center rounded-full border border-line bg-surface/70 transition hover:bg-void" aria-label="Close chat"><X size={17} className="text-mute hover:text-ink" aria-hidden="true" /></button>
@@ -84,14 +84,14 @@ export default function ChatWidget() {
           <div className="border-t border-line bg-surface p-3.5">
             <div className="flex items-center gap-2 rounded-full border border-line bg-void/40 p-1.5 focus-within:border-blue-400/50">
               <label htmlFor="senscore-chat-input" className="sr-only">Message</label>
-              <input id="senscore-chat-input" value={input} onChange={function (e) { setInput(e.target.value); }} onKeyDown={handleKeyDown} placeholder="Ask about SensCore..." className="min-w-0 flex-1 bg-transparent px-3 py-2 text-sm text-ink placeholder:text-faint focus:outline-none" />
+              <input id="senscore-chat-input" value={input} onChange={function (e) { setInput(e.target.value); }} onKeyDown={handleKeyDown} placeholder="Ask Aile about SensCore..." className="min-w-0 flex-1 bg-transparent px-3 py-2 text-sm text-ink placeholder:text-faint focus:outline-none" />
               <button onClick={sendMessage} disabled={loading} className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 via-blue-500 to-blue-700 text-white shadow-md shadow-blue-500/25 transition hover:scale-105 disabled:opacity-50" aria-label="Send message"><Send size={15} aria-hidden="true" /></button>
             </div>
           </div>
         </div>
       )}
 
-      <button onClick={function () { setOpen(!open); }} className="group flex h-16 w-16 items-center justify-center rounded-full border border-white/30 bg-gradient-to-br from-sky-400 via-blue-500 to-blue-700 text-white shadow-xl shadow-blue-500/35 transition-all duration-200 hover:-translate-y-0.5 hover:scale-105 hover:shadow-blue-500/45 max-sm:h-14 max-sm:w-14" aria-label={open ? "Close chat" : "Open chat"} aria-expanded={open} aria-controls="senscore-chat-panel">
+      <button onClick={function () { setOpen(!open); }} className="group flex h-16 w-16 items-center justify-center rounded-full border border-white/30 bg-gradient-to-br from-sky-400 via-blue-500 to-blue-700 text-white shadow-xl shadow-blue-500/35 transition-all duration-200 hover:-translate-y-0.5 hover:scale-105 hover:shadow-blue-500/45 max-sm:h-14 max-sm:w-14" aria-label={open ? "Close Aile" : "Open Aile"} aria-expanded={open} aria-controls="senscore-chat-panel">
         {open ? <X size={23} aria-hidden="true" /> : <Bot size={25} aria-hidden="true" className="transition-transform group-hover:scale-110" />}
       </button>
     </div>
