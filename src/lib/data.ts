@@ -153,7 +153,7 @@ export const INDUSTRIES = [
     id: "food-beverage",
     title: "Food & Beverage",
     badge: "3-A / FDA — Hygienic Design",
-    footerTag: "Hygienic Process Measurement",
+    footerTag: "Hygienic · Process Measurement",
     description:
       "Hygienic instrumentation, process control and analysis solutions for food and beverage production, selected around cleanability, product compatibility and process requirements.",
     stat: "HACCP",
