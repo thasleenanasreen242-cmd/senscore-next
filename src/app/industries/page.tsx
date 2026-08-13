@@ -18,16 +18,8 @@ export default function IndustriesPage() {
 
       <section className="border-b border-line py-8 sm:py-10">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <Reveal>
-            <h2 className="font-display text-2xl font-bold leading-tight text-ink sm:text-3xl">
-              Different sectors. Different demands. One engineering approach.
-            </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="mt-3 max-w-4xl text-base leading-relaxed text-mute sm:text-lg">
-              From process measurement and automation to flow control and equipment solutions, SensCore provides industrial engineering solutions across the UAE, with technologies selected around operating conditions, process requirements and lifecycle performance.
-            </p>
-          </Reveal>
+          <Reveal><h2 className="font-display text-2xl font-bold leading-tight text-ink sm:text-3xl">Different sectors. Different demands. One engineering approach.</h2></Reveal>
+          <Reveal delay={0.1}><p className="mt-3 max-w-4xl text-base leading-relaxed text-mute sm:text-lg">From process measurement and automation to flow control and equipment solutions, SensCore provides industrial engineering solutions across the UAE, with technologies selected around operating conditions, process requirements and lifecycle performance.</p></Reveal>
         </div>
       </section>
 
@@ -52,31 +44,22 @@ export default function IndustriesPage() {
                       </div>
 
                       <div className="inline-flex w-fit items-center gap-3 rounded-full border border-teal/30 bg-gradient-to-r from-teal/[0.10] to-transparent px-4 py-2.5 shadow-[0_0_24px_rgba(45,212,191,0.07)] transition-all duration-300 group-hover:border-teal/50 group-hover:shadow-[0_0_30px_rgba(45,212,191,0.12)]">
-                        <span className="flex h-7 w-7 items-center justify-center rounded-full border border-teal/30 bg-void/60 text-teal">
-                          <ShieldCheck size={14} strokeWidth={1.8} />
-                        </span>
-                        <span className="flex items-baseline gap-2">
+                        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-teal/30 bg-void/60 text-teal"><ShieldCheck size={14} strokeWidth={1.8} /></span>
+                        <span className="flex min-w-0 flex-col items-start gap-0.5 leading-tight">
                           <span className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-teal">{badgeParts[0]}</span>
-                          {badgeParts[1] && <span className="text-[10px] uppercase tracking-[0.12em] text-mute">{badgeParts[1]}</span>}
+                          {badgeParts[1] && <span className="text-[10px] font-normal uppercase tracking-[0.12em] text-mute">{badgeParts[1]}</span>}
                         </span>
                       </div>
                     </div>
 
                     <div className="mt-8 grid gap-x-10 gap-y-4 sm:grid-cols-2">
                       {industry.supply.map((item) => (
-                        <div key={item} className="flex items-start gap-3 text-sm leading-relaxed text-ink">
-                          <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-teal/20 bg-teal/5">
-                            <Check size={12} className="text-teal" aria-hidden="true" />
-                          </span>
-                          <span>{item}</span>
-                        </div>
+                        <div key={item} className="flex items-start gap-3 text-sm leading-relaxed text-ink"><span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-teal/20 bg-teal/5"><Check size={12} className="text-teal" aria-hidden="true" /></span><span>{item}</span></div>
                       ))}
                     </div>
 
                     <div className="mt-8 flex flex-wrap gap-2">
-                      {footerTags.map((tag) => (
-                        <span key={tag} className="rounded-full border border-line bg-void/50 px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.18em] text-faint transition-colors duration-300 group-hover:border-teal/20 group-hover:text-mute">{tag}</span>
-                      ))}
+                      {footerTags.map((tag) => <span key={tag} className="rounded-full border border-line bg-void/50 px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.18em] text-faint transition-colors duration-300 group-hover:border-teal/20 group-hover:text-mute">{tag}</span>)}
                     </div>
                   </div>
                 </div>
