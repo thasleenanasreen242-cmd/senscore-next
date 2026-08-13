@@ -34,7 +34,7 @@ export default function IndustriesPage() {
       <section className="py-24 sm:py-32">
         <div className="mx-auto flex max-w-7xl flex-col gap-24 px-6 lg:px-10">
           {INDUSTRIES.map((industry, index) => {
-            const badgeParts = industry.badge.split(" · ");
+            const badgeParts = industry.badge.split(/\s+[—·]\s+/);
             const footerTags = industry.footerTag.split(" · ");
 
             return (
@@ -57,7 +57,7 @@ export default function IndustriesPage() {
                         </span>
                         <span className="flex items-baseline gap-2">
                           <span className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-teal">{badgeParts[0]}</span>
-                          {badgeParts[1] && <span className="hidden text-[10px] uppercase tracking-[0.12em] text-mute sm:inline">{badgeParts[1]}</span>}
+                          {badgeParts[1] && <span className="text-[10px] uppercase tracking-[0.12em] text-mute">{badgeParts[1]}</span>}
                         </span>
                       </div>
                     </div>
