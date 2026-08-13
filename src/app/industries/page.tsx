@@ -39,11 +39,11 @@ export default function IndustriesPage() {
                   </div>
 
                   <div className="flex flex-col items-end text-right">
-                    <div className="inline-flex flex-col items-end rounded-full border border-teal/30 bg-teal/5 px-6 py-3">
-                      <span className="font-display text-xl font-bold uppercase tracking-[0.1em] text-teal sm:text-2xl">
+                    <div className="inline-flex flex-col items-end rounded-full border border-teal/30 bg-teal/5 px-4 py-2">
+                      <span className="font-display text-sm font-bold uppercase tracking-[0.1em] text-teal sm:text-base">
                         {industry.badge.split("·")[0].trim()}
                       </span>
-                      <span className="mt-1 font-mono text-[11px] uppercase tracking-[0.15em] text-teal/70">
+                      <span className="mt-0.5 font-mono text-[9px] uppercase tracking-[0.15em] text-teal/70">
                         {industry.badge.split("·")[1] ? industry.badge.split("·")[1].trim() : ""}
                       </span>
                     </div>
