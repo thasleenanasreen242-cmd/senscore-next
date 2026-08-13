@@ -4,7 +4,7 @@ import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionEyebrow from "@/components/SectionEyebrow";
 import ContactForm from "@/components/ContactForm";
-import { CONTACT, LOCATIONS } from "@/lib/data";
+import { LOCATIONS } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Contact SensCore | Industrial Engineering Support",
@@ -15,8 +15,8 @@ export const metadata: Metadata = {
 const INFO = [
   { icon: MapPin, label: "Head Office", value: "9th Floor, Mazyad Mall, Business Tower 3, MBZ City, Abu Dhabi, UAE" },
   { icon: MapPin, label: "Warehouse & Logistics", value: "No. 22, Mussafah 9, Mussafah Industrial Area, PO Box 35514, Abu Dhabi, UAE" },
-  { icon: Mail, label: "Email", value: "info@senscoretech.com", href: "mailto:info@senscoretech.com" },
-  { icon: Mail, label: "Enquiries", value: "enquiries@senscoretech.com", href: "mailto:enquiries@senscoretech.com" },
+  { icon: Mail, label: "Email", value: "info@senscoretech.com", href: "mailto:info@senscoretech.com?subject=SensCore%20Enquiry" },
+  { icon: Mail, label: "Enquiries", value: "enquiries@senscoretech.com", href: "mailto:enquiries@senscoretech.com?subject=SensCore%20Enquiry" },
   { icon: Phone, label: "Phone", value: "+971 50 103 5348", href: "tel:+971501035348" },
   { icon: Clock, label: "Support", value: "24/7 for active deployments" },
 ];
@@ -31,7 +31,7 @@ export default function ContactPage() {
             <div className="flex flex-col gap-4">
               {INFO.map(function (item) {
                 var Icon = item.icon;
-                return <div key={item.label} className="rounded-2xl border border-line bg-surface p-6"><div className="flex items-start gap-4"><span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-teal/30 bg-teal/5 text-teal"><Icon size={19} strokeWidth={1.75} /></span><div><div className="font-mono text-[10px] uppercase tracking-[0.2em] text-faint">{item.label}</div>{item.href ? <a href={item.href} className="mt-1 block text-sm text-ink transition-colors hover:text-teal">{item.value}</a> : <div className="mt-1 text-sm leading-relaxed text-ink">{item.value}</div>}</div></div></div>;
+                return <div key={item.label} className="rounded-2xl border border-line bg-surface p-6"><div className="flex items-start gap-4"><span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-teal/30 bg-teal/5 text-teal"><Icon size={19} strokeWidth={1.75} /></span><div><div className="font-mono text-[10px] uppercase tracking-[0.2em] text-faint">{item.label}</div>{item.href ? <a href={item.href} aria-label={`Email ${item.value}`} className="mt-1 block cursor-pointer text-sm text-ink transition-colors hover:text-teal">{item.value}</a> : <div className="mt-1 text-sm leading-relaxed text-ink">{item.value}</div>}</div></div></div>;
               })}
               <div className="overflow-hidden rounded-2xl border border-line"><iframe title="SensCore Location - Abu Dhabi" src="https://www.google.com/maps?q=SensCore+9th+Floor+Mazyad+Mall+Business+Tower+3+MBZ+City+Abu+Dhabi&output=embed" className="h-64 w-full grayscale invert-[0.92] contrast-[1.1]" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div>
             </div>
