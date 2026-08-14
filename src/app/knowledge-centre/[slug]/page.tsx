@@ -5,6 +5,7 @@ import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import GlowButton from "@/components/GlowButton";
 import { getKnowledgeArticle, KNOWLEDGE_ARTICLES } from "@/lib/knowledge-centre";
+import { getKnowledgeImage } from "@/lib/knowledge-centre-images";
 
 export function generateStaticParams() {
   return KNOWLEDGE_ARTICLES.map((article) => ({ slug: article.slug }));
@@ -21,6 +22,7 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
   const { slug } = await params;
   const article = getKnowledgeArticle(slug);
   if (!article) return null;
+  const image = getKnowledgeImage(slug);
   const index = KNOWLEDGE_ARTICLES.findIndex((item) => item.slug === article.slug);
   const previous = KNOWLEDGE_ARTICLES[index - 1];
   const next = KNOWLEDGE_ARTICLES[index + 1];
@@ -29,9 +31,19 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
     <>
       <PageHero eyebrow="Knowledge Centre" title={article.title} description={article.description} />
       <main className="py-20 sm:py-28">
-        <div className="mx-auto max-w-4xl px-6 lg:px-10">
+        <div className="mx-auto max-w-5xl px-6 lg:px-10">
           <Reveal>
             <Link href="/knowledge-centre" className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-teal hover:text-ink"><ArrowLeft size={14} /> Back to Knowledge Centre</Link>
+            {image ? <figure className="mt-8 overflow-hidden rounded-2xl border border-line bg-surface">
+              <div className="relative aspect-[21/9] bg-[#07121d]">
+                <img src={image.src} alt={image.alt} className="h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#061015]/65 via-transparent to-transparent" />
+              </div>
+              <figcaption className="flex flex-wrap items-center justify-between gap-2 border-t border-line px-5 py-3 font-mono text-[9px] uppercase tracking-[0.12em] text-faint">
+                <span>Industrial application reference</span>
+                <a href={image.href} target="_blank" rel="noopener noreferrer" className="text-teal hover:text-ink">Image source: {image.source} ↗</a>
+              </figcaption>
+            </figure> : null}
             <div className="mt-8 rounded-2xl border border-line bg-surface p-7 sm:p-10">
               <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.18em] text-teal"><BookOpen size={15} /> Technical Guide</div>
               <p className="mt-6 text-lg leading-8 text-mute">{article.intro}</p>
