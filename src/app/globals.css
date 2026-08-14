@@ -55,6 +55,7 @@ body::before {
     cursor: none;
   }
 }
+/* Schematic grid backdrop used behind hero/section content */
 .hud-grid {
   background-image:
     linear-gradient(rgba(232, 237, 242, 0.05) 1px, transparent 1px),
@@ -125,137 +126,13 @@ body::before {
   50% { transform: translateX(600%); }
   100% { transform: translateX(-100%); }
 }
-
-/* Modern homepage hero treatment — content remains unchanged */
-main > section:first-of-type {
-  min-height: min(900px, 100svh) !important;
-  background:
-    radial-gradient(circle at 78% 44%, rgba(90,130,168,.16), transparent 24%),
-    radial-gradient(circle at 88% 18%, rgba(8,72,136,.18), transparent 22%),
-    linear-gradient(180deg, rgba(3,8,14,.45), rgba(0,0,0,.15));
-}
-main > section:first-of-type > div:last-child {
-  max-width: 1380px !important;
-  padding-left: clamp(24px, 5vw, 72px) !important;
-  padding-right: clamp(24px, 5vw, 72px) !important;
-}
-main > section:first-of-type > div:last-child::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: 9%;
-  right: 5%;
-  width: min(38vw, 540px);
-  aspect-ratio: 1;
-  border: 1px solid rgba(132,164,196,.18);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(132,164,196,.12) 0 3%, transparent 3.5% 22%, rgba(132,164,196,.07) 22.5% 23%, transparent 23.5% 43%, rgba(132,164,196,.06) 43.5% 44%, transparent 44.5%),
-    radial-gradient(circle at 50% 50%, rgba(8,72,136,.15), transparent 65%);
-  box-shadow: 0 0 80px rgba(8,72,136,.16), inset 0 0 70px rgba(90,130,168,.06);
-  opacity: .9;
-}
-main > section:first-of-type > div:last-child::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: 20%;
-  right: 14%;
-  width: min(20vw, 260px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(132,164,196,.2) 0, rgba(90,130,168,.07) 22%, transparent 68%);
-  filter: blur(2px);
-  animation: hero-core-pulse 4.5s ease-in-out infinite;
-}
-main > section:first-of-type h1 {
-  max-width: 850px !important;
-  font-size: clamp(3.4rem, 6.2vw, 6.8rem) !important;
-  line-height: .98 !important;
-  letter-spacing: -.045em !important;
-  text-wrap: balance;
-  position: relative;
-}
-main > section:first-of-type h1::after {
-  content: "";
-  display: block;
-  width: 92px;
-  height: 2px;
-  margin-top: 28px;
-  background: linear-gradient(90deg, #5A82A8, transparent);
-  opacity: .75;
-}
-main > section:first-of-type p {
-  max-width: 620px !important;
-  margin-top: 30px !important;
-  font-size: clamp(1rem, 1.35vw, 1.2rem) !important;
-  color: rgba(200,210,222,.78) !important;
-}
-main > section:first-of-type .mt-11 {
-  margin-top: 34px !important;
-}
-main > section:first-of-type .mt-20 {
-  margin-top: 54px !important;
-  padding: 22px 0 0 !important;
-  border-top-color: rgba(232,237,242,.10) !important;
-  position: relative;
-}
-main > section:first-of-type .mt-20 > * {
-  min-width: 0;
-}
-main > section:first-of-type .mt-20 [class*="text-2xl"] {
-  font-size: 1.8rem;
-}
-@keyframes hero-core-pulse {
-  0%, 100% { transform: scale(.94); opacity: .55; }
-  50% { transform: scale(1.06); opacity: 1; }
-}
-@media (max-width: 1023px) {
-  main > section:first-of-type > div:last-child::before {
-    width: 48vw;
-    right: -10%;
-    top: 20%;
-    opacity: .45;
-  }
-  main > section:first-of-type > div:last-child::after {
-    right: 5%;
-    top: 30%;
-  }
-  main > section:first-of-type h1 {
-    max-width: 760px !important;
-  }
-}
-@media (max-width: 640px) {
-  main > section:first-of-type {
-    min-height: 760px !important;
-    padding-top: 112px !important;
-    padding-bottom: 40px !important;
-  }
-  main > section:first-of-type > div:last-child::before {
-    width: 78vw;
-    right: -34%;
-    top: 13%;
-    opacity: .28;
-  }
-  main > section:first-of-type > div:last-child::after {
-    width: 42vw;
-    right: -8%;
-    top: 22%;
-  }
-  main > section:first-of-type h1 {
-    font-size: clamp(2.65rem, 12.5vw, 4rem) !important;
-    line-height: 1.01 !important;
-    letter-spacing: -.035em !important;
-  }
-  main > section:first-of-type h1::after {
-    margin-top: 20px;
-  }
-  main > section:first-of-type .mt-20 {
-    margin-top: 42px !important;
-  }
-}
 @media (prefers-reduced-motion: reduce) {
-  main > section:first-of-type > div:last-child::after {
-    animation: none;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
