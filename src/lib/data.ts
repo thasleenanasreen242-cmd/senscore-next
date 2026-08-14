@@ -239,6 +239,7 @@ export const PARTNERS = [
   { name: "Comate", href: "https://www.comate-instruments.com/" },
   { name: "DJ Pumps", href: "https://www.pumpfromchina.com/" },
   { name: "Probest", href: "" },
+  { name: "ABC Wearstar", href: "https://www.abcvalve.com/index.aspx" },
 ];
 
 export const CLIENTS = [
