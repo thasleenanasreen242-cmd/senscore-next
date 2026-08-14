@@ -4,7 +4,7 @@ import { ArrowRight, BookOpen, CheckCircle2 } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import GlowButton from "@/components/GlowButton";
-import { KNOWLEDGE_ARTICLES } from "@/lib/knowledge-centre";
+import { KNOWLEDGE_CENTRE_IMAGES } from "@/lib/knowledge-centre-images";
 
 export const metadata: Metadata = {
   title: "Industrial Engineering Knowledge Centre UAE | SensCore",
@@ -45,16 +45,26 @@ export default function KnowledgeCentrePage() {
           </Reveal>
 
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {topics.map(([slug, title, text], index) => (
-              <Reveal key={slug} delay={index * 0.03}>
-                <Link href={`/knowledge-centre/${slug}`} className="group block h-full rounded-2xl border border-line bg-surface p-7 transition-all hover:-translate-y-1 hover:border-teal/40 hover:bg-teal/[0.03]">
-                  <div className="flex items-center justify-between gap-4"><span className="font-mono text-[10px] uppercase tracking-[0.18em] text-teal">{String(index + 1).padStart(2, "0")}</span><ArrowRight size={17} className="text-faint transition-transform group-hover:translate-x-1 group-hover:text-teal" /></div>
-                  <h3 className="mt-7 font-display text-xl font-medium text-ink">{title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-mute">{text}</p>
-                  <div className="mt-6 text-xs font-semibold text-teal">Read technical guide →</div>
-                </Link>
-              </Reveal>
-            ))}
+            {topics.map(([slug, title, text], index) => {
+              const image = KNOWLEDGE_CENTRE_IMAGES[slug];
+              return (
+                <Reveal key={slug} delay={index * 0.03}>
+                  <Link href={`/knowledge-centre/${slug}`} className="group block h-full overflow-hidden rounded-2xl border border-line bg-surface transition-all hover:-translate-y-1 hover:border-teal/40 hover:bg-teal/[0.03]">
+                    <div className="relative aspect-[16/9] overflow-hidden bg-[#07121d]">
+                      <img src={image.src} alt={image.alt} loading={index < 3 ? "eager" : "lazy"} className="h-full w-full object-cover opacity-80 transition duration-500 group-hover:scale-105 group-hover:opacity-100" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#07121d] via-[#07121d]/10 to-transparent" />
+                      <div className="absolute left-5 top-5 rounded-full border border-teal/30 bg-[#061015]/80 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-teal backdrop-blur-md">{String(index + 1).padStart(2, "0")}</div>
+                    </div>
+                    <div className="p-7">
+                      <div className="flex items-center justify-between gap-4"><span className="font-mono text-[10px] uppercase tracking-[0.18em] text-teal">Technical guide</span><ArrowRight size={17} className="text-faint transition-transform group-hover:translate-x-1 group-hover:text-teal" /></div>
+                      <h3 className="mt-4 font-display text-xl font-medium text-ink">{title}</h3>
+                      <p className="mt-3 text-sm leading-7 text-mute">{text}</p>
+                      <div className="mt-6 text-xs font-semibold text-teal">Read technical guide →</div>
+                    </div>
+                  </Link>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
