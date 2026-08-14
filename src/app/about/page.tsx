@@ -21,7 +21,7 @@ const PARTNER_WEBSITES: Record<string, string> = {
   "ABC Wearstar": "https://www.abcvalve.com/product/pro_49.html",
 };
 
-const DISPLAY_PARTNERS = [...PARTNERS, { name: "ABC Wearstar", href: "https://www.abcvalve.com/product/pro_49.html" }];
+const DISPLAY_PARTNERS = [...PARTNERS];
 
 const VALUES = [
   { icon: ShieldCheck, title: "Engineering First", text: "Application-driven decisions, not catalogue-based selling. We specify for the process, not the price list." },
