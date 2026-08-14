@@ -4,25 +4,33 @@ import { ArrowRight, BookOpen, CheckCircle2 } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import GlowButton from "@/components/GlowButton";
-import { KNOWLEDGE_CENTRE_IMAGES } from "@/lib/knowledge-centre-images";
 
 export const metadata: Metadata = {
   title: "Industrial Engineering Knowledge Centre UAE | SensCore",
-  description: "Practical engineering guidance on industrial measurement, automation, flow control, process analysis, energy efficiency and industrial applications across the UAE.",
+  description:
+    "Practical engineering guidance on industrial measurement, automation, flow control, process analysis, energy efficiency and industrial applications across the UAE.",
   alternates: { canonical: "https://www.senscoretech.com/knowledge-centre" },
 };
 
 const topics = [
-  ["flow-measurement", "Flow Measurement", "Understand flow measurement principles, technology selection, accuracy, installation and industrial applications."],
-  ["level-measurement", "Level Measurement", "Guidance for measuring liquids, slurry and bulk solids, including vessel conditions and application challenges."],
-  ["pressure-temperature", "Pressure and Temperature Measurement", "Learn how pressure and temperature instruments are selected, installed and applied across industrial processes."],
-  ["process-analysis", "Process Analysis", "Explore pH, conductivity, dissolved oxygen, turbidity, chlorine and other analytical parameters."],
-  ["automation-connectivity", "Automation and Connectivity", "Understand field instruments, PLCs, Remote IO, communication networks and modern industrial automation."],
-  ["valves-flow-control", "Valves and Flow Control", "Learn how valve type, process conditions, materials, actuation and control requirements influence flow control."],
-  ["pumps-dosing", "Pumps and Dosing", "Explore pump selection, duty point considerations, fluid compatibility, dosing, solids handling and pumping challenges."],
-  ["flange-protection", "Flange Protection and Sealing", "Understand flange guards, spray protection, leak containment and selection around process conditions."],
-  ["compressed-air-energy-efficiency", "Compressed Air and Energy Efficiency", "Learn how flow measurement, compressor analysis, network monitoring and leakage assessment support efficiency."],
-  ["engineering-practice", "Engineering Practice and Industrial Applications", "Explore specification, equipment selection, installation, commissioning, verification and application engineering."],
+  ["flow-measurement", "Flow Measurement", "Understand how different flow measurement principles work, how to select the right technology, and what affects accuracy, installation and long-term performance."],
+  ["level-measurement", "Level Measurement", "Explore practical guidance for measuring liquids, slurry and bulk solids, including technology selection, vessel conditions and common application challenges."],
+  ["pressure-temperature", "Pressure and Temperature Measurement", "Learn how pressure and temperature instruments are selected, installed and applied across pipelines, vessels, utilities and industrial processes."],
+  ["process-analysis", "Process Analysis", "Explore water quality and process monitoring principles including pH, conductivity, dissolved oxygen, turbidity, chlorine and other analytical parameters."],
+  ["automation-connectivity", "Automation and Connectivity", "Understand how field instruments, PLCs, Remote IO, communication networks and control systems work together in modern industrial automation."],
+  ["valves-flow-control", "Valves and Flow Control", "Learn how valve type, process conditions, control requirements, materials and actuation influence reliable flow control and isolation."],
+  ["pumps-dosing", "Pumps and Dosing", "Explore pump selection, duty point considerations, fluid compatibility, dosing requirements, solids handling and common pumping challenges."],
+  ["flange-protection", "Flange Protection and Sealing", "Understand how flange guards help reduce the consequences of hazardous spray releases and how protection should be selected around the process conditions."],
+  ["compressed-air-energy-efficiency", "Compressed Air and Energy Efficiency", "Learn how flow measurement, compressor performance analysis, network monitoring and leakage assessment can help identify compressed air efficiency opportunities."],
+  ["engineering-practice", "Engineering Practice and Industrial Applications", "Explore practical guidance on specification, equipment selection, installation, commissioning, verification, troubleshooting and application engineering."],
+] as const;
+
+const faqs = [
+  ["What is the SensCore Knowledge Centre?", "It is a technical resource covering industrial measurement, automation, flow control, process analysis, fluid handling, plant protection, energy efficiency and practical application engineering."],
+  ["Does SensCore provide engineering support across the UAE?", "Yes. SensCore supports industrial requirements across Abu Dhabi, Dubai, Sharjah, Ajman, Ras Al Khaimah, Fujairah and Umm Al Quwain."],
+  ["Can SensCore review a specific industrial application?", "Yes. Application information can be reviewed to help determine appropriate measurement, automation, valve, pump, protection or industrial service requirements."],
+  ["What information should I prepare before requesting technical support?", "Useful information can include the process medium, flow or capacity, pressure, temperature, pipe or vessel size, materials, required accuracy, connection details, control signals and operating conditions."],
+  ["How do I choose the right instrument or equipment for an industrial application?", "Selection should begin with the process conditions, required function, operating range, materials, installation constraints and control requirements. The suitable technology depends on the application rather than on a single product specification."],
 ] as const;
 
 export default function KnowledgeCentrePage() {
@@ -31,56 +39,84 @@ export default function KnowledgeCentrePage() {
       <PageHero
         eyebrow="Knowledge Centre"
         title="Practical Engineering Guidance for Industrial Applications"
-        description="The SensCore Knowledge Centre brings together technical guidance, application insights and practical engineering considerations for industrial projects and operating facilities across the UAE and GCC."
+        description="The SensCore Knowledge Centre brings together technical guidance, application insights and practical engineering considerations for industrial projects and operating facilities. Explore how different technologies work, where they are best applied, what to consider during selection and installation, and how to avoid common specification and application issues. Developed for industrial decision makers across the UAE and GCC."
       />
 
       <section className="py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <Reveal>
             <div className="max-w-3xl">
-              <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.2em] text-teal"><BookOpen size={15} /> Explore by Engineering Topic</div>
-              <h2 className="mt-4 font-display text-3xl font-semibold text-ink sm:text-4xl">Engineering knowledge, organised around real applications.</h2>
-              <p className="mt-5 text-base leading-8 text-mute">Explore how technologies work, where they are best applied, what to consider during selection and installation, and how to avoid common specification and application issues.</p>
+              <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.2em] text-teal">
+                <BookOpen size={15} /> Explore by Engineering Topic
+              </div>
+              <h2 className="mt-4 font-display text-3xl font-semibold text-ink sm:text-4xl">
+                Engineering knowledge for real industrial applications.
+              </h2>
             </div>
           </Reveal>
 
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {topics.map(([slug, title, text], index) => {
-              const image = KNOWLEDGE_CENTRE_IMAGES[slug];
-              return (
-                <Reveal key={slug} delay={index * 0.03}>
-                  <Link href={`/knowledge-centre/${slug}`} className="group block h-full overflow-hidden rounded-2xl border border-line bg-surface transition-all hover:-translate-y-1 hover:border-teal/40 hover:bg-teal/[0.03]">
-                    <div className="relative aspect-[16/9] overflow-hidden bg-[#07121d]">
-                      <img src={image.src} alt={image.alt} loading={index < 3 ? "eager" : "lazy"} className="h-full w-full object-cover opacity-80 transition duration-500 group-hover:scale-105 group-hover:opacity-100" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#07121d] via-[#07121d]/10 to-transparent" />
-                      <div className="absolute left-5 top-5 rounded-full border border-teal/30 bg-[#061015]/80 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-teal backdrop-blur-md">{String(index + 1).padStart(2, "0")}</div>
-                    </div>
-                    <div className="p-7">
-                      <div className="flex items-center justify-between gap-4"><span className="font-mono text-[10px] uppercase tracking-[0.18em] text-teal">Technical guide</span><ArrowRight size={17} className="text-faint transition-transform group-hover:translate-x-1 group-hover:text-teal" /></div>
-                      <h3 className="mt-4 font-display text-xl font-medium text-ink">{title}</h3>
-                      <p className="mt-3 text-sm leading-7 text-mute">{text}</p>
-                      <div className="mt-6 text-xs font-semibold text-teal">Read technical guide →</div>
-                    </div>
-                  </Link>
-                </Reveal>
-              );
-            })}
+            {topics.map(([slug, title, text], index) => (
+              <Reveal key={slug} delay={index * 0.03}>
+                <Link
+                  href={`/knowledge-centre/${slug}`}
+                  className="group block h-full rounded-2xl border border-line bg-surface p-7 transition-all hover:-translate-y-1 hover:border-teal/40 hover:bg-teal/[0.03]"
+                >
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-teal">
+                      {String(index + 1).padStart(2, "0")} · Technical Guide
+                    </span>
+                    <ArrowRight size={17} className="text-faint transition-transform group-hover:translate-x-1 group-hover:text-teal" />
+                  </div>
+                  <h3 className="mt-5 font-display text-xl font-medium text-ink">{title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-mute">{text}</p>
+                  <div className="mt-6 text-xs font-semibold text-teal">Read technical guide →</div>
+                </Link>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
       <section className="border-t border-line bg-surface py-20 sm:py-28">
+        <div className="mx-auto max-w-5xl px-6 lg:px-10">
+          <Reveal>
+            <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.2em] text-teal">
+              <BookOpen size={15} /> Frequently Asked Questions
+            </div>
+            <div className="mt-10 divide-y divide-line overflow-hidden rounded-2xl border border-line bg-void/30">
+              {faqs.map(([question, answer]) => (
+                <div key={question} className="p-7 sm:p-8">
+                  <h3 className="font-display text-lg font-medium text-ink">{question}</h3>
+                  <p className="mt-3 text-sm leading-7 text-mute">{answer}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="border-t border-line py-20 sm:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[1fr_0.8fr] lg:px-10">
           <Reveal>
             <h2 className="font-display text-3xl font-semibold text-ink">Engineering guidance for better decisions.</h2>
-            <p className="mt-5 max-w-2xl text-base leading-8 text-mute">SensCore approaches industrial solutions around the application. Process medium, operating range, pressure, temperature, pipe or vessel size, materials, accuracy, connections, control signals and operating conditions can all influence the right technology.</p>
+            <p className="mt-5 max-w-2xl text-base leading-8 text-mute">
+              SensCore approaches industrial requirements around the application. Process medium, flow or capacity, pressure, temperature, pipe or vessel size, materials, required accuracy, connections, control signals and operating conditions can all influence the right technology.
+            </p>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="rounded-2xl border border-line bg-void/40 p-7">
+            <div className="rounded-2xl border border-line bg-surface p-7">
               <div className="space-y-4 text-sm text-mute">
-                {["Application-based equipment selection", "Specification and installation considerations", "Commissioning and verification guidance", "Industrial applications across the UAE"].map((item) => <div key={item} className="flex gap-3"><CheckCircle2 size={17} className="mt-0.5 shrink-0 text-teal" />{item}</div>)}
+                {["Application-based equipment selection", "Specification and installation considerations", "Commissioning, verification and troubleshooting guidance", "Industrial applications across the UAE"].map((item) => (
+                  <div key={item} className="flex gap-3">
+                    <CheckCircle2 size={17} className="mt-0.5 shrink-0 text-teal" />
+                    {item}
+                  </div>
+                ))}
               </div>
-              <div className="mt-7"><GlowButton href="/contact">Talk to an Engineer</GlowButton></div>
+              <div className="mt-7">
+                <GlowButton href="/contact">Talk to an Engineer</GlowButton>
+              </div>
             </div>
           </Reveal>
         </div>
