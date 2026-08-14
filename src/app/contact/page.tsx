@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, ExternalLink } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import SectionEyebrow from "@/components/SectionEyebrow";
@@ -53,6 +53,9 @@ const INFO = [
   },
 ];
 
+const MAP_URL =
+  "https://www.google.com/maps/search/?api=1&query=SensCore%209th%20Floor%20Mazyad%20Mall%20Business%20Tower%203%20MBZ%20City%20Abu%20Dhabi";
+
 export default function ContactPage() {
   return (
     <>
@@ -103,16 +106,26 @@ export default function ContactPage() {
                 );
               })}
 
-              {/* Premium blue map */}
+              {/* Premium blue map with a highlighted Open in Maps action */}
               <div className="relative overflow-hidden rounded-2xl border border-blue-400/50 bg-[#071a3a] shadow-[0_0_40px_rgba(30,111,255,0.24)]">
-                {/* Deep blue base */}
                 <div className="pointer-events-none absolute inset-0 z-[1] bg-[#071a3a]/65" />
-
-                {/* Soft blue glow */}
                 <div className="pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(circle_at_50%_45%,rgba(77,145,255,0.28),transparent_52%)]" />
-
-                {/* White glass highlight */}
                 <div className="pointer-events-none absolute inset-0 z-[3] rounded-2xl border border-white/20" />
+
+                <a
+                  href={MAP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open SensCore location in Google Maps"
+                  className="group absolute left-4 top-4 z-[10] inline-flex items-center gap-2 rounded-xl border border-white/40 bg-[#0b2b5c]/95 px-4 py-2.5 text-sm font-medium text-white shadow-[0_8px_30px_rgba(0,0,0,0.35),0_0_20px_rgba(59,130,246,0.3)] backdrop-blur-md transition-all duration-200 hover:border-white hover:bg-[#123e7a] hover:shadow-[0_10px_35px_rgba(0,0,0,0.4),0_0_28px_rgba(59,130,246,0.5)]"
+                >
+                  <MapPin size={16} className="text-white" />
+                  <span>Open in Maps</span>
+                  <ExternalLink
+                    size={14}
+                    className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
+                </a>
 
                 <iframe
                   title="SensCore Location - Abu Dhabi"
