@@ -49,9 +49,6 @@ export default function KnowledgeCentrePage() {
               <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.2em] text-teal">
                 <BookOpen size={15} /> Explore by Engineering Topic
               </div>
-              <h2 className="mt-4 font-display text-3xl font-semibold text-ink sm:text-4xl">
-                Engineering knowledge for real industrial applications.
-              </h2>
             </div>
           </Reveal>
 
@@ -97,26 +94,20 @@ export default function KnowledgeCentrePage() {
       </section>
 
       <section className="border-t border-line py-20 sm:py-28">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[1fr_0.8fr] lg:px-10">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <Reveal>
-            <h2 className="font-display text-3xl font-semibold text-ink">Engineering guidance for better decisions.</h2>
-            <p className="mt-5 max-w-2xl text-base leading-8 text-mute">
-              SensCore approaches industrial requirements around the application. Process medium, flow or capacity, pressure, temperature, pipe or vessel size, materials, required accuracy, connections, control signals and operating conditions can all influence the right technology.
-            </p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <div className="rounded-2xl border border-line bg-surface p-7">
-              <div className="space-y-4 text-sm text-mute">
-                {["Application-based equipment selection", "Specification and installation considerations", "Commissioning, verification and troubleshooting guidance", "Industrial applications across the UAE"].map((item) => (
-                  <div key={item} className="flex gap-3">
-                    <CheckCircle2 size={17} className="mt-0.5 shrink-0 text-teal" />
-                    {item}
-                  </div>
+            <div className="rounded-2xl border border-line bg-surface p-7 sm:p-9">
+              <p className="text-base leading-8 text-mute">
+                SensCore approaches industrial solutions around the application. Process medium, flow or capacity, pressure, temperature, pipe or vessel size, materials, required accuracy, connection details, control signals and operating conditions can all influence the right technology.
+              </p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                {["Application review", "Equipment selection", "Installation guidance", "Commissioning", "Verification", "Troubleshooting"].map((item) => (
+                  <span key={item} className="inline-flex items-center gap-2 rounded-full border border-line bg-void/40 px-4 py-2 text-xs text-mute">
+                    <CheckCircle2 size={14} className="text-teal" /> {item}
+                  </span>
                 ))}
               </div>
-              <div className="mt-7">
-                <GlowButton href="/contact">Talk to an Engineer</GlowButton>
-              </div>
+              <div className="mt-8"><GlowButton href="/contact">Talk to an Engineer</GlowButton></div>
             </div>
           </Reveal>
         </div>
