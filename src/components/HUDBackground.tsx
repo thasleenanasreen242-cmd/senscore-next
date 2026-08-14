@@ -2,51 +2,35 @@
 
 import { useEffect, useRef } from "react";
 
-type Segment = { x1: number; y1: number; x2: number; y2: number };
-type Path = { segments: Segment[]; length: number; lengths: number[] };
-type Particle = { pathIndex: number; distance: number; speed: number; size: number };
+type Node = {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  size: number;
+  phase: number;
+  pulse: number;
+};
 
-const TEAL = "0, 229, 199";
-const INDIGO = "61, 90, 254";
+const BLUE = "74, 144, 255";
+const CYAN = "0, 229, 199";
+const WHITE = "226, 236, 250";
 
-function buildPaths(width: number, height: number, count: number): Path[] {
-  const paths: Path[] = [];
-  for (let i = 0; i < count; i++) {
-    const y = (height / (count + 1)) * (i + 1) + (Math.random() - 0.5) * 40;
-    const bends = 2 + Math.floor(Math.random() * 3);
-    const segments: Segment[] = [];
-    let x = -50;
-    let cy = y;
-    for (let b = 0; b < bends; b++) {
-      const nx = (width / bends) * (b + 1) + Math.random() * 60;
-      segments.push({ x1: x, y1: cy, x2: nx, y2: cy });
-      const ny = cy + (Math.random() - 0.5) * 120;
-      segments.push({ x1: nx, y1: cy, x2: nx, y2: ny });
-      x = nx;
-      cy = ny;
-    }
-    segments.push({ x1: x, y1: cy, x2: width + 50, y2: cy });
+function createNodes(width: number, height: number, density: number): Node[] {
+  const count = Math.max(18, Math.min(42, Math.round(density * 4.2)));
 
-    const lengths = segments.map((s) => Math.hypot(s.x2 - s.x1, s.y2 - s.y1));
-    const length = lengths.reduce((a, b) => a + b, 0);
-    paths.push({ segments, length, lengths });
-  }
-  return paths;
-}
-
-function pointOnPath(path: Path, distance: number) {
-  let d = distance % path.length;
-  for (let i = 0; i < path.segments.length; i++) {
-    const segLen = path.lengths[i];
-    if (d <= segLen) {
-      const seg = path.segments[i];
-      const t = segLen === 0 ? 0 : d / segLen;
-      return { x: seg.x1 + (seg.x2 - seg.x1) * t, y: seg.y1 + (seg.y2 - seg.y1) * t };
-    }
-    d -= segLen;
-  }
-  const last = path.segments[path.segments.length - 1];
-  return { x: last.x2, y: last.y2 };
+  return Array.from({ length: count }, (_, index) => {
+    const edge = index % 5 === 0;
+    return {
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * (edge ? 0.12 : 0.18),
+      vy: (Math.random() - 0.5) * (edge ? 0.09 : 0.14),
+      size: 1.1 + Math.random() * 1.5,
+      phase: Math.random() * Math.PI * 2,
+      pulse: 0.7 + Math.random() * 0.8,
+    };
+  });
 }
 
 export default function HUDBackground({ density = 7 }: { density?: number }) {
@@ -55,88 +39,156 @@ export default function HUDBackground({ density = 7 }: { density?: number }) {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const connectionDistance = 190;
+    const maxConnections = 3;
 
     let width = 0;
     let height = 0;
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let paths: Path[] = [];
-    let particles: Particle[] = [];
-    let frame = 0;
+    let nodes: Node[] = [];
     let raf = 0;
+    let time = 0;
 
     function resize() {
-      const rect = canvas!.parentElement!.getBoundingClientRect();
+      const parent = canvas!.parentElement;
+      if (!parent) return;
+
+      const rect = parent.getBoundingClientRect();
       width = rect.width;
       height = rect.height;
-      canvas!.width = width * dpr;
-      canvas!.height = height * dpr;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      canvas!.width = Math.round(width * dpr);
+      canvas!.height = Math.round(height * dpr);
       canvas!.style.width = `${width}px`;
       canvas!.style.height = `${height}px`;
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      paths = buildPaths(width, height, density);
-      particles = paths.flatMap((_, pi) =>
-        Array.from({ length: 2 + Math.floor(Math.random() * 2) }, () => ({
-          pathIndex: pi,
-          distance: Math.random() * 2000,
-          speed: 0.35 + Math.random() * 0.55,
-          size: 1.6 + Math.random() * 1.8,
-        }))
-      );
+      nodes = createNodes(width, height, density);
     }
 
-    function drawPaths() {
-      ctx!.lineWidth = 1;
-      ctx!.strokeStyle = `rgba(${TEAL}, 0.10)`;
-      paths.forEach((p) => {
-        ctx!.beginPath();
-        p.segments.forEach((s) => {
-          ctx!.moveTo(s.x1, s.y1);
-          ctx!.lineTo(s.x2, s.y2);
-        });
-        ctx!.stroke();
+    function updateNodes() {
+      if (reduceMotion) return;
+
+      nodes.forEach((node) => {
+        node.x += node.vx;
+        node.y += node.vy;
+
+        if (node.x < -20) node.x = width + 20;
+        if (node.x > width + 20) node.x = -20;
+        if (node.y < -20) node.y = height + 20;
+        if (node.y > height + 20) node.y = -20;
       });
     }
 
-    function drawParticles() {
-      particles.forEach((particle, idx) => {
-        const path = paths[particle.pathIndex];
-        if (!path) return;
-        if (!reduceMotion) particle.distance += particle.speed * 2.2;
-        const pos = pointOnPath(path, particle.distance);
-        const color = idx % 3 === 0 ? INDIGO : TEAL;
+    function drawConnections() {
+      for (let i = 0; i < nodes.length; i++) {
+        const nearby: { index: number; distance: number }[] = [];
+        const a = nodes[i];
 
-        const grad = ctx!.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, particle.size * 6);
-        grad.addColorStop(0, `rgba(${color}, 0.9)`);
-        grad.addColorStop(1, `rgba(${color}, 0)`);
-        ctx!.fillStyle = grad;
+        for (let j = 0; j < nodes.length; j++) {
+          if (i === j) continue;
+          const b = nodes[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const distance = Math.hypot(dx, dy);
+          if (distance < connectionDistance) nearby.push({ index: j, distance });
+        }
+
+        nearby
+          .sort((left, right) => left.distance - right.distance)
+          .slice(0, maxConnections)
+          .forEach(({ index, distance }) => {
+            if (index < i) return;
+            const b = nodes[index];
+            const strength = 1 - distance / connectionDistance;
+            const alpha = 0.025 + strength * 0.09;
+
+            const gradient = ctx!.createLinearGradient(a.x, a.y, b.x, b.y);
+            gradient.addColorStop(0, `rgba(${BLUE}, ${alpha})`);
+            gradient.addColorStop(0.5, `rgba(${CYAN}, ${alpha * 1.35})`);
+            gradient.addColorStop(1, `rgba(${BLUE}, ${alpha})`);
+
+            ctx!.strokeStyle = gradient;
+            ctx!.lineWidth = 0.7 + strength * 0.45;
+            ctx!.beginPath();
+            ctx!.moveTo(a.x, a.y);
+            ctx!.lineTo(b.x, b.y);
+            ctx!.stroke();
+          });
+      }
+    }
+
+    function drawNodes() {
+      nodes.forEach((node, index) => {
+        const pulse = reduceMotion
+          ? 1
+          : 1 + Math.sin(time * node.pulse + node.phase) * 0.18;
+        const radius = node.size * pulse;
+        const color = index % 5 === 0 ? CYAN : BLUE;
+
+        const glow = ctx!.createRadialGradient(
+          node.x,
+          node.y,
+          0,
+          node.x,
+          node.y,
+          radius * 8
+        );
+        glow.addColorStop(0, `rgba(${color}, 0.28)`);
+        glow.addColorStop(0.35, `rgba(${color}, 0.08)`);
+        glow.addColorStop(1, `rgba(${color}, 0)`);
+
+        ctx!.fillStyle = glow;
         ctx!.beginPath();
-        ctx!.arc(pos.x, pos.y, particle.size * 6, 0, Math.PI * 2);
+        ctx!.arc(node.x, node.y, radius * 8, 0, Math.PI * 2);
         ctx!.fill();
 
-        ctx!.fillStyle = `rgba(${color}, 1)`;
+        ctx!.fillStyle = `rgba(${WHITE}, 0.9)`;
         ctx!.beginPath();
-        ctx!.arc(pos.x, pos.y, particle.size, 0, Math.PI * 2);
+        ctx!.arc(node.x, node.y, radius * 0.7, 0, Math.PI * 2);
+        ctx!.fill();
+
+        ctx!.fillStyle = `rgba(${color}, 0.95)`;
+        ctx!.beginPath();
+        ctx!.arc(node.x, node.y, radius, 0, Math.PI * 2);
         ctx!.fill();
       });
+    }
+
+    function drawSignal() {
+      if (reduceMotion || nodes.length === 0) return;
+
+      const signalIndex = Math.floor(time * 0.18) % nodes.length;
+      const node = nodes[signalIndex];
+      const radius = 16 + Math.sin(time * 2) * 4;
+
+      ctx!.strokeStyle = `rgba(${CYAN}, 0.12)`;
+      ctx!.lineWidth = 0.8;
+      ctx!.beginPath();
+      ctx!.arc(node.x, node.y, radius, 0, Math.PI * 2);
+      ctx!.stroke();
     }
 
     function render() {
       ctx!.clearRect(0, 0, width, height);
-      drawPaths();
-      drawParticles();
-      frame++;
+      updateNodes();
+      drawConnections();
+      drawNodes();
+      drawSignal();
+      time += 0.016;
       raf = requestAnimationFrame(render);
     }
 
     resize();
     render();
 
-    const ro = new ResizeObserver(() => resize());
+    const ro = new ResizeObserver(resize);
     ro.observe(canvas.parentElement!);
 
     return () => {
