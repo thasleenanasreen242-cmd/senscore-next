@@ -9,6 +9,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import ChatWidget from "@/components/ChatWidget";
 import ScrollProgress from "@/components/ScrollProgress";
 import WebsiteTour from "@/components/WebsiteTour";
+import BackButton from "@/components/BackButton";
 
 const display = Chakra_Petch({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-display" });
 const body = Inter({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-body" });
@@ -43,6 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ChatWidget />
         <WebsiteTour />
         <div className="fixed inset-x-0 top-0 z-40 pt-[3px]"><Navbar /></div>
+        <BackButton />
         <div className="h-[68px] sm:h-[76px]" />
         <main>{children}</main>
         <Footer />
