@@ -55,7 +55,29 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
               <Reveal key={section.heading} delay={sectionIndex * 0.04}>
                 <section className="rounded-2xl border border-line bg-surface p-7 sm:p-9">
                   <h2 className="font-display text-2xl font-semibold text-ink">{section.heading}</h2>
-                  <div className="mt-5 space-y-4 text-sm leading-8 text-mute">{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
+                  {section.heading === "Frequently Asked Questions" ? (
+                    <div className="mt-6 space-y-4">
+                      {section.paragraphs.map((paragraph, faqIndex) => {
+                        const [question, ...answerParts] = paragraph.split("\n");
+                        const answer = answerParts.join(" ").trim();
+                        return (
+                          <div key={paragraph} className="rounded-xl border border-line bg-void/30 p-5 sm:p-6">
+                            <div className="flex items-start gap-4">
+                              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-teal/30 bg-teal/10 font-mono text-[10px] font-semibold text-teal">
+                                {String(faqIndex + 1).padStart(2, "0")}
+                              </span>
+                              <div className="min-w-0">
+                                <h3 className="font-display text-base font-semibold leading-7 text-ink sm:text-lg">{question}</h3>
+                                {answer ? <p className="mt-2 text-sm leading-7 text-mute">{answer}</p> : null}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div className="mt-5 space-y-4 text-sm leading-8 text-mute">{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
+                  )}
                   {section.bullets ? <ul className="mt-5 space-y-3 text-sm leading-7 text-mute">{section.bullets.map((bullet) => <li key={bullet} className="border-l-2 border-teal/40 pl-4">{bullet}</li>)}</ul> : null}
                 </section>
               </Reveal>
