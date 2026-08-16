@@ -1,138 +1,209 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { notFound } from "next/navigation";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import GlowButton from "@/components/GlowButton";
-import { getKnowledgeArticle, KNOWLEDGE_ARTICLES } from "@/lib/knowledge-centre";
-import { getKnowledgeImage } from "@/lib/knowledge-centre-images";
+import { Check, ArrowUpRight } from "lucide-react";
+import { KNOWLEDGE_TOPICS } from "@/lib/knowledgeData";
+
+type Props = {
+  params: { slug: string };
+};
 
 export function generateStaticParams() {
-  return KNOWLEDGE_ARTICLES.map((article) => ({ slug: article.slug }));
+  return KNOWLEDGE_TOPICS.map((t) => ({ slug: t.slug }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
-  const article = getKnowledgeArticle(slug);
-  if (!article) return { title: "Knowledge Centre | SensCore" };
-  return { title: article.seoTitle, description: article.description, alternates: { canonical: `https://www.senscoretech.com/knowledge-centre/${article.slug}` } };
+export function generateMetadata({ params }: Props): Metadata {
+  const topic = KNOWLEDGE_TOPICS.find((t) => t.slug === params.slug);
+  if (!topic) return {};
+  return {
+    title: topic.seoTitle,
+    description: topic.metaDescription,
+    alternates: {
+      canonical: `https://www.senscoretech.com/knowledge-centre/${topic.slug}`,
+    },
+    openGraph: {
+      title: topic.seoTitle,
+      description: topic.metaDescription,
+      url: `https://www.senscoretech.com/knowledge-centre/${topic.slug}`,
+    },
+  };
 }
 
-export default async function KnowledgeArticlePage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const article = getKnowledgeArticle(slug);
-  if (!article) return null;
-  const image = getKnowledgeImage(slug);
-  const index = KNOWLEDGE_ARTICLES.findIndex((item) => item.slug === article.slug);
-  const previous = KNOWLEDGE_ARTICLES[index - 1];
-  const next = KNOWLEDGE_ARTICLES[index + 1];
-  const helpSection = article.sections.find((section) => section.heading.toLowerCase().startsWith("need help"));
-  const contentSections = article.sections.filter((section) => section !== helpSection);
+export default function KnowledgeTopicPage({ params }: Props) {
+  const topic = KNOWLEDGE_TOPICS.find((t) => t.slug === params.slug);
+  if (!topic) notFound();
+
+  const otherTopics = KNOWLEDGE_TOPICS.filter((t) => t.slug !== topic.slug).slice(0, 3);
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: topic.faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Knowledge Centre",
+        item: "https://www.senscoretech.com/knowledge-centre",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: topic.shortTitle,
+        item: `https://www.senscoretech.com/knowledge-centre/${topic.slug}`,
+      },
+    ],
+  };
 
   return (
     <>
-      <PageHero eyebrow="Knowledge Centre" title={article.title} description={article.description} />
-      <main className="py-20 sm:py-28">
-        <div className="mx-auto max-w-5xl px-6 lg:px-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
+      <PageHero eyebrow="Knowledge Centre" title={topic.title} description="" />
+
+      <section className="border-b border-line py-4">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <Link
+            href="/knowledge-centre"
+            className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-mute hover:text-teal"
+          >
+            &larr; Knowledge Centre
+          </Link>
+        </div>
+      </section>
+
+      {/* ---------------- INTRO ---------------- */}
+      <section className="py-16 sm:py-20">
+        <div className="mx-auto max-w-4xl px-6 lg:px-10">
           <Reveal>
-            <Link href="/knowledge-centre" className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-teal hover:text-ink"><ArrowLeft size={14} /> Back to Knowledge Centre</Link>
-            {image ? <figure className="mt-8 overflow-hidden rounded-2xl border border-line bg-surface">
-              <div className="relative aspect-[21/9] bg-[#07121d]">
-                <img src={image.src} alt={image.alt} className="h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#061015]/65 via-transparent to-transparent" />
-              </div>
-              <figcaption className="flex flex-wrap items-center justify-between gap-2 border-t border-line px-5 py-3 font-mono text-[9px] uppercase tracking-[0.12em] text-faint">
-                <span>Industrial application reference</span>
-                <a href={image.href} target="_blank" rel="noopener noreferrer" className="text-teal hover:text-ink">Image source: {image.source} ↗</a>
-              </figcaption>
-            </figure> : null}
-          </Reveal>
-
-          <div className="mt-10 space-y-7">
-            {contentSections.map((section, sectionIndex) => {
-              const isFlowTechnologySection = section.heading === "Choosing the Right Flow Measurement Technology";
-              const paragraphs = isFlowTechnologySection ? [article.intro, ...section.paragraphs] : section.paragraphs;
-
-              return (
-                <Reveal key={section.heading} delay={sectionIndex * 0.04}>
-                  <section className="rounded-2xl border border-line bg-surface p-7 sm:p-9">
-                    <h2 className="font-display text-2xl font-semibold text-ink">{section.heading}</h2>
-
-                    {section.heading === "Frequently Asked Questions" ? (
-                      <div className="mt-6 space-y-4">
-                        {paragraphs.map((paragraph, faqIndex) => {
-                          const [question, ...answerParts] = paragraph.split("\n");
-                          const answer = answerParts.join(" ").trim();
-                          return (
-                            <div key={paragraph} className="rounded-xl border border-line bg-void/30 p-5 sm:p-6">
-                              <div className="flex items-start gap-4">
-                                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-teal/30 bg-teal/10 font-mono text-[10px] font-semibold text-teal">{String(faqIndex + 1).padStart(2, "0")}</span>
-                                <div className="min-w-0">
-                                  <h3 className="font-display text-base font-semibold leading-7 text-ink sm:text-lg">{question}</h3>
-                                  {answer ? <p className="mt-2 text-sm leading-7 text-mute">{answer}</p> : null}
-                                </div>
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    ) : (
-                      <>
-                        <div className="mt-5 space-y-4 text-sm leading-8 text-mute">
-                          {paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-                        </div>
-
-                        {section.bullets ? (
-                          <div className="mt-8 space-y-5">
-                            {section.bullets.map((bullet, bulletIndex) => {
-                              const separatorIndex = bullet.indexOf(" — ");
-                              const title = separatorIndex >= 0 ? bullet.slice(0, separatorIndex) : `Application point ${String(bulletIndex + 1).padStart(2, "0")}`;
-                              const text = separatorIndex >= 0 ? bullet.slice(separatorIndex + 3) : bullet;
-
-                              return (
-                                <article key={bullet} className="group relative overflow-hidden rounded-2xl border border-line bg-void/35 p-6 transition-all duration-300 hover:border-[#4f9cff]/40 hover:bg-[#08121f]/90 sm:p-7">
-                                  <div className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-[#2f80ff]/5 blur-3xl transition-opacity duration-300 group-hover:bg-[#2f80ff]/10" />
-                                  <div className="relative flex gap-5">
-                                    <div className="shrink-0">
-                                      <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#4f9cff]/30 bg-[#0a1727] font-mono text-[10px] tracking-[0.15em] text-[#6da8ff]">{String(bulletIndex + 1).padStart(2, "0")}</div>
-                                    </div>
-                                    <div className="min-w-0 flex-1">
-                                      <div className="flex items-center gap-3">
-                                        <span className="h-px w-7 shrink-0 bg-[#4f9cff]" />
-                                        <h3 className="font-display text-xl font-semibold tracking-tight text-white sm:text-2xl">{title}</h3>
-                                      </div>
-                                      <p className="mt-4 max-w-5xl text-sm leading-7 text-[#91a9c4] sm:text-[15px] sm:leading-8">{text}</p>
-                                    </div>
-                                  </div>
-                                </article>
-                              );
-                            })}
-                          </div>
-                        ) : null}
-                      </>
-                    )}
-                  </section>
-                </Reveal>
-              );
-            })}
-          </div>
-
-          <Reveal>
-            <div className="mt-10 flex flex-col gap-4 rounded-2xl border border-line bg-surface p-7 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <div className="font-display text-lg font-medium text-ink">{helpSection?.heading ?? "Need help with an industrial application?"}</div>
-                <p className="mt-1 text-sm leading-7 text-mute">{helpSection?.paragraphs[0] ?? "SensCore can review your process conditions and technical requirements."}</p>
-              </div>
-              <GlowButton href="/contact">Talk to an Engineer</GlowButton>
+            <div className="space-y-5 text-base leading-relaxed text-mute sm:text-lg">
+              {topic.intro.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
             </div>
           </Reveal>
+        </div>
+      </section>
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-2">
-            {previous ? <Link href={`/knowledge-centre/${previous.slug}`} className="rounded-xl border border-line p-5 text-sm text-mute hover:border-teal/40 hover:text-ink"><ArrowLeft size={15} className="mb-3 text-teal" />Previous: <span className="text-ink">{previous.title}</span></Link> : <div />}
-            {next ? <Link href={`/knowledge-centre/${next.slug}`} className="rounded-xl border border-line p-5 text-sm text-mute hover:border-teal/40 hover:text-ink sm:text-right"><ArrowRight size={15} className="mb-3 ml-auto text-teal" />Next: <span className="text-ink">{next.title}</span></Link> : null}
+      {/* ---------------- SECTIONS ---------------- */}
+      <section className="border-t border-line py-20 sm:py-28">
+        <div className="mx-auto flex max-w-4xl flex-col gap-16 px-6 lg:px-10">
+          {topic.sections.map((s, i) => (
+            <Reveal key={i} delay={i * 0.02}>
+              <h2 className="font-display text-xl font-semibold text-ink sm:text-2xl">
+                {s.heading}
+              </h2>
+              <div className="mt-5 space-y-4 text-sm leading-relaxed text-mute sm:text-base">
+                {s.paragraphs.map((p, j) => (
+                  <p key={j}>{p}</p>
+                ))}
+              </div>
+              {s.bullets && s.bullets.length > 0 && (
+                <div className="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-2">
+                  {s.bullets.map((b, j) => (
+                    <div key={j} className="flex items-start gap-3 text-sm leading-relaxed text-ink">
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-teal/20 bg-teal/5">
+                        <Check size={12} className="text-teal" aria-hidden="true" />
+                      </span>
+                      <span>{b}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ---------------- FAQ ---------------- */}
+      <section className="border-t border-line py-20 sm:py-28">
+        <div className="mx-auto max-w-4xl px-6 lg:px-10">
+          <Reveal>
+            <h2 className="font-display text-2xl font-bold leading-tight text-ink sm:text-3xl">
+              Frequently Asked Questions
+            </h2>
+          </Reveal>
+
+          <div className="mt-10 flex flex-col gap-8">
+            {topic.faqs.map((f, i) => (
+              <Reveal key={i} delay={i * 0.03} className="border-t border-line pt-7">
+                <h3 className="font-display text-lg font-medium text-ink">{f.q}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-mute sm:text-base">{f.a}</p>
+              </Reveal>
+            ))}
           </div>
         </div>
-      </main>
+      </section>
+
+      {/* ---------------- CTA ---------------- */}
+      <section className="relative overflow-hidden border-t border-line py-28 sm:py-32">
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-teal/10 blur-[100px]" />
+        <div className="relative mx-auto max-w-2xl px-6 text-center">
+          <Reveal>
+            <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">
+              {topic.ctaHeading}
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="mt-5 text-base text-mute">{topic.ctaText}</p>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <div className="mt-9">
+              <GlowButton href="/contact">Tell Us About Your Application</GlowButton>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---------------- RELATED TOPICS ---------------- */}
+      {otherTopics.length > 0 && (
+        <section className="border-t border-line py-20 sm:py-28">
+          <div className="mx-auto max-w-7xl px-6 lg:px-10">
+            <Reveal>
+              <h2 className="font-display text-xl font-semibold text-ink sm:text-2xl">
+                Related Topics
+              </h2>
+            </Reveal>
+            <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-3">
+              {otherTopics.map((t, i) => (
+                <Reveal key={t.slug} delay={i * 0.03} className="bg-surface">
+                  <Link
+                    href={`/knowledge-centre/${t.slug}`}
+                    className="group flex h-full flex-col justify-between p-7 transition-colors duration-300 hover:bg-surface2/60"
+                  >
+                    <h3 className="font-display text-base font-medium text-ink">
+                      {t.shortTitle}
+                    </h3>
+                    <div className="mt-6 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-teal opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      Explore
+                      <ArrowUpRight size={13} />
+                    </div>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </>
   );
 }
