@@ -26,6 +26,8 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
   const index = KNOWLEDGE_ARTICLES.findIndex((item) => item.slug === article.slug);
   const previous = KNOWLEDGE_ARTICLES[index - 1];
   const next = KNOWLEDGE_ARTICLES[index + 1];
+  const helpSection = article.sections.find((section) => section.heading.toLowerCase().startsWith("need help"));
+  const contentSections = article.sections.filter((section) => section !== helpSection);
 
   return (
     <>
@@ -51,7 +53,7 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
           </Reveal>
 
           <div className="mt-10 space-y-7">
-            {article.sections.map((section, sectionIndex) => (
+            {contentSections.map((section, sectionIndex) => (
               <Reveal key={section.heading} delay={sectionIndex * 0.04}>
                 <section className="rounded-2xl border border-line bg-surface p-7 sm:p-9">
                   <h2 className="font-display text-2xl font-semibold text-ink">{section.heading}</h2>
@@ -86,7 +88,10 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
 
           <Reveal>
             <div className="mt-10 flex flex-col gap-4 rounded-2xl border border-line bg-surface p-7 sm:flex-row sm:items-center sm:justify-between">
-              <div><div className="font-display text-lg font-medium text-ink">Need help with an industrial application?</div><p className="mt-1 text-sm text-mute">SensCore can review your process conditions and technical requirements.</p></div>
+              <div>
+                <div className="font-display text-lg font-medium text-ink">{helpSection?.heading ?? "Need help with an industrial application?"}</div>
+                <p className="mt-1 text-sm leading-7 text-mute">{helpSection?.paragraphs[0] ?? "SensCore can review your process conditions and technical requirements."}</p>
+              </div>
               <GlowButton href="/contact">Talk to an Engineer</GlowButton>
             </div>
           </Reveal>
