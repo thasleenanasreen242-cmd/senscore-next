@@ -72,11 +72,86 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
   },
   {
     slug: "level-measurement",
-    title: "Level Measurement for Industrial Applications",
-    seoTitle: "Level Measurement UAE | Industrial Level Instrumentation | SensCore",
-    description: "Practical guidance on industrial level measurement for liquids, slurry and bulk solids across the UAE.",
-    intro: "Level measurement selection depends on the vessel, process medium and operating conditions. Foam, vapour, dust, agitation, temperature and vessel geometry can all affect technology selection.",
-    sections: [{ heading: "Application Considerations", paragraphs: ["Evaluate the medium, vessel geometry, measuring range, process conditions, installation constraints and required accuracy before selecting a level technology."] }]
+    title: "Industrial Level Measurement",
+    seoTitle: "Level Measurement UAE | Level Transmitters and Switches | SensCore",
+    description: "Technical guidance on industrial level measurement, level transmitters and level switches for tanks, liquids, solids and process applications across the UAE.",
+    intro: "Reliable level measurement is essential for process control, inventory monitoring, overflow prevention, pump protection and safe plant operation. The correct technology depends on much more than the height of the tank. The measured medium, pressure, temperature, density, dielectric properties, foam, vapour, agitation, tank geometry, solids behaviour and required measurement type can all influence instrument selection. SensCore supports continuous level measurement and point level detection for liquids, slurry, powders and bulk solids across industrial applications.",
+    sections: [
+      {
+        heading: "Choosing the Right Level Measurement Technology",
+        paragraphs: [],
+        bullets: [
+          "Radar Level Transmitters — Radar level transmitters use microwave signals to measure the distance between the instrument and the material surface. As a non-contact technology, radar is widely considered for storage tanks, process vessels, liquids, slurry and bulk material applications. It can be particularly useful where process conditions make contact-based technologies less desirable. Correct antenna selection, mounting position, internal tank structures and the properties of the measured medium should be considered during selection.",
+          "Guided Wave Radar Level Transmitters — Guided wave radar sends radar pulses along a rod or cable probe towards the product surface. The technology can be used for continuous measurement of liquids, slurry and certain solids. It is commonly considered for storage tanks and process vessels where a guided signal provides advantages over free space measurement. Probe configuration, tank height, process connection, material properties and possible product build up should be reviewed for each application.",
+          "Ultrasonic Level Transmitters — Ultrasonic level transmitters determine level by transmitting sound pulses towards the material surface and measuring the returning echo. Because the measurement is non-contact, ultrasonic instruments can provide a practical solution for water tanks, wastewater applications and other suitable liquid or material level measurements. Temperature, vapour, foam, turbulence, obstructions and the available measuring distance can influence ultrasonic performance and should be considered before selection.",
+          "Magnetostrictive Level Transmitters — Magnetostrictive transmitters use a magnetic float and sensing element to determine the position of the liquid surface. The technology is suited to applications requiring precise continuous liquid level measurement and is commonly considered for storage tanks and process vessels in petroleum, chemical and related industries. Fluid density, float compatibility, process temperature and the required insertion length are important selection factors.",
+          "Float Continuous Level Transmitters — Float based continuous transmitters follow changes in liquid level mechanically through a float while converting the resulting position into an electrical output. Their relatively straightforward measurement principle can make them suitable for many tank level applications where the liquid properties and mechanical installation conditions are compatible."
+        ]
+      },
+      {
+        heading: "Industrial Level Switches",
+        paragraphs: [
+          "Continuous measurement is not always required. Many processes only need confirmation that material has reached a defined high or low point."
+        ],
+        bullets: [
+          "Vibrating Level Switches — Vibrating or tuning fork level switches detect changes in vibration when the sensing element comes into contact with the process medium. They are commonly used for high-level and low-level alarms, overflow prevention and pump protection in suitable liquid and material applications.",
+          "Float Level Switches — Float switches use buoyancy and a switching mechanism to detect a predefined liquid level. They can provide a simple solution for tank control, alarms and pump operation where the fluid density and installation arrangement are suitable.",
+          "Rotary Level Switches — Rotary switches are primarily used for powders, granules and bulk solids. A rotating paddle is restricted when material reaches the sensing point, allowing the instrument to indicate high or low material level in silos, hoppers and similar storage systems.",
+          "Microwave and Radio Frequency Level Switches — Microwave level switches can detect material between a transmitter and receiver, while radio frequency admittance technologies detect changes in electrical characteristics around a sensing probe. These principles can be considered for demanding point level applications involving liquids, slurry, powders or bulk materials where conventional mechanical switching may be unsuitable."
+        ]
+      },
+      {
+        heading: "What Should Engineers Consider When Selecting a Level Instrument?",
+        paragraphs: [
+          "Level measurement should be selected around the complete process condition."
+        ],
+        bullets: [
+          "Measured liquid, slurry, powder or solid",
+          "Continuous measurement or point level detection",
+          "Tank height and geometry",
+          "Pressure and temperature",
+          "Density and dielectric properties",
+          "Foam, vapour, dust and agitation",
+          "Material build-up",
+          "Internal obstructions",
+          "Process connection",
+          "Wetted material compatibility",
+          "Required output and communication",
+          "Hazardous area requirements"
+        ]
+      },
+      {
+        heading: "Typical Level Measurement Applications",
+        paragraphs: [
+          "Industrial level measurement is used across water and wastewater treatment, oil and gas, chemical processing, petrochemical facilities, manufacturing, food and beverage, utilities and bulk material handling.",
+          "Typical duties include storage tank monitoring, process vessel level control, water tank measurement, chemical tank monitoring, slurry level measurement, silo level detection, overflow alarms, dry running protection and inventory monitoring."
+        ]
+      },
+      {
+        heading: "Level Measurement Support Across the UAE",
+        paragraphs: [
+          "SensCore supports industrial level measurement requirements across Abu Dhabi, Dubai, Sharjah, Ajman, Ras Al Khaimah (RAK), Fujairah and Umm Al Quwain (UAQ).",
+          "Our application-based approach considers the process medium, operating conditions, vessel configuration and control requirement before recommending a measurement principle.",
+          "Support is available for new projects, plant upgrades, replacement requirements and industrial applications across the UAE."
+        ]
+      },
+      {
+        heading: "Frequently Asked Questions",
+        paragraphs: [
+          "What is the difference between a level transmitter and a level switch?\nA level transmitter provides continuous information about the level inside a vessel. A level switch detects when the material reaches a specific predefined point.",
+          "Radar or ultrasonic level measurement: which is better?\nNeither technology is universally better. Selection depends on the medium, vessel, measuring range, vapour, foam, temperature, pressure and surrounding process conditions.",
+          "Can radar measure liquid without contacting it?\nYes. Non-contact radar level transmitters measure the product surface from above the vessel without requiring a probe to remain immersed in the liquid.",
+          "Which level technology is suitable for powders and bulk solids?\nRadar, guided wave radar, rotary switches, vibration switches and other technologies may be considered depending on the material properties, vessel geometry, dust conditions and whether continuous or point measurement is required.",
+          "What information is needed to select a level transmitter?\nUseful information includes the measured medium, vessel dimensions, measuring range, pressure, temperature, process connection, material compatibility and whether continuous measurement, alarm detection or both are required."
+        ]
+      },
+      {
+        heading: "Need Help with a Level Measurement Application?",
+        paragraphs: [
+          "SensCore can review the vessel, process medium and operating conditions to help determine a suitable level measurement principle and instrument configuration for industrial applications across the UAE."
+        ]
+      }
+    ]
   },
   {
     slug: "pressure-temperature",
