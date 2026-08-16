@@ -13,10 +13,61 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
     title: "Flow Measurement for Industrial Applications",
     seoTitle: "Flow Measurement UAE | Industrial Flowmeter Guide | SensCore",
     description: "Technical guidance on industrial flow measurement, flowmeter selection and applications for water, steam, gas, chemicals and compressed air across the UAE.",
-    intro: "Reliable flow measurement starts with understanding the application, not simply selecting an instrument. Different liquids, gases and steam services require different measurement principles.",
+    intro: "Reliable flow measurement starts with understanding the application, not simply selecting an instrument. Different liquids, gases and steam services require different measurement principles. Fluid properties, pipe size, operating pressure, temperature, required accuracy, flow range, installation conditions and maintenance requirements can all influence the correct choice.",
     sections: [
-      { heading: "Choosing the Right Flow Measurement Technology", paragraphs: ["Fluid properties, pipe size, operating pressure, temperature, required accuracy, flow range, installation conditions and maintenance requirements can all influence the correct choice."], bullets: ["Electromagnetic flowmeters — conductive liquids, water, wastewater, chemicals and suitable slurry.", "Vortex flowmeters — liquids, gases and steam where process and installation conditions are suitable.", "Ultrasonic and clamp-on flowmeters — useful where measurement is required without cutting the existing pipeline.", "Coriolis mass flowmeters — direct mass measurement for demanding liquid applications.", "Thermal mass flowmeters — gas mass-flow measurement, including compressed air applications."] },
-      { heading: "Industrial Applications", paragraphs: ["SensCore supports industrial flow measurement for water, wastewater, chemicals, slurry, steam, compressed air, process gases and other industrial fluids."] }
+      {
+        heading: "Choosing the Right Flow Measurement Technology",
+        paragraphs: [
+          "SensCore supports industrial flow measurement applications with technologies for water, wastewater, chemicals, slurry, steam, compressed air, process gases and other industrial fluids."
+        ],
+        bullets: [
+          "Electromagnetic Flowmeters — Electromagnetic flowmeters measure the volumetric flow of conductive liquids using electromagnetic induction. With no obstruction inside the measuring tube, they are widely considered for water, wastewater, conductive chemicals, slurry and other suitable process liquids. Liner and electrode selection should be matched carefully to the process medium, especially where corrosion, abrasion or temperature are important considerations.",
+          "Vortex Flowmeters — Vortex flowmeters measure flow by detecting vortices generated as the fluid passes a bluff body. They can be applied to liquids, gases and steam where process and installation conditions are suitable. They are particularly relevant to steam measurement, utility monitoring and industrial gas applications. Multivariable configurations can also incorporate temperature and pressure information for compensated flow measurement.",
+          "Ultrasonic and Clamp-On Flowmeters — Ultrasonic flow measurement uses acoustic signals to determine fluid velocity. Clamp on ultrasonic flowmeters can be useful when measurement is required without cutting the existing pipeline. This makes the technology particularly valuable for temporary flow surveys, verification work and applications where process interruption should be minimised. SensCore includes clamp on ultrasonic measurement within its flow measurement and survey capability.",
+          "Coriolis Mass Flowmeters — Coriolis flowmeters measure mass flow directly and are suited to applications where accurate mass measurement is important. They can be considered for a wide range of liquids, including higher viscosity fluids, suspensions and demanding process applications, subject to correct sizing and material compatibility.",
+          "Thermal Mass Flowmeters — Thermal mass flowmeters measure gas mass flow using heat transfer principles. They are particularly useful for compressed air and industrial gas measurement where direct mass flow information is required. Applications can include compressed air consumption, nitrogen, oxygen, argon, combustion air and other compatible gases.",
+          "Differential Pressure and Pitot Tube Flowmeters — Differential pressure measurement determines flow from the relationship between fluid velocity and measured pressure difference. Pitot-tube based systems can be useful for compressed air, gases, steam and larger pipelines where insertion measurement and relatively low-pressure loss are important considerations. Certain configurations can also support installation on operating pipelines.",
+          "Turbine, Variable Area and Other Flowmeters — Turbine flowmeters use a rotating element whose speed corresponds to fluid velocity and can provide a pulse signal proportional to flow. Variable area meters provide a simple approach for suitable smaller flow applications. SensCore can also support water meters, micro flowmeters and other measurement technologies where the process requirement calls for a more specialised solution."
+        ]
+      },
+      {
+        heading: "What Should Engineers Consider When Selecting a Flowmeter?",
+        paragraphs: [
+          "Flowmeter selection should consider the complete operating condition.",
+          "Important factors include the measured medium, minimum and maximum flow, pipe diameter, pressure, temperature, density, viscosity, conductivity, solids content, required accuracy, available straight pipe length, connection type, material compatibility, hazardous area requirements, communication outputs and future maintenance access.",
+          "The best measurement technology is therefore application specific."
+        ]
+      },
+      {
+        heading: "Typical Industrial Flow Measurement Applications",
+        paragraphs: [
+          "SensCore supports flow measurement requirements across water and wastewater systems, oil and gas facilities, chemical processing, manufacturing, power generation, food and beverage plants, utilities, compressed air networks, HVAC and district cooling systems.",
+          "Applications may include process flow control, utility metering, steam monitoring, compressed air consumption, water distribution, chemical transfer, energy analysis, cooling circuits and temporary flow surveys."
+        ]
+      },
+      {
+        heading: "Flow Measurement Support Across the UAE",
+        paragraphs: [
+          "Based in the UAE, SensCore supports industrial flow measurement requirements across Abu Dhabi, Dubai, Sharjah, Ajman, Ras Al Khaimah (RAK), Fujairah and Umm Al Quwain (UAQ).",
+          "Our approach is centred on the process conditions and engineering requirement. Support can include flowmeter selection, application review, onsite flow surveys, flowmeter verification, commissioning support and troubleshooting for existing measurement systems."
+        ]
+      },
+      {
+        heading: "Frequently Asked Questions",
+        paragraphs: [
+          "Which flowmeter is best for an industrial application?\nThere is no single best flowmeter. The correct technology depends on the fluid, flow range, pipe size, pressure, temperature, accuracy requirement and installation conditions.",
+          "Which flowmeter is commonly used for water and wastewater?\nElectromagnetic flowmeters are widely considered for conductive water and wastewater applications. Ultrasonic technologies can also be appropriate, particularly where non-intrusive measurement is required.",
+          "What type of flowmeter can measure steam?\nVortex and differential pressure technologies are commonly considered for steam measurement. Final selection should account for steam condition, pressure, temperature, flow range and required compensation.",
+          "Can flow be measured without cutting the pipeline?\nYes. Clamp on ultrasonic flowmeters can measure suitable liquids externally without modifying the pipe. They are commonly useful for surveys, temporary measurement and verification.",
+          "What information is required to select a flowmeter?\nAt minimum, provide the fluid, pipe size, flow range, operating pressure, temperature, connection requirement and required output. Details such as conductivity, viscosity, density and solids content may also be necessary depending on the application."
+        ]
+      },
+      {
+        heading: "Need Help with a Flow Measurement Application?",
+        paragraphs: [
+          "SensCore can review your process conditions and help determine a suitable measurement principle, configuration and installation approach for industrial flow applications across the UAE."
+        ]
+      }
     ]
   },
   {
