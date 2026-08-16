@@ -51,9 +51,7 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
           <div className="mt-10 space-y-7">
             {contentSections.map((section, sectionIndex) => {
               const isFlowTechnologySection = section.heading === "Choosing the Right Flow Measurement Technology";
-              const paragraphs = isFlowTechnologySection
-                ? [article.intro, ...section.paragraphs]
-                : section.paragraphs;
+              const paragraphs = isFlowTechnologySection ? [article.intro, ...section.paragraphs] : section.paragraphs;
 
               return (
                 <Reveal key={section.heading} delay={sectionIndex * 0.04}>
@@ -68,9 +66,7 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
                           return (
                             <div key={paragraph} className="rounded-xl border border-line bg-void/30 p-5 sm:p-6">
                               <div className="flex items-start gap-4">
-                                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-teal/30 bg-teal/10 font-mono text-[10px] font-semibold text-teal">
-                                  {String(faqIndex + 1).padStart(2, "0")}
-                                </span>
+                                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-teal/30 bg-teal/10 font-mono text-[10px] font-semibold text-teal">{String(faqIndex + 1).padStart(2, "0")}</span>
                                 <div className="min-w-0">
                                   <h3 className="font-display text-base font-semibold leading-7 text-ink sm:text-lg">{question}</h3>
                                   {answer ? <p className="mt-2 text-sm leading-7 text-mute">{answer}</p> : null}
@@ -80,46 +76,32 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
                           );
                         })}
                       </div>
-                    ) : isFlowTechnologySection ? (
+                    ) : (
                       <>
                         <div className="mt-5 space-y-4 text-sm leading-8 text-mute">
-                          <p>{paragraphs[0]}</p>
-                          {paragraphs.slice(1).map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                          {paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                         </div>
 
                         {section.bullets ? (
                           <div className="mt-8 space-y-5">
                             {section.bullets.map((bullet, bulletIndex) => {
                               const separatorIndex = bullet.indexOf(" — ");
-                              const title = separatorIndex >= 0 ? bullet.slice(0, separatorIndex) : bullet;
-                              const text = separatorIndex >= 0 ? bullet.slice(separatorIndex + 3) : "";
+                              const title = separatorIndex >= 0 ? bullet.slice(0, separatorIndex) : `Application point ${String(bulletIndex + 1).padStart(2, "0")}`;
+                              const text = separatorIndex >= 0 ? bullet.slice(separatorIndex + 3) : bullet;
 
                               return (
-                                <article
-                                  key={bullet}
-                                  className="group relative overflow-hidden rounded-2xl border border-line bg-void/35 p-6 transition-all duration-300 hover:border-[#4f9cff]/40 hover:bg-[#08121f]/90 sm:p-7"
-                                >
+                                <article key={bullet} className="group relative overflow-hidden rounded-2xl border border-line bg-void/35 p-6 transition-all duration-300 hover:border-[#4f9cff]/40 hover:bg-[#08121f]/90 sm:p-7">
                                   <div className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-[#2f80ff]/5 blur-3xl transition-opacity duration-300 group-hover:bg-[#2f80ff]/10" />
-
                                   <div className="relative flex gap-5">
-                                    <div className="hidden shrink-0 sm:block">
-                                      <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#4f9cff]/30 bg-[#0a1727] font-mono text-[10px] tracking-[0.15em] text-[#6da8ff]">
-                                        {String(bulletIndex + 1).padStart(2, "0")}
-                                      </div>
+                                    <div className="shrink-0">
+                                      <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#4f9cff]/30 bg-[#0a1727] font-mono text-[10px] tracking-[0.15em] text-[#6da8ff]">{String(bulletIndex + 1).padStart(2, "0")}</div>
                                     </div>
-
-                                    <div className="min-w-0">
+                                    <div className="min-w-0 flex-1">
                                       <div className="flex items-center gap-3">
                                         <span className="h-px w-7 shrink-0 bg-[#4f9cff]" />
-                                        <h3 className="font-display text-xl font-semibold tracking-tight text-white sm:text-2xl">
-                                          {title}
-                                        </h3>
+                                        <h3 className="font-display text-xl font-semibold tracking-tight text-white sm:text-2xl">{title}</h3>
                                       </div>
-                                      {text ? (
-                                        <p className="mt-4 max-w-5xl text-sm leading-7 text-[#91a9c4] sm:text-[15px] sm:leading-8">
-                                          {text}
-                                        </p>
-                                      ) : null}
+                                      <p className="mt-4 max-w-5xl text-sm leading-7 text-[#91a9c4] sm:text-[15px] sm:leading-8">{text}</p>
                                     </div>
                                   </div>
                                 </article>
@@ -128,11 +110,7 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
                           </div>
                         ) : null}
                       </>
-                    ) : (
-                      <div className="mt-5 space-y-4 text-sm leading-8 text-mute">{paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
                     )}
-
-                    {!isFlowTechnologySection && section.bullets ? <ul className="mt-5 space-y-3 text-sm leading-7 text-mute">{section.bullets.map((bullet) => <li key={bullet} className="border-l-2 border-teal/40 pl-4">{bullet}</li>)}</ul> : null}
                   </section>
                 </Reveal>
               );
