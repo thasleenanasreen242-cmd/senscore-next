@@ -28,6 +28,7 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
   const next = KNOWLEDGE_ARTICLES[index + 1];
   const helpSection = article.sections.find((section) => section.heading.toLowerCase().startsWith("need help"));
   const contentSections = article.sections.filter((section) => section !== helpSection);
+  const showIntroBeforeSections = article.slug === "level-measurement";
 
   return (
     <>
@@ -47,6 +48,17 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
               </figcaption>
             </figure> : null}
           </Reveal>
+
+          {showIntroBeforeSections ? (
+            <Reveal>
+              <section className="mt-10 rounded-2xl border border-line bg-surface p-7 sm:p-9">
+                <h2 className="font-display text-2xl font-semibold text-ink">Industrial Level Measurement</h2>
+                <div className="mt-5 space-y-4 text-sm leading-8 text-mute">
+                  <p>{article.intro}</p>
+                </div>
+              </section>
+            </Reveal>
+          ) : null}
 
           <div className="mt-10 space-y-7">
             {contentSections.map((section, sectionIndex) => {
