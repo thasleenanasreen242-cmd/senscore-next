@@ -25,12 +25,14 @@ const DISPLAY_TITLES: Record<string, string> = {
 };
 
 export default function ProductsPage() {
+  const productCategories = PRODUCT_CATEGORIES.filter((cat) => cat.id !== "flangeguards");
+
   return (
     <>
       <PageHero eyebrow="Products & Services" title="Industrial Instrumentation, Automation & Process Solutions" description="Every layer of the process, engineered. From field measurement and process analysis to automation, valves, pumps and critical piping solutions, SensCore specifies, supplies and supports industrial technologies for applications across the UAE, backed by established global manufacturers and application-driven engineering." />
       <section className="py-24 sm:py-32">
         <div className="mx-auto flex max-w-7xl flex-col gap-24 px-6 lg:px-10">
-          {PRODUCT_CATEGORIES.slice(0, 6).map((cat, i) => {
+          {productCategories.map((cat, i) => {
             const Icon = ICONS[cat.id] ?? Gauge;
             const videoSrc = VIDEOS[cat.id];
             const reversed = i % 2 === 1;
