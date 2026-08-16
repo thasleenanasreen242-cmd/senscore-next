@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Gauge, Cpu, Sliders, TestTube, Waves, ShieldCheck, Wrench } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
@@ -41,6 +42,7 @@ export default function ProductsPage() {
                 <h2 className="mt-6 font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl">{DISPLAY_TITLES[cat.id] ?? cat.title}</h2>
                 <p className="mt-5 text-base leading-relaxed text-mute sm:text-lg">{cat.description}</p>
                 <div className="mt-8 flex flex-col gap-5">{cat.groups.map((group) => <div key={group.heading} className="border-l-2 border-teal/30 pl-4"><h3 className="font-mono text-xs uppercase tracking-[0.15em] text-teal">{group.heading}</h3><p className="mt-1.5 text-sm leading-relaxed text-mute">{group.items}</p></div>)}</div>
+                {cat.id === "flangeguards" && <div className="mt-8"><Link href="/products/flange-guards" className="inline-flex items-center gap-2 rounded-full border border-teal/40 bg-teal/10 px-5 py-2.5 text-sm font-medium text-teal transition hover:border-teal hover:bg-teal/15">Explore Flange Protection & Sealing <span aria-hidden="true">→</span></Link></div>}
               </Reveal>
               <Reveal delay={0.1}><div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl border border-line bg-surface hud-grid-fine lg:sticky lg:top-28">{videoSrc ? <MutableVideo src={videoSrc} className="absolute inset-0 h-full w-full object-cover" /> : <><div className="absolute inset-0 bg-gradient-to-br from-teal/[0.08] via-transparent to-indigo/[0.08]" /><span className="relative flex h-24 w-24 items-center justify-center rounded-2xl border border-teal/30 bg-void/60 text-teal"><Icon size={40} strokeWidth={1.5} /></span></>}<span className="absolute bottom-5 right-5 z-10 font-mono text-[10px] uppercase tracking-[0.2em] text-faint">{cat.tag}</span></div></Reveal>
             </div>;
