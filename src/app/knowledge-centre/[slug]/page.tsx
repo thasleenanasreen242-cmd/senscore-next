@@ -37,16 +37,18 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
         <div className="mx-auto max-w-5xl px-6 lg:px-10">
           <Reveal>
             <Link href="/knowledge-centre" className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-teal hover:text-ink"><ArrowLeft size={14} /> Back to Knowledge Centre</Link>
-            {image ? <figure className="mt-8 overflow-hidden rounded-2xl border border-line bg-surface">
-              <div className="relative aspect-[21/9] bg-[#07121d]">
-                <img src={image.src} alt={image.alt} className="h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#061015]/65 via-transparent to-transparent" />
+            <figure className="mt-8 overflow-hidden rounded-2xl border border-line bg-surface">
+              <div className="relative aspect-[21/9] overflow-hidden bg-[#07121d]">
+                {image ? (
+                  <>
+                    <img src={image.src} alt={image.alt} className="h-full w-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#061015]/65 via-transparent to-transparent" />
+                  </>
+                ) : (
+                  <div className="h-full w-full bg-gradient-to-br from-[#07121d] via-[#0a1622] to-[#061015]" aria-hidden="true" />
+                )}
               </div>
-              <figcaption className="flex flex-wrap items-center justify-between gap-2 border-t border-line px-5 py-3 font-mono text-[9px] uppercase tracking-[0.12em] text-faint">
-                <span>Industrial application reference</span>
-                <a href={image.href} target="_blank" rel="noopener noreferrer" className="text-teal hover:text-ink">Image source: {image.source} ↗</a>
-              </figcaption>
-            </figure> : null}
+            </figure>
           </Reveal>
 
           {showIntroBeforeSections ? (
