@@ -1,115 +1,165 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import PageHero from "@/components/PageHero";
-import Reveal from "@/components/Reveal";
-import { ArrowUpRight } from "lucide-react";
-import { KNOWLEDGE_TOPICS, KC_HUB } from "@/lib/knowledgeData";
-
-export const metadata: Metadata = {
-  title: KC_HUB.seoTitle,
-  description: KC_HUB.metaDescription,
-  alternates: { canonical: "https://www.senscoretech.com/knowledge-centre" },
-  openGraph: {
-    title: KC_HUB.seoTitle,
-    description: KC_HUB.metaDescription,
-    url: "https://www.senscoretech.com/knowledge-centre",
-  },
+export type KnowledgeArticle = {
+  slug: string;
+  title: string;
+  seoTitle: string;
+  description: string;
+  intro: string;
+  sections: { heading: string; paragraphs: string[]; bullets?: string[] }[];
 };
 
-export default function KnowledgeCentrePage() {
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: KC_HUB.faqs.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
+export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
+  {
+    slug: "flow-measurement",
+    title: "Flow Measurement for Industrial Applications",
+    seoTitle: "Flow Measurement UAE | Industrial Flowmeter Guide | SensCore",
+    description: "Technical guidance on industrial flow measurement, flowmeter selection and applications for water, steam, gas, chemicals and compressed air across the UAE.",
+    intro: "Reliable flow measurement starts with understanding the application, not simply selecting an instrument. Different liquids, gases and steam services require different measurement principles. Fluid properties, pipe size, operating pressure, temperature, required accuracy, flow range, installation conditions and maintenance requirements can all influence the correct choice.",
+    sections: [
+      { heading: "Choosing the Right Flow Measurement Technology", paragraphs: ["SensCore supports industrial flow measurement applications with technologies for water, wastewater, chemicals, slurry, steam, compressed air, process gases and other industrial fluids."], bullets: [
+        "Electromagnetic Flowmeters — Electromagnetic flowmeters measure the volumetric flow of conductive liquids using electromagnetic induction. With no obstruction inside the measuring tube, they are widely considered for water, wastewater, conductive chemicals, slurry and other suitable process liquids. Liner and electrode selection should be matched carefully to the process medium, especially where corrosion, abrasion or temperature are important considerations.",
+        "Vortex Flowmeters — Vortex flowmeters measure flow by detecting vortices generated as the fluid passes a bluff body. They can be applied to liquids, gases and steam where process and installation conditions are suitable. They are particularly relevant to steam measurement, utility monitoring and industrial gas applications. Multivariable configurations can also incorporate temperature and pressure information for compensated flow measurement.",
+        "Ultrasonic and Clamp-On Flowmeters — Ultrasonic flow measurement uses acoustic signals to determine fluid velocity. Clamp on ultrasonic flowmeters can be useful when measurement is required without cutting the existing pipeline. This makes the technology particularly valuable for temporary flow surveys, verification work and applications where process interruption should be minimised. SensCore includes clamp on ultrasonic measurement within its flow measurement and survey capability.",
+        "Coriolis Mass Flowmeters — Coriolis flowmeters measure mass flow directly and are suited to applications where accurate mass measurement is important. They can be considered for a wide range of liquids, including higher viscosity fluids, suspensions and demanding process applications, subject to correct sizing and material compatibility.",
+        "Thermal Mass Flowmeters — Thermal mass flowmeters measure gas mass flow using heat transfer principles. They are particularly useful for compressed air and industrial gas measurement where direct mass flow information is required. Applications can include compressed air consumption, nitrogen, oxygen, argon, combustion air and other compatible gases.",
+        "Differential Pressure and Pitot Tube Flowmeters — Differential pressure measurement determines flow from the relationship between fluid velocity and measured pressure difference. Pitot-tube based systems can be useful for compressed air, gases, steam and larger pipelines where insertion measurement and relatively low-pressure loss are important considerations. Certain configurations can also support installation on operating pipelines.",
+        "Turbine, Variable Area and Other Flowmeters — Turbine flowmeters use a rotating element whose speed corresponds to fluid velocity and can provide a pulse signal proportional to flow. Variable area meters provide a simple approach for suitable smaller flow applications. SensCore can also support water meters, micro flowmeters and other measurement technologies where the process requirement calls for a more specialised solution."
+      ] },
+      { heading: "What Should Engineers Consider When Selecting a Flowmeter?", paragraphs: ["Flowmeter selection should consider the complete operating condition.","Important factors include the measured medium, minimum and maximum flow, pipe diameter, pressure, temperature, density, viscosity, conductivity, solids content, required accuracy, available straight pipe length, connection type, material compatibility, hazardous area requirements, communication outputs and future maintenance access.","The best measurement technology is therefore application specific."] },
+      { heading: "Typical Industrial Flow Measurement Applications", paragraphs: ["SensCore supports flow measurement requirements across water and wastewater systems, oil and gas facilities, chemical processing, manufacturing, power generation, food and beverage plants, utilities, compressed air networks, HVAC and district cooling systems.","Applications may include process flow control, utility metering, steam monitoring, compressed air consumption, water distribution, chemical transfer, energy analysis, cooling circuits and temporary flow surveys."] },
+      { heading: "Flow Measurement Support Across the UAE", paragraphs: ["Based in the UAE, SensCore supports industrial flow measurement requirements across Abu Dhabi, Dubai, Sharjah, Ajman, Ras Al Khaimah (RAK), Fujairah and Umm Al Quwain (UAQ).","Our approach is centred on the process conditions and engineering requirement. Support can include flowmeter selection, application review, onsite flow surveys, flowmeter verification, commissioning support and troubleshooting for existing measurement systems."] },
+      { heading: "Frequently Asked Questions", paragraphs: ["Which flowmeter is best for an industrial application?\nThere is no single best flowmeter. The correct technology depends on the fluid, flow range, pipe size, pressure, temperature, accuracy requirement and installation conditions.","Which flowmeter is commonly used for water and wastewater?\nElectromagnetic flowmeters are widely considered for conductive water and wastewater applications. Ultrasonic technologies can also be appropriate, particularly where non-intrusive measurement is required.","What type of flowmeter can measure steam?\nVortex and differential pressure technologies are commonly considered for steam measurement. Final selection should account for steam condition, pressure, temperature, flow range and required compensation.","Can flow be measured without cutting the pipeline?\nYes. Clamp on ultrasonic flowmeters can measure suitable liquids externally without modifying the pipe. They are commonly useful for surveys, temporary measurement and verification.","What information is required to select a flowmeter?\nAt minimum, provide the fluid, pipe size, flow range, operating pressure, temperature, connection requirement and required output. Details such as conductivity, viscosity, density and solids content may also be necessary depending on the application."] },
+      { heading: "Need Help with a Flow Measurement Application?", paragraphs: ["SensCore can review your process conditions and help determine a suitable measurement principle, configuration and installation approach for industrial flow applications across the UAE."] }
+    ]
+  },
+  {
+    slug: "level-measurement",
+    title: "Industrial Level Measurement",
+    seoTitle: "Level Measurement UAE | Level Transmitters and Switches | SensCore",
+    description: "Technical guidance on industrial level measurement, level transmitters and level switches for tanks, liquids, solids and process applications across the UAE.",
+    intro: "Reliable level measurement is essential for process control, inventory monitoring, overflow prevention, pump protection and safe plant operation. The correct technology depends on much more than the height of the tank. The measured medium, pressure, temperature, density, dielectric properties, foam, vapour, agitation, tank geometry, solids behaviour and required measurement type can all influence instrument selection. SensCore supports continuous level measurement and point level detection for liquids, slurry, powders and bulk solids across industrial applications.",
+    sections: [
+      { heading: "Choosing the Right Level Measurement Technology", paragraphs: [], bullets: [
+        "Radar Level Transmitters — Radar level transmitters use microwave signals to measure the distance between the instrument and the material surface. As a non-contact technology, radar is widely considered for storage tanks, process vessels, liquids, slurry and bulk material applications. It can be particularly useful where process conditions make contact-based technologies less desirable. Correct antenna selection, mounting position, internal tank structures and the properties of the measured medium should be considered during selection.",
+        "Guided Wave Radar Level Transmitters — Guided wave radar sends radar pulses along a rod or cable probe towards the product surface. The technology can be used for continuous measurement of liquids, slurry and certain solids. It is commonly considered for storage tanks and process vessels where a guided signal provides advantages over free space measurement. Probe configuration, tank height, process connection, material properties and possible product build up should be reviewed for each application.",
+        "Ultrasonic Level Transmitters — Ultrasonic level transmitters determine level by transmitting sound pulses towards the material surface and measuring the returning echo. Because the measurement is non-contact, ultrasonic instruments can provide a practical solution for water tanks, wastewater applications and other suitable liquid or material level measurements. Temperature, vapour, foam, turbulence, obstructions and the available measuring distance can influence ultrasonic performance and should be considered before selection.",
+        "Magnetostrictive Level Transmitters — Magnetostrictive transmitters use a magnetic float and sensing element to determine the position of the liquid surface. The technology is suited to applications requiring precise continuous liquid level measurement and is commonly considered for storage tanks and process vessels in petroleum, chemical and related industries. Fluid density, float compatibility, process temperature and the required insertion length are important selection factors.",
+        "Float Continuous Level Transmitters — Float based continuous transmitters follow changes in liquid level mechanically through a float while converting the resulting position into an electrical output. Their relatively straightforward measurement principle can make them suitable for many tank level applications where the liquid properties and mechanical installation conditions are compatible."
+      ] },
+      { heading: "Industrial Level Switches", paragraphs: ["Continuous measurement is not always required. Many processes only need confirmation that material has reached a defined high or low point."], bullets: [
+        "Vibrating Level Switches — Vibrating or tuning fork level switches detect changes in vibration when the sensing element comes into contact with the process medium. They are commonly used for high-level and low-level alarms, overflow prevention and pump protection in suitable liquid and material applications.",
+        "Float Level Switches — Float switches use buoyancy and a switching mechanism to detect a predefined liquid level. They can provide a simple solution for tank control, alarms and pump operation where the fluid density and installation arrangement are suitable.",
+        "Rotary Level Switches — Rotary switches are primarily used for powders, granules and bulk solids. A rotating paddle is restricted when material reaches the sensing point, allowing the instrument to indicate high or low material level in silos, hoppers and similar storage systems.",
+        "Microwave and Radio Frequency Level Switches — Microwave level switches can detect material between a transmitter and receiver, while radio frequency admittance technologies detect changes in electrical characteristics around a sensing probe. These principles can be considered for demanding point level applications involving liquids, slurry, powders or bulk materials where conventional mechanical switching may be unsuitable."
+      ] },
+      { heading: "What Should Engineers Consider When Selecting a Level Instrument?", paragraphs: ["Level measurement should be selected around the complete process condition."], bullets: ["Measured liquid, slurry, powder or solid","Continuous measurement or point level detection","Tank height and geometry","Pressure and temperature","Density and dielectric properties","Foam, vapour, dust and agitation","Material build-up","Internal obstructions","Process connection","Wetted material compatibility","Required output and communication","Hazardous area requirements"] },
+      { heading: "Typical Level Measurement Applications", paragraphs: ["Industrial level measurement is used across water and wastewater treatment, oil and gas, chemical processing, petrochemical facilities, manufacturing, food and beverage, utilities and bulk material handling.","Typical duties include storage tank monitoring, process vessel level control, water tank measurement, chemical tank monitoring, slurry level measurement, silo level detection, overflow alarms, dry running protection and inventory monitoring."] },
+      { heading: "Level Measurement Support Across the UAE", paragraphs: ["SensCore supports industrial level measurement requirements across Abu Dhabi, Dubai, Sharjah, Ajman, Ras Al Khaimah (RAK), Fujairah and Umm Al Quwain (UAQ).","Our application-based approach considers the process medium, operating conditions, vessel configuration and control requirement before recommending a measurement principle.","Support is available for new projects, plant upgrades, replacement requirements and industrial applications across the UAE."] },
+      { heading: "Frequently Asked Questions", paragraphs: ["What is the difference between a level transmitter and a level switch?\nA level transmitter provides continuous information about the level inside a vessel. A level switch detects when the material reaches a specific predefined point.","Radar or ultrasonic level measurement: which is better?\nNeither technology is universally better. Selection depends on the medium, vessel, measuring range, vapour, foam, temperature, pressure and surrounding process conditions.","Can radar measure liquid without contacting it?\nYes. Non-contact radar level transmitters measure the product surface from above the vessel without requiring a probe to remain immersed in the liquid.","Which level technology is suitable for powders and bulk solids?\nRadar, guided wave radar, rotary switches, vibration switches and other technologies may be considered depending on the material properties, vessel geometry, dust conditions and whether continuous or point measurement is required.","What information is needed to select a level transmitter?\nUseful information includes the measured medium, vessel dimensions, measuring range, pressure, temperature, process connection, material compatibility and whether continuous measurement, alarm detection or both are required."] },
+      { heading: "Need Help with a Level Measurement Application?", paragraphs: ["SensCore can review the vessel, process medium and operating conditions to help determine a suitable level measurement principle and instrument configuration for industrial applications across the UAE."] }
+    ]
+  },
+  {
+    slug: "pressure-temperature",
+    title: "Pressure and Temperature Measurement",
+    seoTitle: "Pressure and Temperature Measurement UAE | Industrial Instrumentation | SensCore",
+    description: "Technical guidance on pressure and temperature measurement, transmitters, differential pressure, RTDs and thermocouples for industrial applications across the UAE.",
+    intro: "Pressure and temperature are fundamental process variables used to monitor equipment, control industrial processes, protect assets and maintain safe operating conditions. Reliable measurement depends on selecting the correct sensing technology, measuring range, process connection, wetted materials and installation arrangement for the application. SensCore supports industrial pressure and temperature measurement for liquids, gases, steam, utilities and process systems across a wide range of industries.",
+    sections: [
+      { heading: "Industrial Pressure Measurement", paragraphs: ["Pressure measurement provides information about the force exerted by a liquid or gas within a process, pipeline, vessel or equipment system. Applications can range from monitoring pump discharge and compressed air networks to measuring process pressure, filter condition, tank pressure and differential pressure."] },
+      { heading: "Pressure Transmitters", paragraphs: ["Pressure transmitters convert process pressure into an electrical signal that can be transmitted to a PLC, control system, indicator or monitoring platform. Selection should consider whether gauge, absolute or another pressure reference is required, along with the expected operating range, maximum pressure, process temperature, connection type and material compatibility. Pressure transmitters are widely used across water systems, chemical processes, compressed air, utilities, pumps, pipelines and industrial equipment."] },
+      { heading: "Differential Pressure Transmitters", paragraphs: ["Differential pressure transmitters measure the difference between two pressure points. This principle is widely used for flow measurement together with primary elements such as orifice plates, Pitot tubes and Venturi arrangements. Differential pressure can also be used for filter monitoring, vessel applications and other process measurements. Correct range selection and impulse line arrangement are important because installation conditions can directly affect measurement quality."] },
+      { heading: "Pressure Gauges and Pressure Switches", paragraphs: ["Not every pressure application requires continuous electronic transmission. Pressure gauges provide local indication and remain useful for equipment monitoring and maintenance checks. Pressure switches provide a discrete signal when pressure reaches a defined point and can be used for alarms, equipment protection and control functions."] },
+      { heading: "Wireless Pressure Measurement", paragraphs: ["Wireless pressure transmitters can provide an alternative where new signal cabling is difficult, costly or impractical. Potential applications include additional monitoring points, plant upgrades and remote equipment monitoring. Wireless instrument selection should consider communication range, battery requirements, plant infrastructure and the importance of the measurement to the control function."] },
+      { heading: "Industrial Temperature Measurement", paragraphs: ["Temperature measurement is critical across heating, cooling, steam, chemical processing, utilities, machinery and manufacturing applications. The correct instrument depends on the required temperature range, accuracy, response time, process conditions and installation method."] },
+      { heading: "RTD Temperature Sensors", paragraphs: ["Resistance Temperature Detectors use the predictable change in electrical resistance of a sensing element as temperature changes. RTDs, including commonly used platinum sensing elements such as Pt100, are widely applied where stable and accurate industrial temperature measurement is required. They are commonly used in process liquids, tanks, pipelines, utility systems and machinery monitoring."] },
+      { heading: "Thermocouples", paragraphs: ["Thermocouples generate a small electrical voltage related to the temperature difference between joined dissimilar metals. Different thermocouple types are available for different temperature ranges and process environments. They are commonly considered for higher temperature applications and locations requiring a rugged temperature sensing element. Selection should consider temperature range, sheath material, response requirement and compatibility with the process environment."] },
+      { heading: "Temperature Transmitters", paragraphs: ["Temperature transmitters convert signals from RTDs or thermocouples into standard signals suitable for industrial control and monitoring systems. This allows temperature information to be transmitted over longer distances to PLCs, SCADA systems, indicators and control rooms. Depending on the application, temperature transmitters may be supplied as integrated field instruments or combined with separate temperature sensing elements."] },
+      { heading: "Wireless Temperature Measurement", paragraphs: ["Wireless temperature transmitters can support additional monitoring where conventional signal wiring is inconvenient. They may be useful for plant upgrades, distributed assets and supplementary condition monitoring, provided communication reliability and application criticality are evaluated correctly."] },
+      { heading: "What Should Engineers Consider When Selecting Pressure and Temperature Instruments?", paragraphs: ["Instrument selection should begin with actual process conditions. For pressure measurement, important information includes the pressure range, maximum allowable pressure, process medium, temperature, connection size, reference type and wetted materials. For temperature measurement, engineers should consider the operating range, required accuracy, response time, sensor type, insertion length, thermowell requirement, process connection and environmental conditions. Signal requirements such as analogue output, HART, RS485 or wireless communication should also be considered when integrating instruments into plant systems."] },
+      { heading: "Pressure and Temperature in Multivariable Measurement", paragraphs: ["Pressure and temperature measurements are also important when other process variables depend on operating conditions. For example, steam and gas flow measurement may require pressure and temperature compensation because changes in process conditions affect density and calculated mass flow. Multivariable instruments can combine these measurements to provide additional process information from a single measurement point."] },
+      { heading: "Typical Industrial Applications", paragraphs: ["Pressure and temperature instrumentation is widely used across oil and gas, water and wastewater, chemical processing, petrochemical plants, power generation, manufacturing, food and beverage, compressed air systems, HVAC, district cooling and utilities. Typical applications include pipeline monitoring, pump systems, steam lines, heat exchangers, compressors, storage vessels, filters, boilers, cooling systems and process equipment."] },
+      { heading: "Pressure and Temperature Measurement Across the UAE", paragraphs: ["SensCore supports industrial pressure and temperature measurement requirements across Abu Dhabi, Dubai, Sharjah, Ajman, Ras Al Khaimah (RAK), Fujairah and Umm Al Quwain (UAQ). Our engineering approach considers the process medium, measurement range, operating conditions, installation requirements and control system interface before recommending an instrument configuration. Support is available for new projects, plant upgrades, replacement requirements and industrial maintenance applications throughout the UAE."] },
+      { heading: "Frequently Asked Questions", paragraphs: ["What is the difference between a pressure gauge and a pressure transmitter?\nA pressure gauge normally provides local indication. A pressure transmitter converts the measured pressure into a signal that can be transmitted to a control or monitoring system.","What does a differential pressure transmitter measure?\nA differential pressure transmitter measures the difference between two pressure points. It can be used in applications such as flow measurement and filter condition monitoring.","What is the difference between an RTD and a thermocouple?\nBoth measure temperature using different sensing principles. RTDs are commonly selected where stability and measurement accuracy are important, while thermocouples can be advantageous across wider and higher temperature ranges.","Why is a temperature transmitter used with an RTD or thermocouple?\nA transmitter converts the sensor output into a standard industrial signal that can be transmitted reliably to a PLC, indicator or control system.","Can pressure and temperature be measured wirelessly?\nYes. Wireless transmitters can provide remote pressure or temperature data where suitable communication infrastructure is available. The application, communication reliability and measurement criticality should be assessed before selection."] },
+      { heading: "Need Help with a Pressure or Temperature Measurement Application?", paragraphs: ["SensCore can review your process conditions and help identify a suitable pressure or temperature measurement principle, instrument configuration and installation approach for industrial applications across the UAE."] }
+    ]
+  },
+  {
+    slug: "process-analysis",
+    title: "Process Analysis and Water Quality Monitoring",
+    seoTitle: "Process Analysis UAE | Water Quality Instrumentation | SensCore",
+    description: "Technical guidance on pH, conductivity, dissolved oxygen, turbidity, chlorine and industrial process analysis.",
+    intro: "Process analysis provides visibility into water quality and critical process parameters. Technology should be selected around the medium, range, installation and maintenance requirements.",
+    sections: [{ heading: "Common Analytical Parameters", paragraphs: ["Applications may involve pH, conductivity, dissolved oxygen, turbidity, chlorine and other analytical measurements depending on the process."] }]
+  },
+  {
+    slug: "automation-connectivity",
+    title: "Industrial Automation and Connectivity",
+    seoTitle: "Industrial Automation UAE | PLC Remote IO Connectivity | SensCore",
+    description: "Practical guidance on PLCs, Remote IO, industrial communication, protocol conversion and instrument connectivity across the UAE.",
+    intro: "Modern industrial automation connects field instruments and equipment to controllers, communication networks and supervisory systems.",
+    sections: [{ heading: "PLC, Remote IO and Industrial Networks", paragraphs: ["SensCore supports PLC and Remote IO selection, industrial communication, protocol conversion, instrument connectivity and integration for new projects, plant upgrades and existing systems."], bullets: ["Remote IO collects distributed field signals and communicates with a PLC or control system.", "Protocol gateways allow equipment using different communication protocols to exchange information.", "IO Link can carry process values together with device information, configuration and diagnostics."] }]
+  },
+  {
+    slug: "valves-flow-control",
+    title: "Industrial Valves and Flow Control",
+    seoTitle: "Valves and Flow Control UAE | Industrial Valves | SensCore",
+    description: "Technical guidance on industrial valves, flow control, butterfly valves, ball valves, control valves and valve automation for applications across the UAE.",
+    intro: "Industrial valves control, isolate, regulate or direct the movement of liquids, gases, steam, slurry and other process media. Selecting the correct valve requires more than matching pipeline size.",
+    sections: [
+      { heading: "Butterfly Valves", paragraphs: ["Butterfly valves use a rotating disc to control or isolate flow. Wafer, lug and double-flanged designs may be considered, including concentric, high-performance and triple-offset arrangements."] },
+      { heading: "Ball Valves", paragraphs: ["Ball valves use a rotating ball with an internal flow passage and are commonly selected for reliable shut-off and relatively low flow resistance. Configurations may include threaded, flanged, three-piece, three-way, floating and trunnion-mounted designs."] },
+      { heading: "Gate, Globe and Check Valves", paragraphs: ["Gate valves are primarily used for isolation, globe valves are commonly considered for regulation or throttling, and check valves help prevent reverse flow."] },
+      { heading: "Specialised Valves for Challenging Applications", paragraphs: ["Abrasive slurry, powders, corrosive chemicals and dry bulk materials can create specific challenges involving wear, material build-up, sealing and operating torque. ABC Valve offers abrasion-resistant butterfly valves, lined ball valves, inflatable-seat butterfly valves, dome valves, powder discharge valves, rotary valves and slide-gate solutions."] },
+      { heading: "Valve Actuation and Automation", paragraphs: ["Pneumatic and electric actuators can be used for automated operation. Assemblies may include solenoid valves, limit switches, valve indicators and positioners."] },
+      { heading: "Control Valves and Flow Regulation", paragraphs: ["Control valve selection should consider required flow capacity, pressure conditions, available pressure drop, fluid properties, operating range, actuator requirements and control signal. The final valve assembly should be evaluated as part of the complete process control loop."] }
+    ]
+  },
+  {
+    slug: "pumps-dosing",
+    title: "Industrial Pumps and Dosing",
+    seoTitle: "Industrial Pumps and Dosing UAE | Pump Selection Guide | SensCore",
+    description: "Technical guidance on industrial pumps, AODD pumps, metering and dosing pumps, centrifugal pumps and specialised pumping applications across the UAE.",
+    intro: "Industrial pump selection starts with the application. Flow rate and pressure are important, but fluid properties, viscosity, solids content, chemical compatibility, suction conditions, temperature and operating pattern also matter.",
+    sections: [
+      { heading: "AODD Pumps", paragraphs: ["Air Operated Double Diaphragm pumps use compressed air to move flexible diaphragms. They are widely used for chemicals, viscous liquids, slurry, wastewater and suspended solids where suitable materials can be selected."] },
+      { heading: "Metering and Dosing Pumps", paragraphs: ["Metering pumps provide controlled delivery of liquids for chemical dosing, water treatment, disinfection, pH correction and process additives. Required dosing rate, discharge pressure, chemical properties and control method should be defined before selection."] },
+      { heading: "Centrifugal and Process Pumps", paragraphs: ["Centrifugal pumps are widely used for water circulation, utilities, cooling systems, process transfer and general industrial pumping. Selection should consider duty point, suction conditions, system resistance, fluid properties and material compatibility."] }
+    ]
+  },
+  {
+    slug: "flange-protection",
+    title: "Industrial Flange Guards and Leak Protection",
+    seoTitle: "Flange Guards UAE | Industrial Flange Protection | SensCore",
+    description: "Technical guidance on flange guards, spray protection, chemical flange safety, leak containment and industrial flange protection across the UAE.",
+    intro: "Flanged connections are common throughout industrial piping systems. Where the medium is corrosive, hazardous, hot or flammable, a pressurised spray can create risks for personnel and equipment.",
+    sections: [{ heading: "Flange Protection", paragraphs: ["Flange guards provide secondary protection around flanged joints by helping contain, control or redirect an unexpected release. They do not replace correct gasket selection, flange assembly or maintenance. SensCore supports flange surveys, mapping, customised guard selection and installation."] }, { heading: "Industrial Gaskets", paragraphs: ["Gaskets remain the primary sealing element within a flanged joint. SensCore can support flat, spiral-wound, cam-profile and ring-joint constructions where required."] }]
+  },
+  {
+    slug: "compressed-air-energy-efficiency",
+    title: "Compressed Air and Energy Efficiency",
+    seoTitle: "Compressed Air Audit UAE | Energy Efficiency and Flow Measurement | SensCore",
+    description: "Technical guidance on compressed air audits, compressor efficiency, air flow measurement, network monitoring and energy efficiency for industrial facilities across the UAE.",
+    intro: "Compressed air is an essential industrial utility, but its performance cannot be managed effectively without reliable measurement. Systems can experience excessive consumption, leakage, pressure losses, inefficient compressor loading or poor distribution.",
+    sections: [
+      { heading: "Compressed Air Flow Measurement", paragraphs: ["Measuring air flow at compressor outlets, main distribution lines, production areas or individual equipment helps establish consumption patterns and changes in demand. Thermal mass flowmeters are widely used for compressed air; differential pressure and insertion technologies may also be considered."] },
+      { heading: "Compressed Air Network Auditing", paragraphs: ["A complete audit assesses the distribution network as well as the compressor room. Measurement can identify unexpected consumption, pressure-related inefficiencies, high-consumption areas and possible leakage or uncontrolled usage."] },
+      { heading: "Improving Energy Efficiency", paragraphs: ["Potential opportunities include repairing leaks, reviewing compressor sequencing, reducing unnecessary air consumption, improving distribution, correcting pressure settings and identifying equipment using more air than expected."] }
+    ]
+  },
+  {
+    slug: "engineering-practice",
+    title: "Engineering Practice and Industrial Applications",
+    seoTitle: "Industrial Engineering and Instrumentation UAE | SensCore",
+    description: "Practical guidance on instrument selection, specification, installation, commissioning, verification and industrial applications across the UAE.",
+    intro: "Good industrial measurement begins before an instrument is installed. Process conditions must first be understood, followed by correct technology selection, specification, installation, commissioning and ongoing verification.",
+    sections: [
+      { heading: "Application-Based Instrument Selection", paragraphs: ["The same measurement requirement can often be solved using several technologies, but they may not perform equally well under actual process conditions. Flowmeter selection can depend on conductivity, viscosity, solids content, pipe size, pressure, temperature and available installation space. Level measurement can be influenced by foam, vapour, dust, agitation and vessel geometry."] },
+      { heading: "Engineering Specification Review", paragraphs: ["Important requirements can include the measured or handled medium, operating and design conditions, measurement range, pipe or vessel dimensions, materials, process connections, accuracy, electrical and communication requirements, environmental conditions and hazardous-area requirements where applicable."] },
+      { heading: "Commissioning and Verification", paragraphs: ["Commissioning can include installation inspection, configuration, signal testing, loop checking, communication verification and confirmation that measurement is correctly received by the control system."] }
+    ]
+  }
+];
 
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
-
-      <PageHero
-        eyebrow="Knowledge Centre"
-        title={KC_HUB.heading}
-        description=""
-      />
-
-      <section className="border-b border-line py-10 sm:py-14">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <Reveal>
-            <div className="max-w-4xl space-y-5 text-base leading-relaxed text-mute sm:text-lg">
-              {KC_HUB.intro.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ---------------- TOPICS GRID ---------------- */}
-      <section className="py-28 sm:py-36">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <Reveal>
-            <h2 className="font-display text-2xl font-bold leading-tight text-ink sm:text-3xl">
-              Explore by Engineering Topic
-            </h2>
-          </Reveal>
-
-          <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
-            {KNOWLEDGE_TOPICS.map((topic, i) => (
-              <Reveal key={topic.slug} delay={i * 0.03} className="bg-surface">
-                <Link
-                  href={`/knowledge-centre/${topic.slug}`}
-                  className="group flex h-full flex-col justify-between p-9 transition-colors duration-300 hover:bg-surface2/60"
-                >
-                  <div>
-                    <h3 className="font-display text-lg font-medium text-ink">
-                      {topic.shortTitle}
-                    </h3>
-                    <p className="mt-4 text-sm leading-relaxed text-mute">
-                      {topic.intro[0]}
-                    </p>
-                  </div>
-                  <div className="mt-9 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.15em] text-teal opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    Explore
-                    <ArrowUpRight size={13} />
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ---------------- FAQ ---------------- */}
-      <section className="border-t border-line py-28 sm:py-36">
-        <div className="mx-auto max-w-4xl px-6 lg:px-10">
-          <Reveal>
-            <h2 className="font-display text-2xl font-bold leading-tight text-ink sm:text-3xl">
-              Frequently Asked Questions
-            </h2>
-          </Reveal>
-
-          <div className="mt-12 flex flex-col gap-10">
-            {KC_HUB.faqs.map((f, i) => (
-              <Reveal key={i} delay={i * 0.03} className="border-t border-line pt-8">
-                <h3 className="font-display text-lg font-medium text-ink">
-                  {f.q}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-mute sm:text-base">
-                  {f.a}
-                </p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-    </>
-  );
+export function getKnowledgeArticle(slug: string) {
+  return KNOWLEDGE_ARTICLES.find((article) => article.slug === slug);
 }
