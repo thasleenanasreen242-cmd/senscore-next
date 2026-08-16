@@ -14,6 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/knowledge-centre/flange-protection",
     "/knowledge-centre/compressed-air-energy-efficiency",
     "/knowledge-centre/engineering-practice",
+    "/knowledge-centre/pumps-dosing",
+    "/knowledge-centre/valves-flow-control",
     "/contact",
   ].map((path) => ({
     url: `${baseUrl}${path}`,
