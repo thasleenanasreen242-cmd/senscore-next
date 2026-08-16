@@ -11,10 +11,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/services",
     "/industries",
     "/knowledge-centre",
+    "/knowledge-centre/flange-protection",
     "/contact",
   ].map((path) => ({
     url: `${baseUrl}${path}`,
     changeFrequency: "monthly",
-    priority: path === "" ? 1 : path === "/products/flange-guards" ? 0.9 : 0.8,
+    priority: path === "" ? 1 : path === "/knowledge-centre/flange-protection" ? 0.9 : 0.8,
   }));
 }
