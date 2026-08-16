@@ -12,10 +12,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/industries",
     "/knowledge-centre",
     "/knowledge-centre/flange-protection",
+    "/knowledge-centre/compressed-air-energy-efficiency",
+    "/knowledge-centre/engineering-practice",
     "/contact",
   ].map((path) => ({
     url: `${baseUrl}${path}`,
     changeFrequency: "monthly",
-    priority: path === "" ? 1 : path === "/knowledge-centre/flange-protection" ? 0.9 : 0.8,
+    priority: path === "" ? 1 : path.startsWith("/knowledge-centre/") ? 0.9 : 0.8,
   }));
 }
