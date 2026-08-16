@@ -7,12 +7,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/about",
     "/products",
+    "/products/flange-guards",
     "/services",
     "/industries",
+    "/knowledge-centre",
     "/contact",
   ].map((path) => ({
     url: `${baseUrl}${path}`,
     changeFrequency: "monthly",
-    priority: path === "" ? 1 : 0.8,
+    priority: path === "" ? 1 : path === "/products/flange-guards" ? 0.9 : 0.8,
   }));
 }
