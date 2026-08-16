@@ -65,6 +65,14 @@ export default function KnowledgeCentrePage() {
                     </span>
                     <ArrowRight size={17} className="text-faint transition-transform group-hover:translate-x-1 group-hover:text-teal" />
                   </div>
+
+                  {index >= 4 ? (
+                    <div
+                      className="mt-5 aspect-[16/7] w-full overflow-hidden rounded-xl border border-line bg-gradient-to-br from-[#07121d] via-[#0a1622] to-[#061015]"
+                      aria-label={`Image placeholder for ${title}`}
+                    />
+                  ) : null}
+
                   <h3 className="mt-5 font-display text-xl font-medium text-ink">{title}</h3>
                   <p className="mt-3 text-sm leading-7 text-mute">{text}</p>
                   <div className="mt-6 text-xs font-semibold text-teal">Read technical guide →</div>
