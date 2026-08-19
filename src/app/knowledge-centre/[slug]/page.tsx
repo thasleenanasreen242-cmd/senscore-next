@@ -45,7 +45,9 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
                     <div className="absolute inset-0 bg-gradient-to-t from-[#061015]/65 via-transparent to-transparent" />
                   </>
                 ) : (
-                  <div className="h-full w-full bg-gradient-to-br from-[#07121d] via-[#0a1622] to-[#061015]" aria-hidden="true" />
+                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#07121d] via-[#0a1622] to-[#061015]" aria-label={`Image placeholder for ${article.title}`}>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#52708e]">Image Placeholder</span>
+                  </div>
                 )}
               </div>
             </figure>
@@ -55,9 +57,7 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
             <Reveal>
               <section className="mt-10 rounded-2xl border border-line bg-surface p-7 sm:p-9">
                 <h2 className="font-display text-2xl font-semibold text-ink">{article.title}</h2>
-                <div className="mt-5 space-y-4 text-sm leading-8 text-mute">
-                  <p>{article.intro}</p>
-                </div>
+                <div className="mt-5 space-y-4 text-sm leading-8 text-mute"><p>{article.intro}</p></div>
               </section>
             </Reveal>
           ) : null}
@@ -72,62 +72,24 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
                 <Reveal key={section.heading} delay={sectionIndex * 0.04}>
                   <section className="rounded-2xl border border-line bg-surface p-7 sm:p-9">
                     <h2 className="font-display text-2xl font-semibold text-ink">{section.heading}</h2>
+                    <div className="mt-5 flex aspect-[16/6] w-full items-center justify-center overflow-hidden rounded-xl border border-line bg-gradient-to-br from-[#07121d] via-[#0a1622] to-[#061015]" aria-label={`Image placeholder for ${section.heading}`}>
+                      <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#52708e]">Image Placeholder</span>
+                    </div>
 
                     {section.heading === "Frequently Asked Questions" ? (
                       <div className="mt-6 space-y-4">
                         {paragraphs.map((paragraph, faqIndex) => {
                           const [question, ...answerParts] = paragraph.split("\n");
                           const answer = answerParts.join(" ").trim();
-                          return (
-                            <div key={paragraph} className="rounded-xl border border-line bg-void/30 p-5 sm:p-6">
-                              <div className="flex items-start gap-4">
-                                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-teal/30 bg-teal/10 font-mono text-[10px] font-semibold text-teal">{String(faqIndex + 1).padStart(2, "0")}</span>
-                                <div className="min-w-0">
-                                  <h3 className="font-display text-base font-semibold leading-7 text-ink sm:text-lg">{question}</h3>
-                                  {answer ? <p className="mt-2 text-sm leading-7 text-mute">{answer}</p> : null}
-                                </div>
-                              </div>
-                            </div>
-                          );
+                          return <div key={paragraph} className="rounded-xl border border-line bg-void/30 p-5 sm:p-6"><div className="flex items-start gap-4"><span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-teal/30 bg-teal/10 font-mono text-[10px] font-semibold text-teal">{String(faqIndex + 1).padStart(2, "0")}</span><div className="min-w-0"><h3 className="font-display text-base font-semibold leading-7 text-ink sm:text-lg">{question}</h3>{answer ? <p className="mt-2 text-sm leading-7 text-mute">{answer}</p> : null}</div></div></div>;
                         })}
                       </div>
                     ) : isLevelSelectionSection ? (
-                      <ul className="mt-6 list-disc space-y-3 pl-6 text-sm leading-8 text-mute marker:text-teal sm:text-[15px]">
-                        {section.bullets?.map((bullet) => <li key={bullet} className="pl-2">{bullet}</li>)}
-                      </ul>
+                      <ul className="mt-6 list-disc space-y-3 pl-6 text-sm leading-8 text-mute marker:text-teal sm:text-[15px]">{section.bullets?.map((bullet) => <li key={bullet} className="pl-2">{bullet}</li>)}</ul>
                     ) : (
                       <>
-                        <div className="mt-5 space-y-4 text-sm leading-8 text-mute">
-                          {paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-                        </div>
-
-                        {section.bullets ? (
-                          <div className="mt-8 space-y-5">
-                            {section.bullets.map((bullet, bulletIndex) => {
-                              const separatorIndex = bullet.indexOf(" — ");
-                              const title = separatorIndex >= 0 ? bullet.slice(0, separatorIndex) : `Application point ${String(bulletIndex + 1).padStart(2, "0")}`;
-                              const text = separatorIndex >= 0 ? bullet.slice(separatorIndex + 3) : bullet;
-
-                              return (
-                                <article key={bullet} className="group relative overflow-hidden rounded-2xl border border-line bg-void/35 p-6 transition-all duration-300 hover:border-[#4f9cff]/40 hover:bg-[#08121f]/90 sm:p-7">
-                                  <div className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-[#2f80ff]/5 blur-3xl transition-opacity duration-300 group-hover:bg-[#2f80ff]/10" />
-                                  <div className="relative flex gap-5">
-                                    <div className="shrink-0">
-                                      <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#4f9cff]/30 bg-[#0a1727] font-mono text-[10px] tracking-[0.15em] text-[#6da8ff]">{String(bulletIndex + 1).padStart(2, "0")}</div>
-                                    </div>
-                                    <div className="min-w-0 flex-1">
-                                      <div className="flex items-center gap-3">
-                                        <span className="h-px w-7 shrink-0 bg-[#4f9cff]" />
-                                        <h3 className="font-display text-xl font-semibold tracking-tight text-white sm:text-2xl">{title}</h3>
-                                      </div>
-                                      <p className="mt-4 max-w-5xl text-sm leading-7 text-[#91a9c4] sm:text-[15px] sm:leading-8">{text}</p>
-                                    </div>
-                                  </div>
-                                </article>
-                              );
-                            })}
-                          </div>
-                        ) : null}
+                        <div className="mt-5 space-y-4 text-sm leading-8 text-mute">{paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
+                        {section.bullets ? <div className="mt-8 space-y-5">{section.bullets.map((bullet, bulletIndex) => { const separatorIndex = bullet.indexOf(" — "); const title = separatorIndex >= 0 ? bullet.slice(0, separatorIndex) : `Application point ${String(bulletIndex + 1).padStart(2, "0")}`; const text = separatorIndex >= 0 ? bullet.slice(separatorIndex + 3) : bullet; return <article key={bullet} className="group relative overflow-hidden rounded-2xl border border-line bg-void/35 p-6 transition-all duration-300 hover:border-[#4f9cff]/40 hover:bg-[#08121f]/90 sm:p-7"><div className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-[#2f80ff]/5 blur-3xl transition-opacity duration-300 group-hover:bg-[#2f80ff]/10" /><div className="relative flex gap-5"><div className="shrink-0"><div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#4f9cff]/30 bg-[#0a1727] font-mono text-[10px] tracking-[0.15em] text-[#6da8ff]">{String(bulletIndex + 1).padStart(2, "0")}</div></div><div className="min-w-0 flex-1"><div className="flex items-center gap-3"><span className="h-px w-7 shrink-0 bg-[#4f9cff]" /><h3 className="font-display text-xl font-semibold tracking-tight text-white sm:text-2xl">{title}</h3></div><p className="mt-4 max-w-5xl text-sm leading-7 text-[#91a9c4] sm:text-[15px] sm:leading-8">{text}</p></div></div></article>; })}</div> : null}
                       </>
                     )}
                   </section>
@@ -136,20 +98,8 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
             })}
           </div>
 
-          <Reveal>
-            <div className="mt-10 flex flex-col gap-4 rounded-2xl border border-line bg-surface p-7 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <div className="font-display text-lg font-medium text-ink">{helpSection?.heading ?? "Need help with an industrial application?"}</div>
-                <p className="mt-1 text-sm leading-7 text-mute">{helpSection?.paragraphs[0] ?? "SensCore can review your process conditions and technical requirements."}</p>
-              </div>
-              <GlowButton href="/contact">Talk to an Engineer</GlowButton>
-            </div>
-          </Reveal>
-
-          <div className="mt-10 grid gap-4 sm:grid-cols-2">
-            {previous ? <Link href={`/knowledge-centre/${previous.slug}`} className="rounded-xl border border-line p-5 text-sm text-mute hover:border-teal/40 hover:text-ink"><ArrowLeft size={15} className="mb-3 text-teal" />Previous: <span className="text-ink">{previous.title}</span></Link> : <div />}
-            {next ? <Link href={`/knowledge-centre/${next.slug}`} className="rounded-xl border border-line p-5 text-sm text-mute hover:border-teal/40 hover:text-ink sm:text-right"><ArrowRight size={15} className="mb-3 ml-auto text-teal" />Next: <span className="text-ink">{next.title}</span></Link> : null}
-          </div>
+          <Reveal><div className="mt-10 flex flex-col gap-4 rounded-2xl border border-line bg-surface p-7 sm:flex-row sm:items-center sm:justify-between"><div><div className="font-display text-lg font-medium text-ink">{helpSection?.heading ?? "Need help with an industrial application?"}</div><p className="mt-1 text-sm leading-7 text-mute">{helpSection?.paragraphs[0] ?? "SensCore can review your process conditions and technical requirements."}</p></div><GlowButton href="/contact">Talk to an Engineer</GlowButton></div></Reveal>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2">{previous ? <Link href={`/knowledge-centre/${previous.slug}`} className="rounded-xl border border-line p-5 text-sm text-mute hover:border-teal/40 hover:text-ink"><ArrowLeft size={15} className="mb-3 text-teal" />Previous: <span className="text-ink">{previous.title}</span></Link> : <div />}{next ? <Link href={`/knowledge-centre/${next.slug}`} className="rounded-xl border border-line p-5 text-sm text-mute hover:border-teal/40 hover:text-ink sm:text-right"><ArrowRight size={15} className="mb-3 ml-auto text-teal" />Next: <span className="text-ink">{next.title}</span></Link> : null}</div>
         </div>
       </main>
     </>
