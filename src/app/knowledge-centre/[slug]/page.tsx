@@ -65,6 +65,7 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
           <div className="mt-10 space-y-7">
             {contentSections.map((section, sectionIndex) => {
               const isFlowTechnologySection = section.heading === "Choosing the Right Flow Measurement Technology";
+              const isLevelSelectionSection = section.heading === "What Should Engineers Consider When Selecting a Level Instrument?";
               const paragraphs = isFlowTechnologySection ? [article.intro, ...section.paragraphs] : section.paragraphs;
 
               return (
@@ -90,6 +91,10 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
                           );
                         })}
                       </div>
+                    ) : isLevelSelectionSection ? (
+                      <ul className="mt-6 list-disc space-y-3 pl-6 text-sm leading-8 text-mute marker:text-teal sm:text-[15px]">
+                        {section.bullets?.map((bullet) => <li key={bullet} className="pl-2">{bullet}</li>)}
+                      </ul>
                     ) : (
                       <>
                         <div className="mt-5 space-y-4 text-sm leading-8 text-mute">
