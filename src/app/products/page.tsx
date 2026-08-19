@@ -14,7 +14,13 @@ export const metadata: Metadata = {
 };
 
 const ICONS: Record<string, any> = { instrumentation: Gauge, automation: Cpu, valves: Sliders, analysers: TestTube, pumps: Waves, flangeguards: ShieldCheck, services: Wrench };
-const VIDEOS: Record<string, string> = { instrumentation: "/instrumentation.mp4", automation: "/automation.mp4", valves: "/valves.mp4", pumps: "/pumps.mp4" };
+const VIDEOS: Record<string, string> = {
+  instrumentation: "/instrumentation.mp4",
+  automation: "/automation.mp4",
+  valves: "/valves.mp4",
+  analysers: "/process-analyser.mp4",
+  pumps: "/pumps.mp4",
+};
 const DISPLAY_TITLES: Record<string, string> = {
   instrumentation: "Industrial Instrumentation",
   automation: "Industrial Automation & Connectivity",
@@ -42,7 +48,16 @@ export default function ProductsPage() {
                 <p className="mt-5 text-base leading-relaxed text-mute sm:text-lg">{cat.description}</p>
                 <div className="mt-8 flex flex-col gap-5">{cat.groups.map((group) => <div key={group.heading} className="border-l-2 border-teal/30 pl-4"><h3 className="font-mono text-xs uppercase tracking-[0.15em] text-teal">{group.heading}</h3><p className="mt-1.5 text-sm leading-relaxed text-mute">{group.items}</p></div>)}</div>
               </Reveal>
-              <Reveal delay={0.1}><div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl border border-line bg-surface hud-grid-fine lg:sticky lg:top-28">{videoSrc ? <MutableVideo src={videoSrc} className="absolute inset-0 h-full w-full object-cover" /> : <><div className="absolute inset-0 bg-gradient-to-br from-teal/[0.08] via-transparent to-indigo/[0.08]" /><span className="relative flex h-24 w-24 items-center justify-center rounded-2xl border border-teal/30 bg-void/60 text-teal"><Icon size={40} strokeWidth={1.5} /></span></>}<span className="absolute bottom-5 right-5 z-10 font-mono text-[10px] uppercase tracking-[0.2em] text-faint">{cat.tag}</span></div></Reveal>
+              <Reveal delay={0.1}>
+                <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl border border-line bg-surface hud-grid-fine lg:sticky lg:top-28">
+                  {videoSrc ? (
+                    <MutableVideo src={videoSrc} className="absolute inset-0 block h-full w-full object-cover object-center" />
+                  ) : (
+                    <><div className="absolute inset-0 bg-gradient-to-br from-teal/[0.08] via-transparent to-indigo/[0.08]" /><span className="relative flex h-24 w-24 items-center justify-center rounded-2xl border border-teal/30 bg-void/60 text-teal"><Icon size={40} strokeWidth={1.5} /></span></>
+                  )}
+                  <span className="absolute bottom-5 right-5 z-10 font-mono text-[10px] uppercase tracking-[0.2em] text-faint">{cat.tag}</span>
+                </div>
+              </Reveal>
             </div>;
           })}
         </div>
