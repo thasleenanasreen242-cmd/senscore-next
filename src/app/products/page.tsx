@@ -31,13 +31,18 @@ const DISPLAY_TITLES: Record<string, string> = {
   services: "Industrial Engineering Services",
 };
 
+// Keep the product data unchanged; only reorder the rendered modules so Pumps appears before Valves.
+const PRODUCT_ORDER = ["instrumentation", "automation", "pumps", "valves", "analysers", "flangeguards", "services"];
+
 export default function ProductsPage() {
+  const orderedProducts = PRODUCT_ORDER.map((id) => PRODUCT_CATEGORIES.find((cat) => cat.id === id)).filter(Boolean) as typeof PRODUCT_CATEGORIES;
+
   return (
     <>
       <PageHero eyebrow="Products & Services" title="Industrial Instrumentation, Automation & Process Solutions" description="Every layer of the process, engineered. From field measurement and process analysis to automation, valves, pumps and critical piping solutions, SensCore specifies, supplies and supports industrial technologies for applications across the UAE, backed by established global manufacturers and application-driven engineering." />
       <section className="py-24 sm:py-32">
         <div className="mx-auto flex max-w-7xl flex-col gap-24 px-6 lg:px-10">
-          {PRODUCT_CATEGORIES.slice(0, 7).map((cat, i) => {
+          {orderedProducts.map((cat, i) => {
             const Icon = ICONS[cat.id] ?? Gauge;
             const videoSrc = VIDEOS[cat.id];
             const reversed = i % 2 === 1;
