@@ -5,7 +5,6 @@ import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import GlowButton from "@/components/GlowButton";
 import { getKnowledgeArticle, KNOWLEDGE_ARTICLES } from "@/lib/knowledge-centre";
-import { getKnowledgeImage } from "@/lib/knowledge-centre-images";
 
 export function generateStaticParams() {
   return KNOWLEDGE_ARTICLES.map((article) => ({ slug: article.slug }));
@@ -22,7 +21,6 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
   const { slug } = await params;
   const article = getKnowledgeArticle(slug);
   if (!article) return null;
-  const image = getKnowledgeImage(slug);
   const index = KNOWLEDGE_ARTICLES.findIndex((item) => item.slug === article.slug);
   const previous = KNOWLEDGE_ARTICLES[index - 1];
   const next = KNOWLEDGE_ARTICLES[index + 1];
@@ -37,20 +35,6 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
         <div className="mx-auto max-w-5xl px-6 lg:px-10">
           <Reveal>
             <Link href="/knowledge-centre" className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-teal hover:text-ink"><ArrowLeft size={14} /> Back to Knowledge Centre</Link>
-            <figure className="mt-8 overflow-hidden rounded-2xl border border-line bg-surface">
-              <div className="relative aspect-[21/9] overflow-hidden bg-[#07121d]">
-                {image ? (
-                  <>
-                    <img src={image.src} alt={image.alt} className="h-full w-full object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#061015]/65 via-transparent to-transparent" />
-                  </>
-                ) : (
-                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#07121d] via-[#0a1622] to-[#061015]" aria-label={`Image placeholder for ${article.title}`}>
-                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#52708e]">Image Placeholder</span>
-                  </div>
-                )}
-              </div>
-            </figure>
           </Reveal>
 
           {showIntroBeforeSections ? (
@@ -72,9 +56,6 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
                 <Reveal key={section.heading} delay={sectionIndex * 0.04}>
                   <section className="rounded-2xl border border-line bg-surface p-7 sm:p-9">
                     <h2 className="font-display text-2xl font-semibold text-ink">{section.heading}</h2>
-                    <div className="mt-5 flex aspect-[16/6] w-full items-center justify-center overflow-hidden rounded-xl border border-line bg-gradient-to-br from-[#07121d] via-[#0a1622] to-[#061015]" aria-label={`Image placeholder for ${section.heading}`}>
-                      <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#52708e]">Image Placeholder</span>
-                    </div>
 
                     {section.heading === "Frequently Asked Questions" ? (
                       <div className="mt-6 space-y-4">
