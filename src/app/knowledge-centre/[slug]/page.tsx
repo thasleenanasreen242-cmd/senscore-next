@@ -6,13 +6,28 @@ import Reveal from "@/components/Reveal";
 import GlowButton from "@/components/GlowButton";
 import { getKnowledgeArticle, KNOWLEDGE_ARTICLES } from "@/lib/knowledge-centre";
 
-export function generateStaticParams() { return KNOWLEDGE_ARTICLES.map((article) => ({ slug: article.slug })); }
+const baseUrl = "https://www.senscoretech.com";
+
+export function generateStaticParams() {
+  return KNOWLEDGE_ARTICLES.map((article) => ({ slug: article.slug }));
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const article = getKnowledgeArticle(slug);
   if (!article) return { title: "Knowledge Centre | SensCore" };
-  return { title: article.seoTitle, description: article.description, alternates: { canonical: `https://www.senscoretech.com/knowledge-centre/${article.slug}` } };
+  return {
+    title: article.seoTitle,
+    description: article.description,
+    alternates: { canonical: `${baseUrl}/knowledge-centre/${article.slug}` },
+    openGraph: {
+      title: article.seoTitle,
+      description: article.description,
+      url: `${baseUrl}/knowledge-centre/${article.slug}`,
+      type: "article",
+      siteName: "SensCore",
+    },
+  };
 }
 
 export default async function KnowledgeArticlePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -25,30 +40,67 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
   const helpSection = article.sections.find((section) => section.heading.toLowerCase().startsWith("need help"));
   const contentSections = article.sections.filter((section) => section !== helpSection);
   const showIntroBeforeSections = article.slug === "level-measurement" || article.slug === "pressure-temperature";
+  const imageAlt = `${article.title} industrial engineering and instrumentation application`; 
 
   return (
     <>
       <PageHero eyebrow="Knowledge Centre" title={article.title} description={article.description} />
       <main className="py-20 sm:py-28">
         <div className="mx-auto max-w-5xl px-6 lg:px-10">
-          <Reveal><Link href="/knowledge-centre" className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-teal hover:text-ink"><ArrowLeft size={14} /> Back to Knowledge Centre</Link></Reveal>
-
           <Reveal>
-            <div className="mt-10 flex aspect-[16/7] w-full items-center justify-center overflow-hidden rounded-2xl border border-line bg-gradient-to-br from-[#07121d] via-[#0a1622] to-[#061015]">
-              <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#52708e]">Image Placeholder</span>
-            </div>
+            <Link href="/knowledge-centre" className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-teal hover:text-ink">
+              <ArrowLeft size={14} /> Back to Knowledge Centre
+            </Link>
           </Reveal>
 
-          {showIntroBeforeSections ? <Reveal><section className="mt-10 rounded-2xl border border-line bg-surface p-7 sm:p-9"><h2 className="font-display text-2xl font-semibold text-ink">{article.title}</h2><div className="mt-5 space-y-4 text-sm leading-8 text-mute"><p>{article.intro}</p></div></section></Reveal> : null}
+          {/* Topic-specific HD image slot. Replace this single slot with the final optimized WebP/AVIF asset when imagery is supplied. */}
+          <Reveal>
+            <figure className="mt-10">
+              <div
+                role="img"
+                aria-label={imageAlt}
+                className="flex aspect-[16/7] w-full items-center justify-center overflow-hidden rounded-2xl border border-line bg-gradient-to-br from-[#07121d] via-[#0a1622] to-[#061015]"
+              >
+                <div className="text-center px-6">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#52708e]">HD Image Placeholder</span>
+                  <p className="mt-2 text-xs text-[#6f8aa4]">{imageAlt}</p>
+                </div>
+              </div>
+              <figcaption className="sr-only">{imageAlt}</figcaption>
+            </figure>
+          </Reveal>
+
+          {showIntroBeforeSections ? (
+            <Reveal>
+              <section className="mt-10 rounded-2xl border border-line bg-surface p-7 sm:p-9">
+                <h2 className="font-display text-2xl font-semibold text-ink">{article.title}</h2>
+                <div className="mt-5 space-y-4 text-sm leading-8 text-mute"><p>{article.intro}</p></div>
+              </section>
+            </Reveal>
+          ) : null}
 
           <div className="mt-10 space-y-7">
             {contentSections.map((section, sectionIndex) => {
               const isFlowTechnologySection = section.heading === "Choosing the Right Flow Measurement Technology";
               const isLevelSelectionSection = section.heading === "What Should Engineers Consider When Selecting a Level Instrument?";
               const paragraphs = isFlowTechnologySection ? [article.intro, ...section.paragraphs] : section.paragraphs;
-              return <Reveal key={section.heading} delay={sectionIndex * 0.04}><section className="rounded-2xl border border-line bg-surface p-7 sm:p-9"><h2 className="font-display text-2xl font-semibold text-ink">{section.heading}</h2>
-                {section.heading === "Frequently Asked Questions" ? <div className="mt-6 space-y-4">{paragraphs.map((paragraph, faqIndex) => { const [question, ...answerParts] = paragraph.split("\n"); const answer = answerParts.join(" ").trim(); return <div key={paragraph} className="rounded-xl border border-line bg-void/30 p-5 sm:p-6"><div className="flex items-start gap-4"><span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-teal/30 bg-teal/10 font-mono text-[10px] font-semibold text-teal">{String(faqIndex + 1).padStart(2, "0")}</span><div className="min-w-0"><h3 className="font-display text-base font-semibold leading-7 text-ink sm:text-lg">{question}</h3>{answer ? <p className="mt-2 text-sm leading-7 text-mute">{answer}</p> : null}</div></div></div>; })}</div> : isLevelSelectionSection ? <ul className="mt-6 list-disc space-y-3 pl-6 text-sm leading-8 text-mute marker:text-teal sm:text-[15px]">{section.bullets?.map((bullet) => <li key={bullet} className="pl-2">{bullet}</li>)}</ul> : <><div className="mt-5 space-y-4 text-sm leading-8 text-mute">{paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>{section.bullets ? <div className="mt-8 space-y-5">{section.bullets.map((bullet, bulletIndex) => { const separatorIndex = bullet.indexOf(" — "); const title = separatorIndex >= 0 ? bullet.slice(0, separatorIndex) : `Application point ${String(bulletIndex + 1).padStart(2, "0")}`; const text = separatorIndex >= 0 ? bullet.slice(separatorIndex + 3) : bullet; return <article key={bullet} className="group relative overflow-hidden rounded-2xl border border-line bg-void/35 p-6 transition-all duration-300 hover:border-[#4f9cff]/40 hover:bg-[#08121f]/90 sm:p-7"><div className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-[#2f80ff]/5 blur-3xl transition-opacity duration-300 group-hover:bg-[#2f80ff]/10" /><div className="relative flex gap-5"><div className="shrink-0"><div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#4f9cff]/30 bg-[#0a1727] font-mono text-[10px] tracking-[0.15em] text-[#6da8ff]">{String(bulletIndex + 1).padStart(2, "0")}</div></div><div className="min-w-0 flex-1"><div className="flex items-center gap-3"><span className="h-px w-7 shrink-0 bg-[#4f9cff]" /><h3 className="font-display text-xl font-semibold tracking-tight text-white sm:text-2xl">{title}</h3></div><p className="mt-4 max-w-5xl text-sm leading-7 text-[#91a9c4] sm:text-[15px] sm:leading-8">{text}</p></div></div></article>; })}</div> : null}</>}
-              </section></Reveal>;
+              return (
+                <Reveal key={section.heading} delay={sectionIndex * 0.04}>
+                  <section className="rounded-2xl border border-line bg-surface p-7 sm:p-9">
+                    <h2 className="font-display text-2xl font-semibold text-ink">{section.heading}</h2>
+                    {section.heading === "Frequently Asked Questions" ? (
+                      <div className="mt-6 space-y-4">{paragraphs.map((paragraph, faqIndex) => { const [question, ...answerParts] = paragraph.split("\n"); const answer = answerParts.join(" ").trim(); return <div key={paragraph} className="rounded-xl border border-line bg-void/30 p-5 sm:p-6"><div className="flex items-start gap-4"><span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-teal/30 bg-teal/10 font-mono text-[10px] font-semibold text-teal">{String(faqIndex + 1).padStart(2, "0")}</span><div className="min-w-0"><h3 className="font-display text-base font-semibold leading-7 text-ink sm:text-lg">{question}</h3>{answer ? <p className="mt-2 text-sm leading-7 text-mute">{answer}</p> : null}</div></div></div>; })}</div>
+                    ) : isLevelSelectionSection ? (
+                      <ul className="mt-6 list-disc space-y-3 pl-6 text-sm leading-8 text-mute marker:text-teal sm:text-[15px]">{section.bullets?.map((bullet) => <li key={bullet} className="pl-2">{bullet}</li>)}</ul>
+                    ) : (
+                      <>
+                        <div className="mt-5 space-y-4 text-sm leading-8 text-mute">{paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
+                        {section.bullets ? <div className="mt-8 space-y-5">{section.bullets.map((bullet, bulletIndex) => { const separatorIndex = bullet.indexOf(" — "); const title = separatorIndex >= 0 ? bullet.slice(0, separatorIndex) : `Application point ${String(bulletIndex + 1).padStart(2, "0")}`; const text = separatorIndex >= 0 ? bullet.slice(separatorIndex + 3) : bullet; return <article key={bullet} className="group relative overflow-hidden rounded-2xl border border-line bg-void/35 p-6 transition-all duration-300 hover:border-[#4f9cff]/40 hover:bg-[#08121f]/90 sm:p-7"><div className="pointer-events-none absolute -right-20 -top-20 h-40 w-40 rounded-full bg-[#2f80ff]/5 blur-3xl transition-opacity duration-300 group-hover:bg-[#2f80ff]/10" /><div className="relative flex gap-5"><div className="shrink-0"><div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#4f9cff]/30 bg-[#0a1727] font-mono text-[10px] tracking-[0.15em] text-[#6da8ff]">{String(bulletIndex + 1).padStart(2, "0")}</div></div><div className="min-w-0 flex-1"><div className="flex items-center gap-3"><span className="h-px w-7 shrink-0 bg-[#4f9cff]" /><h3 className="font-display text-xl font-semibold tracking-tight text-white sm:text-2xl">{title}</h3></div><p className="mt-4 max-w-5xl text-sm leading-7 text-[#91a9c4] sm:text-[15px] sm:leading-8">{text}</p></div></div></article>; })}</div> : null}
+                      </>
+                    )}
+                  </section>
+                </Reveal>
+              );
             })}
           </div>
 
