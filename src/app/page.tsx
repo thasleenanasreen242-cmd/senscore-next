@@ -1,9 +1,8 @@
-
 import Link from "next/link";
 import {
   Gauge, Cpu, Sliders, TestTube, Waves, ShieldCheck, Wrench, ArrowUpRight, Sparkles,
 } from "lucide-react";
-import HUDBackground from "@/components/HUDBackground";
+import Industrial360Background from "@/components/Industrial360Background";
 import Reveal from "@/components/Reveal";
 import SectionEyebrow from "@/components/SectionEyebrow";
 import GlowButton from "@/components/GlowButton";
@@ -30,11 +29,12 @@ export default function HomePage() {
     <>
       {/* ---------------- HERO ---------------- */}
       <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden pt-28">
-        <HUDBackground density={7} />
+        <Industrial360Background />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/25 via-black/10 to-black/65" />
 
-        <div className="relative mx-auto w-full max-w-7xl px-6 lg:px-10">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-10">
           <Reveal>
-            <div className="inline-flex items-center gap-2 rounded-full border border-teal/30 bg-teal/5 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-teal">
+            <div className="inline-flex items-center gap-2 rounded-full border border-teal/30 bg-black/30 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-teal backdrop-blur-sm">
               <Sparkles size={12} />
               First Autonomous Industrial Solution Provider in the UAE
             </div>
@@ -66,7 +66,7 @@ export default function HomePage() {
           </Reveal>
 
           <Reveal delay={1.6}>
-            <div className="mt-20 grid grid-cols-2 gap-10 border-t border-line pt-10 sm:grid-cols-4">
+            <div className="mt-20 grid grid-cols-2 gap-10 border-t border-line/70 pt-10 sm:grid-cols-4">
               <StatReadout value={4200} suffix="+" label="Sensors integrated" />
               <StatReadout value={200} suffix="+" label="Auto-decisions per day" />
               <StatReadout value={12} suffix="+" label="AI agents deployed" />
@@ -166,7 +166,6 @@ export default function HomePage() {
       </section>
 
       {/* ---------------- INDUSTRIES ---------------- */}
-      {/* Industry metrics are sourced directly from the verified INDUSTRIES data. */}
       <section className="relative border-t border-line bg-surface py-28 sm:py-40">
         <div className="absolute inset-0 hud-grid-fine opacity-30" />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
