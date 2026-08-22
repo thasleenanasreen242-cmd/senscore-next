@@ -11,7 +11,7 @@ const images: Record<string,{src:string;alt:string}> = {
   "flow-measurement":{src:"/images/knowledge-centre/Flow%20Measurement.png",alt:"Industrial flow measurement instrumentation installed on process piping"},
   "level-measurement":{src:"/images/knowledge-centre/Level%20measurement.png",alt:"Industrial level measurement instrumentation and storage tank"},
   "pressure-temperature":{src:"/images/knowledge-centre/Pressure%20and%20Temperature%20Measurement.png",alt:"Industrial pressure and temperature measurement instrumentation"},
-  "process-analysis":{src:"https://images.pexels.com/photos/12726229/pexels-photo-12726229.jpeg?auto=compress&cs=tinysrgb&w=1800",alt:"Industrial water treatment tanks and piping for process analysis"},
+  "process-analysis":{src:"/images/knowledge-centre/Process%20Analysis.png",alt:"Industrial process analysis instrumentation and process monitoring equipment"},
   "automation-connectivity":{src:"https://images.pexels.com/photos/36564992/pexels-photo-36564992.jpeg?auto=compress&cs=tinysrgb&w=1800",alt:"Industrial automation and control equipment inside a factory"},
   "valves-flow-control":{src:"https://images.pexels.com/photos/28900882/pexels-photo-28900882.jpeg?auto=compress&cs=tinysrgb&w=1800",alt:"Industrial valve connected to metal process pipeline"},
   "pumps-dosing":{src:"https://images.pexels.com/photos/32489252/pexels-photo-32489252.jpeg?auto=compress&cs=tinysrgb&w=1800",alt:"Industrial pump and piping equipment for fluid handling"},
