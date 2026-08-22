@@ -8,14 +8,14 @@ import { getKnowledgeArticle, KNOWLEDGE_ARTICLES } from "@/lib/knowledge-centre"
 
 const baseUrl = "https://www.senscoretech.com";
 const uploadedImages: Record<string, { src: string; alt: string }> = {
-  "flow-measurement": { src: "/images/knowledge-centre/Flow%20Measurement.png", alt: "Industrial flow measurement instrumentation" },
-  "level-measurement": { src: "/images/knowledge-centre/Level%20measurement.png", alt: "Industrial level measurement instrumentation" },
-  "pressure-temperature": { src: "/images/knowledge-centre/Pressure%20and%20Temperature%20Measurement.png", alt: "Industrial pressure and temperature measurement instrumentation" },
-  "process-analysis": { src: "/images/knowledge-centre/Process%20Analysis.png", alt: "Industrial process analysis instrumentation" },
-  "valves-flow-control": { src: "/images/knowledge-centre/Valves%20and%20Flow%20Control.png", alt: "Industrial valves and flow control equipment" },
-  "pumps-dosing": { src: "/images/knowledge-centre/Pumps%20and%20Dosing.png", alt: "Industrial pumps and dosing equipment" },
-  "compressed-air-energy-efficiency": { src: "/images/knowledge-centre/Compressed%20Air%20and%20Energy%20Efficiency.png", alt: "Compressed air and industrial energy efficiency" },
-  "engineering-practice": { src: "/images/knowledge-centre/Engineering%20Practice%20and%20Industrial%20Applications.png", alt: "Engineering practice and industrial applications" },
+  "flow-measurement": { src: "/images/knowledge-centre/Flow Measurement.png", alt: "Industrial flow measurement instrumentation" },
+  "level-measurement": { src: "/images/knowledge-centre/Level measurement.png", alt: "Industrial level measurement instrumentation" },
+  "pressure-temperature": { src: "/images/knowledge-centre/Pressure and Temperature Measurement.png", alt: "Industrial pressure and temperature measurement instrumentation" },
+  "process-analysis": { src: "/images/knowledge-centre/Process Analysis.png", alt: "Industrial process analysis instrumentation" },
+  "valves-flow-control": { src: "/images/knowledge-centre/Valves and Flow Control.png", alt: "Industrial valves and flow control equipment" },
+  "pumps-dosing": { src: "/images/knowledge-centre/Pumps and Dosing.png", alt: "Industrial pumps and dosing equipment" },
+  "compressed-air-energy-efficiency": { src: "/images/knowledge-centre/Compressed Air and Energy Efficiency.png", alt: "Compressed air and industrial energy efficiency" },
+  "engineering-practice": { src: "/images/knowledge-centre/Engineering Practice and Industrial Applications.png", alt: "Engineering practice and industrial applications" },
 };
 const imageSlots = new Set([...Object.keys(uploadedImages), "flange-protection", "automation-connectivity"]);
 
@@ -32,7 +32,7 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
   const help = article.sections.find((section) => section.heading.toLowerCase().startsWith("need help")); const sections = article.sections.filter((section) => section !== help); const image = uploadedImages[slug];
   return <><PageHero eyebrow="Knowledge Centre" title={article.title} description={article.description} /><main className="py-20 sm:py-28"><div className="mx-auto max-w-5xl px-6 lg:px-10"><Reveal><Link href="/knowledge-centre" className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-teal"><ArrowLeft size={14}/> Back to Knowledge Centre</Link></Reveal>
     {imageSlots.has(slug) && <Reveal key={`knowledge-image-${slug}`}><div className="mt-10 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-line bg-surface">
-      {image ? <img src={`${image.src}?v=27`} alt={image.alt} width={1800} height={1000} loading="eager" fetchPriority="high" decoding="async" className="block h-full w-full object-cover" /> : <div className="flex h-full min-h-[260px] w-full items-center justify-center px-6"><div className="text-center"><div className="font-mono text-sm uppercase tracking-[0.2em] text-teal">IMAGE PLACEHOLDER</div><p className="mt-3 text-sm leading-6 text-mute">Industrial photography will be added here</p></div></div>}
+      {image ? <img src={encodeURI(image.src)} alt={image.alt} width={1800} height={1000} loading="eager" fetchPriority="high" decoding="async" className="block h-full w-full object-cover" /> : <div className="flex h-full min-h-[260px] w-full items-center justify-center px-6"><div className="text-center"><div className="font-mono text-sm uppercase tracking-[0.2em] text-teal">IMAGE PLACEHOLDER</div><p className="mt-3 text-sm leading-6 text-mute">Industrial photography will be added here</p></div></div>}
     </div></Reveal>}
     <Reveal><section className="mt-10 rounded-2xl border border-line bg-surface p-7 sm:p-9"><h2 className="font-display text-2xl font-semibold text-ink">{article.title}</h2><p className="mt-5 text-sm leading-8 text-mute">{article.intro}</p></section></Reveal>
     <div className="mt-10 space-y-7">{sections.map((section, sectionIndex)=><Reveal key={section.heading} delay={sectionIndex*.04}><section className="rounded-2xl border border-line bg-surface p-7 sm:p-9"><h2 className="font-display text-2xl font-semibold text-ink">{section.heading}</h2><div className="mt-5 space-y-4 text-sm leading-8 text-mute">{section.paragraphs.map((paragraph)=><p key={paragraph}>{paragraph}</p>)}</div>{section.bullets&&<div className="mt-7 space-y-4">{section.bullets.map((bullet,i)=><div key={bullet} className="rounded-xl border border-line bg-void/30 p-5"><span className="font-mono text-xs text-teal">{String(i+1).padStart(2,"0")}</span><p className="mt-2 text-sm leading-7 text-mute">{bullet}</p></div>)}</div>}</section></Reveal>)}</div>
