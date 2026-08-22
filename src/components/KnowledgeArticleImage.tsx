@@ -8,8 +8,10 @@ const IMAGES: Record<string, { src: string; alt: string }> = {
   "level-measurement": { src: "/images/knowledge-centre/Level measurement.png", alt: "Industrial level measurement instrumentation" },
   "pressure-temperature": { src: "/images/knowledge-centre/Pressure and Temperature Measurement.png", alt: "Industrial pressure and temperature measurement instrumentation" },
   "process-analysis": { src: "/images/knowledge-centre/Process Analysis.png", alt: "Industrial process analysis instrumentation" },
+  "automation-connectivity": { src: "/images/knowledge-centre/Automation & Connectivity.png", alt: "Industrial automation and connectivity" },
   "valves-flow-control": { src: "/images/knowledge-centre/Valves and Flow Control.png", alt: "Industrial valves and flow control equipment" },
   "pumps-dosing": { src: "/images/knowledge-centre/Pumps and Dosing.png", alt: "Industrial pumps and dosing equipment" },
+  "flange-protection": { src: "/images/knowledge-centre/Flange Protection and Sealing.png", alt: "Industrial flange protection and sealing" },
   "compressed-air-energy-efficiency": { src: "/images/knowledge-centre/Compressed Air and Energy Efficiency.png", alt: "Compressed air and industrial energy efficiency" },
   "engineering-practice": { src: "/images/knowledge-centre/Engineering Practice and Industrial Applications.png", alt: "Engineering practice and industrial applications" },
 };
@@ -20,17 +22,13 @@ export default function KnowledgeArticleImage() {
   useEffect(() => {
     const slug = pathname?.split("/").filter(Boolean).pop();
     if (!slug || slug === "knowledge-centre") return;
-
     const main = document.querySelector("main");
     if (!main || main.querySelector("[data-knowledge-article-image]")) return;
-
     const backLink = main.querySelector('a[href="/knowledge-centre"]');
     if (!backLink?.parentElement) return;
-
     const wrapper = document.createElement("div");
     wrapper.setAttribute("data-knowledge-article-image", "true");
     wrapper.className = "mt-8 w-full overflow-hidden rounded-2xl border border-line bg-surface";
-
     const image = IMAGES[slug];
     if (image) {
       const img = document.createElement("img");
@@ -46,7 +44,6 @@ export default function KnowledgeArticleImage() {
       wrapper.className += " aspect-[16/9]";
       wrapper.innerHTML = '<div class="flex h-full min-h-[260px] w-full items-center justify-center px-6"><div class="text-center"><div class="font-mono text-sm uppercase tracking-[0.2em] text-teal">IMAGE PLACEHOLDER</div><p class="mt-3 text-sm leading-6 text-mute">Industrial photography will be added here</p></div></div>';
     }
-
     backLink.parentElement.insertAdjacentElement("afterend", wrapper);
   }, [pathname]);
 
