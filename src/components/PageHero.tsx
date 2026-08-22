@@ -1,24 +1,14 @@
 import HUDBackground from "@/components/HUDBackground";
 import Reveal from "@/components/Reveal";
 
-const uploadedKnowledgeCentreImages: Record<string, { src: string; alt: string }> = {
-  "Flow Measurement": {
-    src: "/images/knowledge-centre/Flow%20Measurement.png",
-    alt: "Industrial flow measurement instrumentation",
-  },
-  "Level Measurement": {
-    src: "/images/knowledge-centre/Level%20measurement.png",
-    alt: "Industrial level measurement instrumentation",
-  },
-  "Pressure and Temperature Measurement": {
-    src: "/images/knowledge-centre/Pressure%20and%20Temperature%20Measurement.png",
-    alt: "Industrial pressure and temperature measurement instrumentation",
-  },
-  "Process Analysis": {
-    src: "/images/knowledge-centre/Process%20Analysis.png",
-    alt: "Industrial process analysis instrumentation",
-  },
-};
+const uploadedKnowledgeCentreTitles = new Set([
+  "Flow Measurement",
+  "Level Measurement",
+  "Pressure and Temperature Measurement",
+  "Process Analysis",
+  "Valves and Flow Control",
+  "Pumps and Dosing",
+]);
 
 export default function PageHero({
   eyebrow,
@@ -32,7 +22,7 @@ export default function PageHero({
   description: string;
 }) {
   const isKnowledgeCentre = eyebrow === "Knowledge Centre";
-  const image = uploadedKnowledgeCentreImages[title];
+  const showKnowledgePlaceholder = isKnowledgeCentre && !uploadedKnowledgeCentreTitles.has(title);
 
   return (
     <>
@@ -58,27 +48,16 @@ export default function PageHero({
         </div>
       </section>
 
-      {isKnowledgeCentre && (
+      {showKnowledgePlaceholder && (
         <div className="mx-auto w-full max-w-5xl px-6 lg:px-10">
           <Reveal delay={0.2}>
             <div className="mt-10 aspect-[16/9] w-full overflow-hidden rounded-2xl border-2 border-dashed border-teal/60 bg-surface">
-              {image ? (
-                <img
-                  src={`${image.src}?v=11`}
-                  alt={image.alt}
-                  width={1800}
-                  height={1000}
-                  loading="eager"
-                  className="block h-full w-full object-cover"
-                />
-              ) : (
-                <div className="flex h-full min-h-[260px] w-full items-center justify-center px-6">
-                  <div className="text-center">
-                    <div className="font-mono text-sm uppercase tracking-[0.2em] text-teal">IMAGE PLACEHOLDER</div>
-                    <p className="mt-3 text-sm leading-6 text-mute">Industrial photography will be added here</p>
-                  </div>
+              <div className="flex h-full min-h-[260px] w-full items-center justify-center px-6">
+                <div className="text-center">
+                  <div className="font-mono text-sm uppercase tracking-[0.2em] text-teal">IMAGE PLACEHOLDER</div>
+                  <p className="mt-3 text-sm leading-6 text-mute">Industrial photography will be added here</p>
                 </div>
-              )}
+              </div>
             </div>
           </Reveal>
         </div>
