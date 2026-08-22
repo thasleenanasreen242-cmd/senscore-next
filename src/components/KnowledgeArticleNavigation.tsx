@@ -27,25 +27,25 @@ export default function KnowledgeArticleNavigation() {
 
   const previous = ARTICLES[index - 1];
   const next = ARTICLES[index + 1];
-  const card = "group min-h-[116px] rounded-xl border border-line bg-surface p-5 text-sm text-mute transition-colors hover:border-teal/40 hover:text-ink";
+  const card = "group min-h-[88px] rounded-xl border border-line bg-surface px-4 py-3.5 text-sm text-mute transition-colors hover:border-teal/40 hover:text-ink sm:px-5 sm:py-4";
 
   return (
-    <div className="mx-auto max-w-5xl px-6 lg:px-10">
-      <nav aria-label="Knowledge Centre article navigation" className="mt-10 grid gap-4 sm:grid-cols-2">
+    <div className="mx-auto max-w-5xl px-6 pb-20 lg:px-10">
+      <nav aria-label="Knowledge Centre article navigation" className="mt-10 grid gap-3 sm:grid-cols-2">
         {previous ? (
           <Link href={`/knowledge-centre/${previous[0]}`} rel="prev" className={card}>
-            <ArrowLeft size={15} className="mb-3 text-teal transition-transform group-hover:-translate-x-1" />
-            <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-teal">Previous</span>
-            <div className="mt-1 font-display text-base text-ink">{previous[1]}</div>
+            <ArrowLeft size={14} className="mb-2.5 text-teal transition-transform group-hover:-translate-x-1" />
+            <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-teal">Previous</span>
+            <div className="mt-0.5 font-display text-sm leading-5 text-ink">{previous[1]}</div>
           </Link>
-        ) : <div aria-hidden="true" className="min-h-[116px]" />}
+        ) : <div aria-hidden="true" className="min-h-[88px]" />}
         {next ? (
           <Link href={`/knowledge-centre/${next[0]}`} rel="next" className={`${card} sm:text-right`}>
-            <ArrowRight size={15} className="mb-3 ml-auto text-teal transition-transform group-hover:translate-x-1" />
-            <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-teal">Next</span>
-            <div className="mt-1 font-display text-base text-ink">{next[1]}</div>
+            <ArrowRight size={14} className="mb-2.5 ml-auto text-teal transition-transform group-hover:translate-x-1" />
+            <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-teal">Next</span>
+            <div className="mt-0.5 font-display text-sm leading-5 text-ink">{next[1]}</div>
           </Link>
-        ) : <div aria-hidden="true" className="min-h-[116px]" />}
+        ) : <div aria-hidden="true" className="min-h-[88px]" />}
       </nav>
     </div>
   );
