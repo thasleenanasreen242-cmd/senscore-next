@@ -1,8 +1,6 @@
 import Link from "next/link";
-import {
-  Gauge, Cpu, Sliders, TestTube, Waves, ShieldCheck, Wrench, ArrowUpRight, Sparkles,
-} from "lucide-react";
-import Industrial360Background from "@/components/Industrial360Background";
+import { Gauge, Cpu, Sliders, TestTube, Waves, ShieldCheck, Wrench, ArrowUpRight, Sparkles } from "lucide-react";
+import Industrial360OrbitHero from "@/components/Industrial360OrbitHero";
 import Reveal from "@/components/Reveal";
 import SectionEyebrow from "@/components/SectionEyebrow";
 import GlowButton from "@/components/GlowButton";
@@ -12,21 +10,13 @@ import DecodeText from "@/components/DecodeText";
 import RevealWords from "@/components/RevealWords";
 import { PRODUCT_CATEGORIES, INDUSTRIES, REPRESENTED_BRANDS } from "@/lib/data";
 
-const ICONS: Record<string, any> = {
-  instrumentation: Gauge,
-  automation: Cpu,
-  valves: Sliders,
-  analysers: TestTube,
-  pumps: Waves,
-  flangeguards: ShieldCheck,
-  services: Wrench,
-};
+const ICONS: Record<string, any> = { instrumentation: Gauge, automation: Cpu, valves: Sliders, analysers: TestTube, pumps: Waves, flangeguards: ShieldCheck, services: Wrench };
 
 export default function HomePage() {
   return <>
     <section className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden pt-28">
-      <Industrial360Background />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/25 via-black/10 to-black/65" />
+      <Industrial360OrbitHero />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/20 via-black/5 to-black/70" />
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-10">
         <Reveal><div className="inline-flex items-center gap-2 rounded-full border border-teal/30 bg-black/30 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-teal backdrop-blur-sm"><Sparkles size={12}/>First Autonomous Industrial Solution Provider in the UAE</div></Reveal>
         <h1 className="mt-8 max-w-4xl font-display text-[2.6rem] font-semibold leading-[1.08] tracking-tight text-ink sm:text-6xl lg:text-7xl"><DecodeText text="Industrial systems that" delay={0.1}/><br/><DecodeText text="sense, decide," delay={0.5} className="text-teal text-glow-teal"/> <DecodeText text="and act on their own." delay={0.9}/></h1>
