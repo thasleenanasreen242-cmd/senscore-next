@@ -93,6 +93,23 @@ export default function ServicesPage() {
         description="Supply is only one part of a reliable industrial solution. SensCore supports industrial facilities across the UAE with on-site measurement, verification, commissioning, audits and application engineering to help equipment perform as intended in real operating conditions."
       />
 
+      <section className="relative border-b border-line -mt-8 pb-16 sm:-mt-12 sm:pb-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <Reveal>
+            <div className="group relative aspect-video overflow-hidden rounded-2xl border border-teal/20 bg-surface/30 shadow-[0_0_60px_rgba(45,212,191,0.06)]">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_30%,rgba(45,212,191,0.13),transparent_35%),radial-gradient(circle_at_80%_70%,rgba(45,212,191,0.08),transparent_40%)]" />
+              <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px)] [background-size:32px_32px]" />
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-void/50" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="rounded-full border border-teal/30 bg-void/60 px-5 py-2.5 font-mono text-[10px] uppercase tracking-[0.2em] text-teal backdrop-blur-sm transition-colors duration-300 group-hover:border-teal/50">
+                  Service image placeholder
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="py-24 sm:py-32">
         <div className="mx-auto flex max-w-7xl flex-col gap-20 px-6 lg:px-10">
           <Reveal>
@@ -101,35 +118,9 @@ export default function ServicesPage() {
 
           {CORE_SERVICES.map((service, i) => {
             const Icon = service.icon;
-            const isFlange = i === 3;
-
             return (
               <Reveal key={service.title} delay={i * 0.04}>
                 <div className="group overflow-hidden rounded-2xl border border-line bg-surface/20 transition-all duration-500 hover:border-teal/25 hover:bg-surface/40">
-                  <div className="relative h-44 overflow-hidden border-b border-teal/15 sm:h-56">
-                    {isFlange ? (
-                      <img
-                        src="/images/knowledge-centre/Flange Protection and Sealing.png"
-                        alt="Flange protection and sealing"
-                        className="h-full w-full object-cover opacity-90 transition duration-700 group-hover:scale-[1.025] group-hover:opacity-100"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <>
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_30%,rgba(45,212,191,0.12),transparent_35%),radial-gradient(circle_at_80%_70%,rgba(45,212,191,0.07),transparent_40%)]" />
-                        <div className="absolute inset-0 opacity-40 [background-image:linear-gradient(rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px)] [background-size:32px_32px]" />
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-teal/25 bg-surface/60 text-teal shadow-[0_0_45px_rgba(45,212,191,0.08)] backdrop-blur-sm transition-transform duration-500 group-hover:scale-105">
-                            <Icon size={32} strokeWidth={1.35} aria-hidden="true" />
-                          </div>
-                        </div>
-                        <div className="absolute bottom-4 left-5 rounded-full border border-teal/20 bg-void/60 px-3 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-teal backdrop-blur-sm">
-                          Image placeholder
-                        </div>
-                      </>
-                    )}
-                  </div>
-
                   <div className="p-7 sm:p-10">
                     <div className="flex items-start gap-5">
                       <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-teal/30 bg-teal/5 text-teal">
