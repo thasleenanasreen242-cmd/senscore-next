@@ -111,26 +111,32 @@ export default async function KnowledgeArticlePage({ params }: { params: Promise
           </Reveal>
 
           <div className="mt-10 space-y-7">
-            {sections.map((section, sectionIndex) => (
-              <Reveal key={section.heading} delay={sectionIndex * 0.04}>
-                <section className="rounded-2xl border border-line bg-surface p-7 sm:p-9">
-                  <h2 className="font-display text-2xl font-semibold text-ink">{section.heading}</h2>
-                  <div className="mt-5 space-y-4 text-sm leading-8 text-mute">
-                    {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-                  </div>
-                  {section.bullets ? (
-                    <div className="mt-7 space-y-4">
-                      {section.bullets.map((bullet, index) => (
-                        <div key={bullet} className="rounded-xl border border-line bg-void/30 p-5">
-                          <span className="font-mono text-xs text-teal">{String(index + 1).padStart(2, "0")}</span>
-                          <p className="mt-2 text-sm leading-7 text-mute">{bullet}</p>
+            {sections.map((section, sectionIndex) => {
+              const isLevelConsiderations = slug === "level-measurement" && section.heading === "What Should Engineers Consider When Selecting a Level Instrument?";
+              return (
+                <Reveal key={section.heading} delay={sectionIndex * 0.04}>
+                  <section className={isLevelConsiderations ? "relative overflow-hidden rounded-2xl border border-line bg-surface p-7 sm:p-9" : "rounded-2xl border border-line bg-surface p-7 sm:p-9"}>
+                    {isLevelConsiderations ? <div className="pointer-events-none absolute right-0 top-0 h-48 w-48 rounded-full bg-teal/[0.06] blur-3xl" /> : null}
+                    <div className={isLevelConsiderations ? "relative" : undefined}>
+                      <h2 className="font-display text-2xl font-semibold text-ink">{section.heading}</h2>
+                      <div className="mt-4 space-y-4 text-sm leading-8 text-mute">
+                        {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                      </div>
+                      {section.bullets ? (
+                        <div className={isLevelConsiderations ? "mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" : "mt-7 space-y-4"}>
+                          {section.bullets.map((bullet, index) => (
+                            <div key={bullet} className={isLevelConsiderations ? "group rounded-xl border border-line bg-void/30 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-teal/35 hover:bg-teal/[0.04]" : "rounded-xl border border-line bg-void/30 p-5"}>
+                              <span className="font-mono text-xs text-teal">{String(index + 1).padStart(2, "0")}</span>
+                              <p className="mt-2 text-sm leading-7 text-mute">{bullet}</p>
+                            </div>
+                          ))}
                         </div>
-                      ))}
+                      ) : null}
                     </div>
-                  ) : null}
-                </section>
-              </Reveal>
-            ))}
+                  </section>
+                </Reveal>
+              );
+            })}
           </div>
 
           {faq ? <div className="mt-10"><FAQSection paragraphs={faq.paragraphs} /></div> : null}
