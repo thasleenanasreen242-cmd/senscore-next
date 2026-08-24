@@ -18,6 +18,27 @@ export default function ChatWidget() {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, [messages, open]);
 
+  useEffect(function () {
+    const observer = new MutationObserver(function () {
+      const tour = document.querySelector('[aria-labelledby="senscore-tour-title"]') as HTMLElement | null;
+      if (tour && open) tour.style.display = "none";
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    return function () {
+      observer.disconnect();
+      const tour = document.querySelector('[aria-labelledby="senscore-tour-title"]') as HTMLElement | null;
+      if (tour) tour.style.display = "";
+    };
+  }, [open]);
+
+  function setChatOpen(nextOpen: boolean) {
+    setOpen(nextOpen);
+    const tour = document.querySelector('[aria-labelledby="senscore-tour-title"]') as HTMLElement | null;
+    if (tour) tour.style.display = nextOpen ? "none" : "";
+  }
+
   async function sendMessage() {
     var text = input.trim();
     if (!text || loading) return;
@@ -65,7 +86,7 @@ export default function ChatWidget() {
                   <div className="mt-0.5 flex items-center gap-1.5 text-[11px] text-mute"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Online · SensCore AI Assistant</div>
                 </div>
               </div>
-              <button onClick={function () { setOpen(false); }} className="flex h-9 w-9 items-center justify-center rounded-full border border-line bg-surface/70 transition hover:bg-void" aria-label="Close chat"><X size={17} className="text-mute hover:text-ink" aria-hidden="true" /></button>
+              <button onClick={function () { setChatOpen(false); }} className="flex h-9 w-9 items-center justify-center rounded-full border border-line bg-surface/70 transition hover:bg-void" aria-label="Close chat"><X size={17} className="text-mute hover:text-ink" aria-hidden="true" /></button>
             </div>
           </div>
 
@@ -91,7 +112,7 @@ export default function ChatWidget() {
         </div>
       )}
 
-      <button onClick={function () { setOpen(!open); }} className="group flex h-16 w-16 items-center justify-center rounded-full border border-white/30 bg-gradient-to-br from-sky-400 via-blue-500 to-blue-700 text-white shadow-xl shadow-blue-500/35 transition-all duration-200 hover:-translate-y-0.5 hover:scale-105 hover:shadow-blue-500/45 max-sm:h-14 max-sm:w-14" aria-label={open ? "Close Aile" : "Open Aile"} aria-expanded={open} aria-controls="senscore-chat-panel">
+      <button onClick={function () { setChatOpen(!open); }} className="group flex h-16 w-16 items-center justify-center rounded-full border border-white/30 bg-gradient-to-br from-sky-400 via-blue-500 to-blue-700 text-white shadow-xl shadow-blue-500/35 transition-all duration-200 hover:-translate-y-0.5 hover:scale-105 hover:shadow-blue-500/45 max-sm:h-14 max-sm:w-14" aria-label={open ? "Close Aile" : "Open Aile"} aria-expanded={open} aria-controls="senscore-chat-panel">
         {open ? <X size={23} aria-hidden="true" /> : <Bot size={25} aria-hidden="true" className="transition-transform group-hover:scale-110" />}
       </button>
     </div>
