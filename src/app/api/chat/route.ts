@@ -26,46 +26,80 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const messages = body.messages;
 
-    const apiKey = process.env.GEMINI_API_KEY;
-    if (!apiKey) {
-      console.error("GEMINI_API_KEY is not set");
-      return NextResponse.json({ reply: "Sorry, I'm having trouble connecting right now." }, { status: 200 });
+    if (!Array.isArray(messages)) {
+      return NextResponse.json(
+        { reply: "Sorry, I couldn't process that request." },
+        { status: 200 }
+      );
     }
 
-    const contents = messages.map(function (m: { role: string; content: string }) {
-      return {
-        role: m.role === "assistant" ? "model" : "user",
-        parts: [{ text: m.content }],
-      };
-    });
+    const apiKey = process.env.ANTHROPIC_API_KEY;
 
-    const url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=" + apiKey;
+    if (!apiKey) {
+      console.error("ANTHROPIC_API_KEY is not set");
 
-    const requestBody = {
-      contents: contents,
-      systemInstruction: { parts: [{ text: SYSTEM_CONTEXT }] },
-    };
+      return NextResponse.json(
+        { reply: "Sorry, I'm having trouble connecting right now." },
+        { status: 200 }
+      );
+    }
 
-    const response = await fetch(url, {
+    const claudeMessages = messages
+      .filter(
+        (m: { role?: string; content?: string }) =>
+          (m.role === "user" || m.role === "assistant") &&
+          typeof m.content === "string" &&
+          m.content.trim().length > 0
+      )
+      .map((m: { role: string; content: string }) => ({
+        role: m.role as "user" | "assistant",
+        content: m.content,
+      }));
+
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(requestBody),
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": apiKey,
+        "anthropic-version": "2023-06-01",
+      },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 500,
+        system: SYSTEM_CONTEXT,
+        messages: claudeMessages,
+      }),
     });
 
     if (!response.ok) {
       const errText = await response.text();
-      console.error("Gemini API error:", response.status, errText);
-      return NextResponse.json({ reply: "Sorry, I'm having trouble connecting right now." }, { status: 200 });
+
+      console.error(
+        "Anthropic API error:",
+        response.status,
+        errText
+      );
+
+      return NextResponse.json(
+        { reply: "Sorry, I'm having trouble connecting right now." },
+        { status: 200 }
+      );
     }
 
     const data = await response.json();
-    const reply = data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0] && data.candidates[0].content.parts[0].text
-      ? data.candidates[0].content.parts[0].text
-      : "Sorry, I couldn't generate a response.";
 
-    return NextResponse.json({ reply: reply });
+    const reply =
+      data?.content?.[0]?.type === "text"
+        ? data.content[0].text
+        : "Sorry, I couldn't generate a response.";
+
+    return NextResponse.json({ reply });
   } catch (err) {
     console.error("Chat route error:", err);
-    return NextResponse.json({ reply: "Sorry, something went wrong. Please try again." }, { status: 200 });
+
+    return NextResponse.json(
+      { reply: "Sorry, something went wrong. Please try again." },
+      { status: 200 }
+    );
   }
 }
