@@ -35,10 +35,6 @@ export default function AboutPage() {
     <>
       <PageHero eyebrow="About SensCore" title="Engineering the Future of Industrial Automation" subheading="Engineering first. Always." description="SensCore is a UAE-based industrial solutions company specializing in instrumentation, automation, flow control and engineered process solutions." />
 
-      <section className="border-b border-line py-12 sm:py-16">
-        <div className="mx-auto max-w-4xl px-6 lg:px-10"><Reveal><p className="text-center text-base leading-relaxed text-mute sm:text-lg">We were built on a simple conviction: industrial supply should start with the application, not the catalogue. That means engineering-led selection, proven technologies from trusted manufacturers, and technical support that continues well beyond delivery.</p></Reveal></div>
-      </section>
-
       <section className="relative overflow-hidden border-b border-line py-24 sm:py-32">
         <div className="pointer-events-none absolute right-0 top-0 h-72 w-72 rounded-full bg-teal/5 blur-3xl" />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
