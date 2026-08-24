@@ -40,7 +40,7 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
         ["What type of flowmeter can measure steam?", "Vortex and differential pressure technologies are commonly considered for steam. Final selection should account for steam condition, pressure, temperature, flow range and compensation requirements."],
         ["Can flow be measured without cutting the pipeline?", "Yes. Clamp-on ultrasonic flowmeters can measure suitable liquids externally without modifying the pipe and are useful for surveys and verification."],
         ["What information is required to select a flowmeter?", "Provide the fluid, pipe size, flow range, operating pressure, temperature, connection requirement and required output. Conductivity, viscosity, density and solids content may also be required."]
-      ),
+      ]),
       help("Need Help with a Flow Measurement Application?", "SensCore can review your process conditions and help determine a suitable measurement principle, configuration and installation approach for industrial flow applications across the UAE.")
     ]
   },
@@ -73,7 +73,7 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
         ["Can radar measure liquid without contacting it?", "Yes. Non-contact radar measures the product surface from above the vessel without requiring an immersed probe."],
         ["Which level technology is suitable for powders and bulk solids?", "Radar, guided wave radar, rotary switches, vibration switches and other technologies may be considered depending on material properties and whether continuous or point measurement is required."],
         ["What information is needed to select a level transmitter?", "Useful information includes the medium, vessel dimensions, measuring range, pressure, temperature, process connection, material compatibility and required measurement type."]
-      ),
+      ]),
       help("Need Help with a Level Measurement Application?", "SensCore can review the vessel, process medium and operating conditions to help determine a suitable level measurement principle and instrument configuration.")
     ]
   },
@@ -104,7 +104,7 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
         ["What is the difference between an RTD and a thermocouple?", "Both measure temperature using different principles. RTDs are commonly selected where stability and accuracy are important, while thermocouples can be advantageous across wider and higher temperature ranges."],
         ["Why is a temperature transmitter used with an RTD or thermocouple?", "A transmitter converts the sensor output into a standard industrial signal that can be transmitted reliably to a PLC, indicator or control system."],
         ["Can pressure and temperature be measured wirelessly?", "Yes. Wireless transmitters can provide remote pressure or temperature data where suitable communication infrastructure is available."]
-      ),
+      ]),
       help("Need Help with a Pressure or Temperature Measurement Application?", "SensCore can review your process conditions and help identify a suitable pressure or temperature measurement principle, instrument configuration and installation approach.")
     ]
   },
@@ -136,7 +136,7 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
         ["Can several water quality parameters be measured in one system?", "Yes. Multi-parameter systems can integrate several compatible sensors into a common monitoring platform."],
         ["When should a portable water quality analyser be used?", "Portable instruments are useful for field testing, temporary measurements, verification, troubleshooting and locations where permanent monitoring is unnecessary."],
         ["What information is required to select a water quality analyser?", "Define the parameter, range, water or process type, temperature, installation location, continuous or portable requirement, communication interface and maintenance conditions."]
-      ),
+      ]),
       help("Need Help with a Process Analysis Application?", "SensCore can review your water quality or process monitoring requirement and help identify suitable analytical parameters, sensing technologies and monitoring configurations.")
     ]
   },
@@ -162,7 +162,7 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
         ["Why are protocol gateways used?", "They allow equipment using different communication protocols to exchange selected data within a common automation architecture."],
         ["Can existing industrial equipment be connected to a modern control system?", "Often yes. The available communication interface, protocol, signal type and required data determine the most suitable integration method."],
         ["What information is needed for automation selection?", "Useful information includes IO list, control philosophy, equipment interfaces, communication protocols, network requirements, redundancy, environmental conditions and future expansion needs."]
-      ),
+      ]),
       help("Need Help with an Automation Application?", "SensCore can review your control architecture, field devices and communication requirements and help identify a practical automation and connectivity approach.")
     ]
   },
@@ -193,7 +193,7 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
         ["What is the purpose of a valve actuator?", "An actuator operates the valve automatically or remotely. Pneumatic and electric actuators are common industrial options."],
         ["What is a control valve?", "A control valve regulates process flow by varying the opening in response to a control signal."],
         ["What information is needed to select an industrial valve?", "Provide fluid, pressure, temperature, pipe size, flow range, required function, materials, connection standard, actuation and any hazardous-area or safety requirements."]
-      ),
+      ]),
       help("Need Help with a Valve Application?", "SensCore can review the process duty, valve function, operating conditions and actuation requirements to help identify a suitable flow-control solution.")
     ]
   },
@@ -219,7 +219,7 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
         ["What is a dosing pump used for?", "Dosing pumps deliver controlled quantities of chemicals or process additives, commonly in water treatment and process applications."],
         ["What causes pump cavitation?", "Cavitation can occur when suction pressure conditions allow vapour formation. Poor suction conditions, excessive restriction or unsuitable system design can contribute."],
         ["What information is required for pump selection?", "Provide flow, head or pressure, fluid type, viscosity, temperature, solids content, suction conditions, materials, operating hours and any control or dosing requirements."]
-      ),
+      ]),
       help("Need Help with a Pump or Dosing Application?", "SensCore can review your duty point, fluid properties and installation conditions to help identify a suitable pump or dosing configuration.")
     ]
   },
@@ -244,7 +244,7 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
         ["Where should flange guards be considered?", "They can be considered where process media are hazardous, corrosive, hot, flammable or otherwise capable of creating risk if released under pressure."],
         ["Why is a flange survey useful?", "A survey identifies flange locations, dimensions, process conditions and installation constraints so protection can be selected and organised systematically."],
         ["What information is needed for flange protection selection?", "Useful information includes flange size and type, process medium, pressure, temperature, material requirements, location and access or inspection constraints."]
-      ),
+      ]),
       help("Need Help with Flange Protection?", "SensCore can review your piping environment and support flange survey, mapping, guard selection and installation requirements.")
     ]
   },
@@ -270,7 +270,7 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
         ["How can flow measurement help?", "Flow measurement establishes demand patterns and helps identify high-consumption areas, unexpected usage and changes after improvements."],
         ["What causes compressed air pressure losses?", "Restrictions, undersized pipework, filters, valves, long distribution runs and excessive demand can contribute to pressure loss."],
         ["How can efficiency improvements be verified?", "Repeat measurements and compare demand, pressure and compressor operating conditions before and after corrective actions."]
-      ),
+      ]),
       help("Need Help with a Compressed Air Application?", "SensCore can review your compressed air network and support flow measurement, audit, leakage assessment and efficiency improvement planning.")
     ]
   },
@@ -296,7 +296,7 @@ export const KNOWLEDGE_ARTICLES: KnowledgeArticle[] = [
         ["What should be checked during commissioning?", "Check installation, configuration, process connection, signal transmission, communication, operating range and response under representative conditions."],
         ["How should an instrument problem be investigated?", "Review process conditions, installation, configuration, sensing element condition, wiring and signal path before deciding whether replacement is required."],
         ["Can SensCore help with equipment selection?", "Yes. SensCore can review application information and help identify suitable measurement, automation, valve, pump, protection or service requirements."]
-      ),
+      ]),
       help("Need Help with an Industrial Application?", "SensCore can review your process conditions and technical requirements and support application engineering, equipment selection, installation, commissioning and verification.")
     ]
   }
