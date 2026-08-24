@@ -19,7 +19,17 @@ SERVICES OFFERED: Onsite Flow Survey, Flowmeter Verification, Compressed Air Ser
 
 CONTACT: Head Office at 9th Floor, Mazyad Mall, Business Tower 3, MBZ City, Abu Dhabi, UAE. Email: info@senscoretech.com. Phone: +971 50 103 5348.
 
-Answer visitor questions helpfully and concisely based on this information. If asked something outside SensCore's scope, politely redirect to contacting the team via the Contact page. Keep responses brief and conversational — this is a website chat widget, not a report.`;
+Answer visitor questions helpfully and concisely based on this information. If asked something outside SensCore's scope, politely redirect to contacting the team via the Contact page.
+
+RESPONSE FORMATTING:
+Keep the existing conversational tone, emojis and smileys exactly as appropriate. Only avoid unwanted list/Markdown symbols in the generated answer.
+Do not use Markdown bullet markers such as -, *, or •.
+Do not use numbered list markers such as 1., 2., 3.
+Do not use Markdown headings, tables, or decorative formatting.
+When listing multiple items, put each item on its own clean line, or use a short label followed by plain text.
+Use short paragraphs and blank lines so the answer is easy to read in the chat widget.
+Do not remove or replace emojis or smileys.
+Keep responses brief, professional and conversational.`;
 
 export async function POST(req: NextRequest) {
   try {
@@ -27,29 +37,20 @@ export async function POST(req: NextRequest) {
     const messages = body.messages;
 
     if (!Array.isArray(messages)) {
-      return NextResponse.json(
-        { reply: "Sorry, I couldn't process that request." },
-        { status: 200 }
-      );
+      return NextResponse.json({ reply: "Sorry, I couldn't process that request." }, { status: 200 });
     }
 
     const apiKey = process.env.ANTHROPIC_API_KEY;
-
     if (!apiKey) {
       console.error("ANTHROPIC_API_KEY is not set");
-
-      return NextResponse.json(
-        { reply: "Sorry, I'm having trouble connecting right now." },
-        { status: 200 }
-      );
+      return NextResponse.json({ reply: "Sorry, I'm having trouble connecting right now." }, { status: 200 });
     }
 
     const claudeMessages = messages
-      .filter(
-        (m: { role?: string; content?: string }) =>
-          (m.role === "user" || m.role === "assistant") &&
-          typeof m.content === "string" &&
-          m.content.trim().length > 0
+      .filter((m: { role?: string; content?: string }) =>
+        (m.role === "user" || m.role === "assistant") &&
+        typeof m.content === "string" &&
+        m.content.trim().length > 0
       )
       .map((m: { role: string; content: string }) => ({
         role: m.role as "user" | "assistant",
@@ -73,33 +74,18 @@ export async function POST(req: NextRequest) {
 
     if (!response.ok) {
       const errText = await response.text();
-
-      console.error(
-        "Anthropic API error:",
-        response.status,
-        errText
-      );
-
-      return NextResponse.json(
-        { reply: "Sorry, I'm having trouble connecting right now." },
-        { status: 200 }
-      );
+      console.error("Anthropic API error:", response.status, errText);
+      return NextResponse.json({ reply: "Sorry, I'm having trouble connecting right now." }, { status: 200 });
     }
 
     const data = await response.json();
-
-    const reply =
-      data?.content?.[0]?.type === "text"
-        ? data.content[0].text
-        : "Sorry, I couldn't generate a response.";
+    const reply = data?.content?.[0]?.type === "text"
+      ? data.content[0].text
+      : "Sorry, I couldn't generate a response.";
 
     return NextResponse.json({ reply });
   } catch (err) {
     console.error("Chat route error:", err);
-
-    return NextResponse.json(
-      { reply: "Sorry, something went wrong. Please try again." },
-      { status: 200 }
-    );
+    return NextResponse.json({ reply: "Sorry, something went wrong. Please try again." }, { status: 200 });
   }
 }
