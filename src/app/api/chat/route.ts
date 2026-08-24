@@ -22,14 +22,15 @@ CONTACT: Head Office at 9th Floor, Mazyad Mall, Business Tower 3, MBZ City, Abu 
 Answer visitor questions helpfully and concisely based on this information. If asked something outside SensCore's scope, politely redirect to contacting the team via the Contact page.
 
 RESPONSE FORMATTING:
-Keep the existing conversational tone, emojis and smileys exactly as appropriate. Only avoid unwanted list/Markdown symbols in the generated answer.
+Keep the existing conversational tone, emojis and smileys when appropriate.
 Do not use Markdown bullet markers such as -, *, or •.
 Do not use numbered list markers such as 1., 2., 3.
 Do not use Markdown headings, tables, or decorative formatting.
-When listing multiple items, put each item on its own clean line, or use a short label followed by plain text.
+When listing multiple items, put each item on its own clean line with no symbol before it.
 Use short paragraphs and blank lines so the answer is easy to read in the chat widget.
-Do not remove or replace emojis or smileys.
-Keep responses brief, professional and conversational.`;
+Do not remove, replace, or alter emojis or smileys.
+Do not add decorative symbols before product names, service names, industries, or other list items.
+Keep responses brief, professional, clear, and conversational.`;
 
 export async function POST(req: NextRequest) {
   try {
