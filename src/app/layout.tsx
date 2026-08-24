@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   title: "SensCore | Industrial Instrumentation, Automation & Engineering Solutions UAE",
   description: "SensCore delivers industrial instrumentation, automation, flow control, process analysis and engineering solutions across the UAE, backed by application-driven technical support.",
   alternates: { canonical: "https://www.senscoretech.com/" },
+  icons: { icon: "/favicon.png", apple: "/favicon.png" },
   openGraph: { title: "SensCore | Industrial Instrumentation, Automation & Engineering Solutions UAE", description: "Industrial instrumentation, automation, flow control and engineered solutions for real operating environments across the UAE.", url: "https://www.senscoretech.com/", siteName: "SensCore", locale: "en_US", type: "website", images: [{ url: "/logo.png.webp", alt: "SensCore" }] },
   twitter: { card: "summary_large_image", title: "SensCore | Industrial Instrumentation, Automation & Engineering Solutions UAE", description: "Industrial instrumentation, automation, flow control and engineered solutions for real operating environments across the UAE.", images: ["/logo.png.webp"] },
 };
