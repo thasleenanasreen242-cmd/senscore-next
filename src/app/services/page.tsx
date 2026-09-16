@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Search, CheckCircle2, Wind, ShieldCheck, FileSearch, Wrench } from "lucide-react";
 import PageHero from "@/components/PageHero";
@@ -97,14 +98,15 @@ export default function ServicesPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <Reveal>
             <div className="group relative aspect-video overflow-hidden rounded-2xl border border-teal/20 bg-surface/30 shadow-[0_0_60px_rgba(45,212,191,0.06)]">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_30%,rgba(45,212,191,0.13),transparent_35%),radial-gradient(circle_at_80%_70%,rgba(45,212,191,0.08),transparent_40%)]" />
-              <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px)] [background-size:32px_32px]" />
+              <Image
+                src="/images/senscore-industrial-engineering-services.png"
+                alt="SensCore industrial engineering services"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 1280px"
+                className="object-cover transition-transform duration-700 group-hover:scale-[1.01]"
+              />
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-void/50" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="rounded-full border border-teal/30 bg-void/60 px-5 py-2.5 font-mono text-[10px] uppercase tracking-[0.2em] text-teal backdrop-blur-sm transition-colors duration-300 group-hover:border-teal/50">
-                  Service image placeholder
-                </div>
-              </div>
             </div>
           </Reveal>
         </div>
