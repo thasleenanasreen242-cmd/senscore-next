@@ -126,6 +126,30 @@ body::before {
   50% { transform: translateX(600%); }
   100% { transform: translateX(-100%); }
 }
+
+/* Touch devices: keep the industrial look, but remove non-essential continuous motion and blur work. */
+@media (max-width: 767px), (pointer: coarse) {
+  .gradient-border::before,
+  .brands-marquee-slow,
+  .scan-sweep,
+  .animate-scan {
+    animation: none !important;
+  }
+
+  .glass-panel {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .hover\:scale-105:hover,
+  .hover\:scale-110:hover,
+  .group:hover .group-hover\:scale-105,
+  .group:hover .group-hover\:scale-110,
+  .group:hover .group-hover\:scale-\[1\.01\] {
+    transform: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
