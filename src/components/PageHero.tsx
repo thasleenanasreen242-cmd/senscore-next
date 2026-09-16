@@ -13,16 +13,16 @@ export default function PageHero({
   description: string;
 }) {
   return (
-    <section className="relative overflow-hidden border-b border-line pb-20 pt-40 sm:pt-48">
+    <section className="relative overflow-hidden border-b border-line pb-16 pt-32 sm:pb-20 sm:pt-48">
       <HUDBackground density={4} />
-      <div className="relative mx-auto max-w-4xl px-6 text-center lg:px-10">
+      <div className="relative mx-auto max-w-4xl px-5 text-center sm:px-6 lg:px-10">
         <Reveal>
-          <div className="inline-flex items-center gap-2 rounded-full border border-teal/30 bg-teal/5 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-teal">
+          <div className="inline-flex max-w-full items-center justify-center gap-2 rounded-full border border-teal/30 bg-teal/5 px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.14em] text-teal sm:px-4 sm:text-[11px] sm:tracking-[0.2em]">
             {eyebrow}
           </div>
         </Reveal>
         <Reveal delay={0.08}>
-          <h1 className="mt-6 font-display text-4xl font-semibold leading-tight text-ink sm:text-6xl">{title}</h1>
+          <h1 className="mt-5 font-display text-4xl font-semibold leading-[1.08] text-ink sm:mt-6 sm:text-6xl">{title}</h1>
         </Reveal>
         {subheading && (
           <Reveal delay={0.14}>
@@ -30,7 +30,7 @@ export default function PageHero({
           </Reveal>
         )}
         <Reveal delay={subheading ? 0.2 : 0.16}>
-          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-mute sm:text-lg">{description}</p>
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-mute sm:text-lg">{description}</p>
         </Reveal>
       </div>
     </section>
