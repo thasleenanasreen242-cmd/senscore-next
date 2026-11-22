@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
     } finally { client.release(); }
     const token = createSessionToken();
     await pool.query("INSERT INTO finance_sessions(user_id,token_hash,expires_at) VALUES($1,$2,$3)", [user.id,hashToken(token),sessionExpiry()]);
-    await withFinanceDb(user, async c => { await c.query("INSERT INTO financial_audit_logs(actor_id,action,entity_type,entity_id,details) VALUES($1,'admin_setup','user',$1,$2)", [user.id,JSON.stringify({email})]); });
+    await withFinanceDb(user, async c => { await c.query("INSERT INTO financial_audit_logs(actor_id,action,entity_type,entity_id,details) VALUES($1::text,'admin_setup','user',$2::uuid,$3::jsonb)", [user.id,user.id,JSON.stringify({email})]); });
     return NextResponse.json({ user: { id:user.id,email:user.email,name:user.display_name,role:user.role } }, { headers: { "Set-Cookie": sessionCookie(token) } });
   } catch (error) {
     console.error("Finance setup failed", error);
