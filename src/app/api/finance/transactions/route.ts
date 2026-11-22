@@ -15,13 +15,18 @@ export async function POST(request: NextRequest) {
     const description = String(body.description ?? "").trim().slice(0,240);
     const amount = Number(body.amount);
     const date = String(body.date ?? "");
+    const accountId = body.accountId ? String(body.accountId) : null;
     if (!["income","expense"].includes(type) || !category || !description || !Number.isFinite(amount) || amount <= 0 || amount > 999999999999999 || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
       return NextResponse.json({error:"Enter a valid type, category, description, amount and date."},{status:400});
     }
     const result = await withFinanceDb(user, async client => {
+      if(accountId){
+        const account=await client.query("SELECT id FROM finance_accounts WHERE id=$1 AND is_active=true",[accountId]);
+        if(!account.rows[0]) throw new Error("Selected account is unavailable.");
+      }
       const inserted = await client.query(
-        "INSERT INTO finance_transactions(transaction_type,category,description,amount,currency,transaction_date,status) VALUES($1,$2,$3,$4,'AED',$5,'posted') RETURNING id,transaction_type,category,description,amount,currency,transaction_date",
-        [type,category,description,amount,date]
+        "INSERT INTO finance_transactions(account_id,transaction_type,category,description,amount,currency,transaction_date,status) VALUES($1,$2,$3,$4,$5,'AED',$6,'posted') RETURNING id,account_id,transaction_type,category,description,amount,currency,transaction_date",
+        [accountId,type,category,description,amount,date]
       );
       await client.query("INSERT INTO financial_audit_logs(actor_id,action,entity_type,entity_id,details) VALUES($1,'create','transaction',$2,$3)",[user.id,inserted.rows[0].id,JSON.stringify({type,amount,currency:"AED"})]);
       return inserted.rows[0];
