@@ -12,6 +12,7 @@ export async function GET(request:NextRequest){
  const client=await pool.connect();
  try{
   await client.query("BEGIN");
+  await client.query("SELECT set_config('app.finance_role','admin',true),set_config('app.finance_user_id','system-cron',true)");
   const overdue=await client.query("UPDATE finance_invoices SET status='overdue',updated_at=now() WHERE invoice_type='receivable' AND status IN ('unpaid','partially_paid') AND due_date<CURRENT_DATE RETURNING id");
   const snapshot=await client.query(`
    WITH daily AS (
