@@ -13,11 +13,16 @@ export async function GET(request: NextRequest) {
   if (![30,60,90,180].includes(horizon)) return NextResponse.json({error:"Invalid forecast horizon."},{status:400});
   try {
     const result = await withFinanceDb(user,async client=>{
-      const history = await client.query(`SELECT to_char(date_trunc('month',transaction_date),'YYYY-MM-01') AS month,
-        COALESCE(SUM(amount) FILTER (WHERE transaction_type='income'),0)::numeric AS revenue,
-        COALESCE(SUM(amount) FILTER (WHERE transaction_type='expense'),0)::numeric AS expenses
-        FROM finance_transactions WHERE status='posted' AND transaction_date >= CURRENT_DATE - INTERVAL '12 months'
-        GROUP BY 1 ORDER BY 1`);
+      const history = await client.query(`
+        WITH first_month AS (SELECT date_trunc('month',MIN(transaction_date)) AS month FROM finance_transactions WHERE status='posted')
+        SELECT to_char(m.month,'YYYY-MM-01') AS month,
+          COALESCE(SUM(t.amount) FILTER (WHERE t.transaction_type='income'),0)::numeric AS revenue,
+          COALESCE(SUM(t.amount) FILTER (WHERE t.transaction_type='expense'),0)::numeric AS expenses
+        FROM first_month f
+        CROSS JOIN LATERAL generate_series(GREATEST(f.month,date_trunc('month',CURRENT_DATE - INTERVAL '12 months')),date_trunc('month',CURRENT_DATE),interval '1 month') m(month)
+        LEFT JOIN finance_transactions t ON date_trunc('month',t.transaction_date)=m.month AND t.status='posted'
+        WHERE f.month IS NOT NULL GROUP BY m.month ORDER BY m.month
+      `);
       const rows=history.rows.map(r=>({month:r.month,revenue:Number(r.revenue),expenses:Number(r.expenses)}));
       const count=rows.length;
       if(count===0) return {available:false,message:"Forecasting will appear after real transaction history has been entered.",basedOnPeriods:0,method:"Insufficient history",confidence:"low",horizonDays:horizon,projection:[]};
@@ -33,7 +38,7 @@ export async function GET(request: NextRequest) {
         const profit=revenue-expenses;
         const date=new Date(); date.setDate(1); date.setMonth(date.getMonth()+month);
         const row:any={month:date.toISOString().slice(0,7),revenue,expenses,profit,cashFlow:profit};
-        if(count>=6){row.lowerBound=profit*0.85;row.upperBound=profit*1.15;}
+        if(count>=6){const spread=Math.abs(profit)*0.15;row.lowerBound=profit-spread;row.upperBound=profit+spread;}
         return row;
       });
       return {available:true,basedOnPeriods:count,method:"3-period weighted moving average with scenario growth",confidence,horizonDays:horizon,assumptions:{revenueGrowthPercent:growth,expenseChangePercent:expenseChange},baseline:{monthlyRevenue:baseRevenue,monthlyExpenses:baseExpenses},projection};
