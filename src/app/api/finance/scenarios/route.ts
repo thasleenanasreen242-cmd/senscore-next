@@ -5,7 +5,7 @@ export const runtime="nodejs";export const dynamic="force-dynamic";
 export async function GET(request:NextRequest){
  const user=await getFinanceUser(request);if(!user)return NextResponse.json({error:"Unauthorized"},{status:401});
  try{
-  const scenarios=await withFinanceDb(user,async c=>(await c.query("SELECT id,name,description,assumptions,horizon_days,created_at FROM forecast_scenarios ORDER BY created_at DESC LIMIT 100")).rows);
+  const scenarios=await withFinanceDb(user,async c=>(await c.query(`SELECT s.id,s.name,s.description,s.assumptions,s.horizon_days,s.created_at,COALESCE(json_agg(json_build_object('forecast_date',r.forecast_date,'metric',r.metric,'forecast_value',r.forecast_value,'confidence',r.confidence) ORDER BY r.forecast_date) FILTER(WHERE r.id IS NOT NULL),'[]'::json) AS records FROM forecast_scenarios s LEFT JOIN forecast_records r ON r.scenario_id=s.id GROUP BY s.id ORDER BY s.created_at DESC LIMIT 100`)).rows);
   return NextResponse.json({scenarios});
  }catch(e){console.error(e);return NextResponse.json({error:"Unable to load scenarios."},{status:500});}
 }
