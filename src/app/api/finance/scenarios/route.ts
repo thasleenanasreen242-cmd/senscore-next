@@ -24,7 +24,7 @@ export async function POST(request:NextRequest){
      COALESCE(SUM(t.amount) FILTER(WHERE t.transaction_type='income'),0)::numeric AS revenue,
      COALESCE(SUM(t.amount) FILTER(WHERE t.transaction_type='expense'),0)::numeric AS expenses
     FROM first_month f
-    CROSS JOIN LATERAL generate_series(f.month,date_trunc('month',CURRENT_DATE),interval '1 month') m(month)
+    CROSS JOIN LATERAL generate_series(GREATEST(f.month,date_trunc('month',CURRENT_DATE - INTERVAL '12 months')),date_trunc('month',CURRENT_DATE),interval '1 month') m(month)
     LEFT JOIN finance_transactions t ON date_trunc('month',t.transaction_date)=m.month AND t.status='posted'
     WHERE f.month IS NOT NULL GROUP BY m.month ORDER BY m.month
    `);
