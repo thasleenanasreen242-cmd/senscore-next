@@ -4,7 +4,7 @@ import {pool} from "@/lib/finance-db";
 export const runtime="nodejs";
 export const dynamic="force-dynamic";
 export async function GET(request:NextRequest){
- const secret=process.env.FINANCE_CRON_SECRET??"";
+ const secret=process.env.CRON_SECRET??"";
  const auth=request.headers.get("authorization")??"";
  const supplied=Buffer.from(auth.replace(/^Bearer\\s+/i,""));
  const expected=Buffer.from(secret);
