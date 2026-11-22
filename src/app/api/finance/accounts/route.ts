@@ -19,7 +19,7 @@ export async function POST(request:NextRequest){
  if(user.role!=="admin")return NextResponse.json({error:"Only administrators can add bank or cash accounts."},{status:403});
  try{
   const b=await request.json();const name=String(b.name??"").trim().slice(0,120),type=String(b.type??""),currency=String(b.currency??"AED").toUpperCase(),opening=Number(b.openingBalance);
-  if(!name||!["bank","cash","other"].includes(type)||! /^[A-Z]{3}$/.test(currency)||!Number.isFinite(opening)||Math.abs(opening)>999999999999999)return NextResponse.json({error:"Enter valid account details."},{status:400});
+  if(!name||!["bank","cash","other"].includes(type)||currency!=="AED"||!Number.isFinite(opening)||Math.abs(opening)>999999999999999)return NextResponse.json({error:"Enter valid account details."},{status:400});
   const row=await withFinanceDb(user,async c=>{
    const r=await c.query("INSERT INTO finance_accounts(name,account_type,currency,opening_balance) VALUES($1,$2,$3,$4) RETURNING id,name,account_type,currency,opening_balance,is_active",[name,type,currency,opening]);
    await c.query("INSERT INTO financial_audit_logs(actor_id,action,entity_type,entity_id,details) VALUES($1,'create','account',$2,$3)",[user.id,r.rows[0].id,JSON.stringify({name,type,currency,openingBalance:opening})]);
