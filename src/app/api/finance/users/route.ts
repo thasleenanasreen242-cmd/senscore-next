@@ -26,7 +26,7 @@ export async function PATCH(request:NextRequest){
  try{
   const b=await request.json();const id=String(b.id??"");const active=Boolean(b.isActive);const role=String(b.role??"");
   if(!/^[0-9a-f-]{36}$/i.test(id)||!["admin","finance_manager","viewer"].includes(role))return NextResponse.json({error:"Invalid team member update."},{status:400});
-  if(id===actor.id&&!active)return NextResponse.json({error:"You cannot deactivate your own active administrator account."},{status:400});
+  if(id===actor.id&&(!active||role!=="admin"))return NextResponse.json({error:"You cannot deactivate or demote your own active administrator account."},{status:400});
   const result=await pool.query("UPDATE finance_admin_users SET is_active=$2,role=$3,updated_at=now() WHERE id=$1 RETURNING id,email,display_name,role,is_active,created_at",[id,active,role]);
   if(!result.rows[0])return NextResponse.json({error:"Team member not found."},{status:404});
   await withFinanceDb(actor,async c=>{await c.query("INSERT INTO financial_audit_logs(actor_id,action,entity_type,entity_id,details) VALUES($1,'update','finance_user',$2,$3)",[actor.id,id,JSON.stringify({isActive:active,role})]);});
