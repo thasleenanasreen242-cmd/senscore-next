@@ -160,3 +160,10 @@ body::before {
     scroll-behavior: auto !important;
   }
 }
+
+
+/* Keep the public website chrome out of the private finance workspace. */
+body:has(.finance-workspace) > div.fixed.inset-x-0.top-0.z-40,
+body:has(.finance-auth-page) > div.fixed.inset-x-0.top-0.z-40,
+body:has(.finance-workspace) > footer,
+body:has(.finance-auth-page) > footer { display: none !important; }
