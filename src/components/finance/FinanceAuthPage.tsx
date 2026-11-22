@@ -14,7 +14,7 @@ export default function FinanceAuthPage({mode}:{mode:"login"|"setup"}) {
    const data=await response.json();if(!response.ok)throw new Error(data.error||"Unable to continue.");router.replace("/accounts");router.refresh();
   }catch(err){setError(err instanceof Error?err.message:"Something went wrong.");}finally{setBusy(false);}
  }
- return <main className="finance-auth-page min-h-screen bg-[#07111f] text-slate-100">
+ return <main className="finance-auth-page -mt-[68px] min-h-screen bg-[#07111f] text-slate-100">
   <div className="absolute inset-0 opacity-30" style={{backgroundImage:"radial-gradient(circle at 80% 15%,#1e5a88 0,transparent 35%),linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px)",backgroundSize:"auto,40px 40px,40px 40px"}}/>
   <div className="relative mx-auto flex min-h-screen max-w-6xl items-center justify-center px-5 py-12">
    <div className="grid w-full overflow-hidden rounded-3xl border border-white/10 bg-[#0c1b2c]/90 shadow-2xl shadow-black/40 md:grid-cols-[1fr_1fr]">
